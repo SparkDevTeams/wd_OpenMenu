@@ -1,24 +1,30 @@
-import HelloWorld from './components/hello/MyComponent'
+import React, { Component } from 'react'
+import logo from './assets/logo.svg'
+import './styles/App.css'
 
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+/* Add your Components underneath */
+import CristianC from './components/CristianC'
 
 class App extends Component {
-  render() {
+  render () {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to SparkDev!</h1>
+      <div className='App'>
+        <header className='App-header'>
+          <img src={logo} className='App-logo' alt='logo' />
+          <h1 className='App-title'>Welcome to SparkDev!</h1>
         </header>
-        <p className="App-intro">
+        <p className='App-intro'>
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
+<<<<<<< HEAD
         <HelloWorld/>
+=======
+        {/* Add your Component underneath */}
+        <CristianC />
+>>>>>>> dev
       </div>
-    );
+    )
   }
 }
 
-export default App;
+export default App
