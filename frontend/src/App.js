@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
 import './App.css';
-import HelloWorld from './temp/ac.js'
+// import HelloWorld from './temp/ac.js'
 
 import HelloC from './Component/HelloC'
 import Hello from './components/hello';
 import HelloWorld from './HelloWorld-temp';
+import HelloT from './components/helloT';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
+          {/* <img src={logo} className="App-logo" alt="logo" /> */}
           <h1 className="App-title">Welcome to SparkDev!</h1>
           <Hello />
         </header>
@@ -20,6 +21,7 @@ class App extends Component {
         </p>
         <HelloC/>
         <HelloWorld />
+        <HelloT/>
       </div>
     );
   }
