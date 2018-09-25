@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import HelloWorld from './temp/ac.js'
 
 import HelloC from './Component/HelloC'
 import Hello from './components/hello';
