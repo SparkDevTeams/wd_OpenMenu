@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Hello from './components/hello';
 
+import HelloC from './Component/HelloC'
+import Hello from './components/hello';
 import HelloWorld from './HelloWorld-temp';
 
 class App extends Component {
@@ -17,6 +18,7 @@ class App extends Component {
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
+        <HelloC/>
         <HelloWorld />
       </div>
     );
