@@ -1,7 +1,20 @@
+
 import React, { Component } from 'react';
 import logo from './assets/logo.svg';
 import './styles/App.css';
 import AndreaC from './components/AndreaC.js'  
+
+
+
+/* Add your Components underneath */
+import CristianC from './components/CristianC'
+import AlexC from './components/AlexC';
+import AndresC from './components/AndresC'
+import JabinC from './components/JabinC'
+import TommyC from './components/TommyC';
+import ElliotNicholsonC from './components/ElliotNicholsonC'
+import OctavioC from './components/OctavioC'
+
 
 class App extends Component {
   render() {
@@ -15,6 +28,13 @@ class App extends Component {
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
         <AndreaC/>
+        {/* Add your Component underneath */}
+        <CristianC />
+        <AlexC />
+        <AndresC />
+        <TommyC />
+        <ElliotNicholsonC /> 
+        <OctavioC />
       </div>
     );
   }
