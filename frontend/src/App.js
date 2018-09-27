@@ -4,7 +4,7 @@ import './styles/App.css'
 
 /* Add your Components underneath */
 import CristianC from './components/CristianC'
-import AndresS from './components/AndresS'
+import AndresC from './components/AndresC'
 
 class App extends Component {
   render () {
@@ -19,7 +19,7 @@ class App extends Component {
         </p>
         {/* Add your Component underneath */}
         <CristianC />
-        <AndresS />
+        <AndresC />
       </div>
     )
   }

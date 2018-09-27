@@ -1,6 +1,6 @@
 import React from 'react';
 
-class AndresS extends React.Component{
+class AndresC extends React.Component{
     render(){
         return(
             <div>
@@ -9,4 +9,4 @@ class AndresS extends React.Component{
         );
     }
 }
-export default AndresS
+export default AndresC
