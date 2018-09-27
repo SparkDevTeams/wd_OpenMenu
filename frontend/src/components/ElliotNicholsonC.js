@@ -8,4 +8,4 @@ const ElliotNicholsonC = () => {
   )
 }
 
-export default ElliotNicholsonCS
+export default ElliotNicholsonC
