@@ -1,11 +1,13 @@
-import React, { Component } from 'react'
-import logo from './assets/logo.svg'
-import './styles/App.css'
+
+import React, { Component } from 'react';
+import logo from './assets/logo.svg';
+import './styles/App.css';
+import AndreaC from './components/AndreaC.js'  
+
 
 
 /* Add your Components underneath */
 import CristianC from './components/CristianC'
-
 import AlexC from './components/AlexC';
 import AndresC from './components/AndresC'
 import JabinC from './components/JabinC'
@@ -15,16 +17,17 @@ import OctavioC from './components/OctavioC'
 
 
 class App extends Component {
-  render () {
+  render() {
     return (
-      <div className='App'>
-        <header className='App-header'>
-          <img src={logo} className='App-logo' alt='logo' />
-          <h1 className='App-title'>Welcome to SparkDev!</h1>
+      <div className="App">
+        <header className="App-header">
+          <img src={logo} className="App-logo" alt="logo" />
+          <h1 className="App-title">Welcome to SparkDev!</h1>
         </header>
-        <p className='App-intro'>
+        <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
+        <AndreaC/>
         {/* Add your Component underneath */}
         <CristianC />
         <AlexC />
@@ -33,8 +36,8 @@ class App extends Component {
         <ElliotNicholsonC /> 
         <OctavioC />
       </div>
-    )
+    );
   }
 }
 
-export default App
+export default App;
