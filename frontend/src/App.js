@@ -19,7 +19,7 @@ class App extends Component {
         </p>
         {/* Add your Component underneath */}
         <CristianC />
-        <Andres />
+        <AndresS />
       </div>
     )
   }
