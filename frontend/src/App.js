@@ -4,6 +4,7 @@ import './styles/App.css'
 
 /* Add your Components underneath */
 import CristianC from './components/CristianC'
+import AndresC from './components/AndresC'
 import JabinC from './components/JabinC'
 import TommyC from './components/TommyC';
 import ElliotNicholsonC from './components/ElliotNicholsonC'
@@ -23,6 +24,7 @@ class App extends Component {
         </p>
         {/* Add your Component underneath */}
         <CristianC />
+        <AndresC />
         <TommyC />
         <ElliotNicholsonC /> 
         <OctavioC />
