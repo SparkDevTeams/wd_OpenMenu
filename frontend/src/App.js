@@ -4,6 +4,7 @@ import './styles/App.css'
 
 /* Add your Components underneath */
 import CristianC from './components/CristianC'
+import ElliotNicholsonC from './components/ElliotNicholsonC'
 
 class App extends Component {
   render () {
@@ -16,12 +17,9 @@ class App extends Component {
         <p className='App-intro'>
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
-<<<<<<< HEAD
-        <HelloWorld/>
-=======
         {/* Add your Component underneath */}
         <CristianC />
->>>>>>> dev
+        <ElliotNicholsonC /> 
       </div>
     )
   }
