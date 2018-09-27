@@ -30,16 +30,16 @@ const LandingPV = (props) => {
                               onChange={props.onPWChange}
                               autoComplete='current-password' 
                               margin='normal' fullWidth />
-                  <div>
-                    <Button variant='contained' 
-                      onClick={props.login}> Login </Button>
-                    <Button variant='contained' 
-                      onClick={props.signup}> Signup </Button>
-                  </div>
-
                 </form>
               </CardContent>
+
             </CardActionArea>
+              <div>
+                <Button variant='contained' 
+                  onClick={props.login}> Login </Button>
+                <Button variant='contained' 
+                  onClick={props.signup}> Signup </Button>
+              </div>
           </Card>
         </div>
       );

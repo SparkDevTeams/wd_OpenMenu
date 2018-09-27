@@ -4,15 +4,17 @@ import './styles/index.css'
 import Start from './Start'
 import registerServiceWorker from './registerServiceWorker'
 
-import {createStore, applyMiddleware} from 'redux'
+import {createStore, applyMiddleware, compose} from 'redux'
 import {Provider} from 'react-redux'
 import thunk from 'redux-thunk'
 import RootR from './store/reducers/RootR'
 
 const store = createStore(
     RootR,
-    applyMiddleware(thunk),
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    compose( 
+        applyMiddleware(thunk),
+        window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    )
   )
 
 ReactDOM.render(
