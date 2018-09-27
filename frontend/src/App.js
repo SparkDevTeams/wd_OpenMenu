@@ -2,9 +2,6 @@ import React, { Component } from 'react'
 import logo from './assets/logo.svg'
 import './styles/App.css'
 
-
-/* Add your Components underneath */
-import CristianC from './components/CristianC'
 import AndreaC from './components/AndreaC.js'  
 
 
@@ -17,7 +14,7 @@ import JabinC from './components/JabinC'
 import TommyC from './components/TommyC';
 import ElliotNicholsonC from './components/ElliotNicholsonC'
 import OctavioC from './components/OctavioC'
-import AndreaC from '/components/AndreaC'
+
 
 
 class App extends Component {
