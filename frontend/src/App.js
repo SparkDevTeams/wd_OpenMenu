@@ -26,9 +26,7 @@ class App extends Component {
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
-<<<<<<< HEAD
         <AndreaC/>
-=======
         {/* Add your Component underneath */}
         <CristianC />
         <AlexC />
@@ -36,7 +34,6 @@ class App extends Component {
         <TommyC />
         <ElliotNicholsonC /> 
         <OctavioC />
->>>>>>> dev
       </div>
     );
   }
