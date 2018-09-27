@@ -4,6 +4,7 @@ import './styles/App.css'
 
 /* Add your Components underneath */
 import CristianC from './components/CristianC'
+import JabinC from './components/JabinC'
 
 class App extends Component {
   render () {
