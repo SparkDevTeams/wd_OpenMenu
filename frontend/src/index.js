@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import './styles/index.css'
-import Start from './Start'
+import App from './App'
 import registerServiceWorker from './registerServiceWorker'
 
 import {createStore, applyMiddleware, compose} from 'redux'
@@ -19,6 +19,6 @@ const store = createStore(
 
 ReactDOM.render(
     <Provider store={store}>
-        <Start />
+        <App />
     </ Provider>, document.getElementById('root'))
 registerServiceWorker()
