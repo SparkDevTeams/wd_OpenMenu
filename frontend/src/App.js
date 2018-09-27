@@ -2,8 +2,10 @@ import React, { Component } from 'react'
 import logo from './assets/logo.svg'
 import './styles/App.css'
 
+
 /* Add your Components underneath */
 import CristianC from './components/CristianC'
+import AlexC from './components/AlexC';
 
 class App extends Component {
   render () {
@@ -18,6 +20,7 @@ class App extends Component {
         </p>
         {/* Add your Component underneath */}
         <CristianC />
+        <AlexC />
       </div>
     )
   }
