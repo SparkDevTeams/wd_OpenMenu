@@ -11,7 +11,7 @@ const NavbarV = (props) => {
     return (
       <AppBar position='fixed' color='secondary'>
         <Toolbar>
-        <Typography variant='title' color='inherit' > Open Menu </Typography>
+          <Typography variant='title' color='inherit' > Open Menu </Typography>
           <Link to='/'>
             <Button onClick={props.logout} color='inherit'>Logout</Button>
           </Link>
@@ -29,4 +29,4 @@ const NavbarV = (props) => {
   }
 }
 
-export default NavbarV;
+export default NavbarV
