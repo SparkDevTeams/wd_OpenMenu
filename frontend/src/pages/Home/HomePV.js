@@ -1,5 +1,6 @@
 import React from 'react';
 
+import AndresC from '../../components/AndresC';
 import ElliotC from '../../components/ElliotC'
 import Card from '@material-ui/core/Card'
 import MauricioC from '../../components/MauricioC'
@@ -16,6 +17,7 @@ const LandingPV = props => {
         <AmyC />
         <MiaC />
         <MauricioC />
+        <AndresC />
         <ElliotC />
         <TommyC />
         <OctavioC />
