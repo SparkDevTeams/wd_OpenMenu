@@ -1,10 +1,10 @@
 import React from 'react';
 
-import Card from '@material-ui/core/Card';
+import Card from '@material-ui/core/Card'
+import MauricioC from '../../components/MauricioC'
+import OctavioC from '../../components/OctavioC'
 import MiaC from '../../components/MiaC';
-import MauricioC from '../../components/MauricioC';
 import TommyC from './../../components/TommyC';
-
 
 const LandingPV = props => {
   return (
@@ -14,6 +14,7 @@ const LandingPV = props => {
         <MiaC />
         <MauricioC />
         <TommyC />
+        <OctavioC />
       </Card>
     </div>
   );
