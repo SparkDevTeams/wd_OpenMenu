@@ -1,11 +1,9 @@
-import React from 'react'
+import React, { Component } from "react";
 
-const CristianC = () => {
-  return (
-    <div>
-      <p>My name is Cristian</p>
-    </div>
-  )
+class CristianC extends Component {
+  render() {
+    return <h1>And I'm Cristian!</h1>;
+  }
 }
 
-export default CristianC
+export default CristianC;
