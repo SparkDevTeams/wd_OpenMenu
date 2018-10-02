@@ -1,10 +1,11 @@
-import React, { Component } from 'react'
-import HomePV from './HomePV'
+import React, { Component } from 'react';
+import HomePV from './HomePV';
 
 class HomePC extends Component {
-  render () {
-    return (<HomePV />)
+
+  render() {
+    return <HomePV />;
   }
 }
 
-export default HomePC
+export default HomePC;
