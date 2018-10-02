@@ -1,18 +1,15 @@
+import React from "react";
+import { Redirect } from "react-router-dom";
 
-import React from 'react';
-import { Redirect } from 'react-router-dom';
-
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
-
+import Card from "@material-ui/core/Card";
+import CardActionArea from "@material-ui/core/CardActionArea";
+import CardContent from "@material-ui/core/CardContent";
+import Button from "@material-ui/core/Button";
+import TextField from "@material-ui/core/TextField";
 
 const LandingPV = props => {
   if (props.auth) {
     return <Redirect to="/home" />;
-
   } else {
     return (
       <div>
@@ -41,12 +38,12 @@ const LandingPV = props => {
           </CardActionArea>
           <div>
             <Button variant="contained" onClick={props.login}>
-              {' '}
-              Login{' '}
+              {" "}
+              Login{" "}
             </Button>
             <Button variant="contained" onClick={props.signup}>
-              {' '}
-              Signup{' '}
+              {" "}
+              Signup{" "}
             </Button>
           </div>
         </Card>
