@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 
@@ -7,9 +8,11 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 
+
 const LandingPV = props => {
   if (props.auth) {
     return <Redirect to="/home" />;
+
   } else {
     return (
       <div>

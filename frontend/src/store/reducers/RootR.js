@@ -1,8 +1,8 @@
-import {combineReducers} from 'redux'
+import { combineReducers } from 'redux'
 import AuthR from './AuthR'
 
 const RootR = combineReducers({
-    AuthR
+  AuthR
 })
 
 export default RootR

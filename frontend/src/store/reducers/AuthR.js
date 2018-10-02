@@ -2,7 +2,7 @@ const authInitState = {
 		auth: false,
 		auth_err: false
   }
-  
+
 function AuthR (state = authInitState, action) {
 	switch (action.type) {
 		case 'LOGIN':
@@ -17,5 +17,5 @@ function AuthR (state = authInitState, action) {
 			return state
 	}
 }
-  
-  export default AuthR
+
+export default AuthR
