@@ -5,7 +5,7 @@ import NavbarC from './components/Navbar/NavbarC'
 import LandingPC from './pages/Landing/LandingPC'
 import HomePC from './pages/Home/HomePC'
 
-class App extends Component {
+class Start extends Component {
 
   render () {
     let margin = {
@@ -29,4 +29,4 @@ class App extends Component {
   }
 }
 
-export default App
+export default Start
