@@ -1,13 +1,12 @@
 import React, { Component } from "react";
 
-class MauricioC extends Component {
+class AndresC extends Component {
   render() {
     return (
       <div>
-        <h1>I'm Mauricio!</h1>
+        <h1>I'm Andres!</h1>
       </div>
     );
   }
 }
-
-export default MauricioC;
+export default AndresC;

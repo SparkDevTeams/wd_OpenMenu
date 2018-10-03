@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
-import LandingPV from './LandingPV';
-import AuthA from '../../store/actions/AuthA';
+import React, { Component } from "react";
+import LandingPV from "./LandingPV";
+import AuthA from "../../store/actions/AuthA";
 
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
 class LandingPC extends Component {
   state = {
-    user: '',
-    password: ''
+    user: "",
+    password: ""
   };
 
   onUserChange = event => {
