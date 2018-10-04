@@ -9,6 +9,7 @@ import OctavioC from "../../components/OctavioC";
 import MiaC from "../../components/MiaC";
 import TommyC from "./../../components/TommyC";
 import AmyC from "../../components/AmyC";
+import SoyaD from "../../components/SoyaD";
 
 const LandingPV = props => {
   return (
@@ -23,6 +24,7 @@ const LandingPV = props => {
         <ElliotC />
         <TommyC />
         <OctavioC />
+        <SoyaD />
       </Card>
     </div>
   );
