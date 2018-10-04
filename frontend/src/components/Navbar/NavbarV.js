@@ -15,6 +15,12 @@ const NavbarV = props => {
             {" "}
             Open Menu{" "}
           </Typography>
+          <Link to="/home">
+            <Button color="inherit">Home</Button>
+          </Link>
+          <Link to="/menu">
+            <Button color="inherit">Menu</Button>
+          </Link>
           <Link to="/">
             <Button onClick={props.logout} color="inherit">
               Logout
