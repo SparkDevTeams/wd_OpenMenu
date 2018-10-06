@@ -20,7 +20,8 @@
     ],
     "menu": " ",
     "servingSize": 1,
-    "picURL": "https://www.seriouseats.com/recipes/images/2016/04/20160323-french-omelet-vicky-wasik--29-1500x1125.jpg"
+    "picURL": "https://www.seriouseats.com/recipes/images/2016/04/20160323-french-omelet-vicky-wasik--29-1500x1125.jpg",
+    "instruction": ["crack the egg", "fry it"]
   },
   {
     "name": "Salad",
@@ -48,6 +49,7 @@
     ],
     "menu": " ",
     "servingSize": 1,
-    "picURL": "https://static.olocdn.net/menu/applebees/ef0be810e965d2ef8ade562baf084952.jpg"
+    "picURL": "https://static.olocdn.net/menu/applebees/ef0be810e965d2ef8ade562baf084952.jpg",
+    "instruction": ["cut veggies", "put on dressing and toss the salad"]
   }
 ]

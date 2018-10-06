@@ -1,9 +1,12 @@
 import React from "react";
+import Recipes from "./DummyRecipes.json";
+import RecipeDetailV from "./RecipeDetailV";
+import ItemCardV from "./ItemCardV";
 
 const RecipeV = props => {
   return (
     <div>
-      <h1>Recipe Name</h1>
+      <RecipeDetailV />
     </div>
   );
 };
