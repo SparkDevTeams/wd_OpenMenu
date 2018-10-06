@@ -16,7 +16,17 @@ const MenuV = props => {
   return (
     <div>
       <h1 style={title}>Menu</h1>
-      <Card />
+      <Card>
+        <CardActionArea>
+          <CardMedia />
+          <CardContent>
+            <Typography>Menu</Typography>
+          </CardContent>
+        </CardActionArea>
+        <CardActions>
+          <Button>Share</Button>
+        </CardActions>
+      </Card>
     </div>
   );
 };

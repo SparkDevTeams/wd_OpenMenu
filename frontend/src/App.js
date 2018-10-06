@@ -21,7 +21,6 @@ class App extends Component {
               <Route exact path="/" component={LandingPC} />
               <Route path="/welcome" component={LandingPC} />
               <Route path="/home" component={HomePC} />
-              <Route path="/menu" component={MenuPC} />
             </Switch>
           </div>
         </div>
