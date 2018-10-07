@@ -7,7 +7,7 @@ class RecipeC extends Component {
   render() {
     return (
       <div>
-        <RecipeV />
+        <RecipeV items={this.props.items} />
       </div>
     );
   }
