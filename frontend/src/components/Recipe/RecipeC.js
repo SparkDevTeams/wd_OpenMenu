@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import RecipeV from "./RecipeV";
+import RecipeA from "./../../store/actions/RecipeA";
+import { connect } from "react-redux";
 
 class RecipeC extends Component {
   render() {
@@ -11,4 +13,19 @@ class RecipeC extends Component {
   }
 }
 
-export default RecipeC;
+const mapStateToProps = state => {
+  return {
+    items: state.RecipeR.items
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    recipeFn: RecipeA(dispatch)
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(RecipeC);
