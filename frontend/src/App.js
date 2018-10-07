@@ -5,6 +5,8 @@ import NavbarC from "./components/Navbar/NavbarC";
 import LandingPC from "./pages/Landing/LandingPC";
 import HomePC from "./pages/Home/HomePC";
 import ShoppinglistPC from "./pages/Shoppinglist/ShoppinglistPC";
+import RecipeBrowserPC from "./pages/RecipeBrowser/RecipeBrowserPC";
+import RecipeC from "./components/Recipe/RecipeC";
 
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -26,9 +28,11 @@ class App extends Component {
             <div style={margin}>
               <Switch>
                 <Route exact path="/" component={LandingPC} />
+                <Route exact path="/recipes/recipe" component={RecipeC} />
                 <Route path="/welcome" component={LandingPC} />
                 <Route path="/home" component={HomePC} />
                 <Route path="/shoppinglist" component={ShoppinglistPC} />
+                <Route path="/recipes" component={RecipeBrowserPC} />
               </Switch>
             </div>
           </div>

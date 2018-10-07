@@ -1,0 +1,55 @@
+[
+  {
+    "name": "Omlette",
+    "ingredient": [
+      {
+        "item": "egg",
+        "amount": 1,
+        "unit": "egg"
+      },
+      {
+        "item": "oil",
+        "amount": 1,
+        "unit": "Tbs"
+      },
+      {
+        "item": "salt",
+        "amount": 1,
+        "unit": "pinch"
+      }
+    ],
+    "menu": " ",
+    "servingSize": 1,
+    "picURL": "https://www.seriouseats.com/recipes/images/2016/04/20160323-french-omelet-vicky-wasik--29-1500x1125.jpg",
+    "instruction": "Crack the egg to the bowl and microwave it"
+  },
+  {
+    "name": "Salad",
+    "ingredient": [
+      {
+        "item": "romain",
+        "amount": 6,
+        "unit": "leaf"
+      },
+      {
+        "item": "dressing",
+        "amount": 2,
+        "unit": "Tbs"
+      },
+      {
+        "item": "apple",
+        "amount": 1,
+        "unit": "fruit"
+      },
+      {
+        "item": "chicken breast",
+        "amount": 6,
+        "unit": "oz"
+      }
+    ],
+    "menu": " ",
+    "servingSize": 1,
+    "picURL": "https://static.olocdn.net/menu/applebees/ef0be810e965d2ef8ade562baf084952.jpg",
+    "instruction": ["cut veggies, put on dressing and toss the salad"]
+  }
+]
