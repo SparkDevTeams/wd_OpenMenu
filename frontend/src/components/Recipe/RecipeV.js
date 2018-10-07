@@ -1,5 +1,4 @@
 import React from "react";
-import Items from "./DummyItems.json";
 import RecipeDetailV from "./RecipeDetailV";
 import ItemCardV from "./ItemCardV";
 
@@ -21,9 +20,8 @@ const RecipeV = props => {
           </div>
         );
       })()} */}
-
-      {Items.length > 0
-        ? Items.map(item => {
+      {props.items.length > 0
+        ? props.items.map(item => {
             return <ItemCardV name={item.item} img={item.image} />;
           })
         : console.log("items array is empty")}
