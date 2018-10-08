@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 
-class MiaC extends Component {
+class JabinC extends Component {
   render() {
     return (
       <div>
-        <h1>I'm Mia!</h1>
+        <h1>I'm Jabin!</h1>
       </div>
     );
   }
 }
 
-export default MiaC;
+export default JabinC;

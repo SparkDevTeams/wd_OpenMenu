@@ -4,6 +4,16 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import NavbarC from "./components/Navbar/NavbarC";
 import LandingPC from "./pages/Landing/LandingPC";
 import HomePC from "./pages/Home/HomePC";
+import ShoppinglistPC from "./pages/Shoppinglist/ShoppinglistPC";
+import RecipeBrowserPC from "./pages/RecipeBrowser/RecipeBrowserPC";
+import RecipeC from "./components/Recipe/RecipeC";
+import PantryBrowserPC from "./pages/Pantry/PantryBrowserPC";
+
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import Typography from "@material-ui/core/Typography";
+import Button from "@material-ui/core/Button";
+// import { Toolbar } from "@material-ui/core";
 
 class App extends Component {
   render() {
@@ -12,18 +22,24 @@ class App extends Component {
     };
 
     return (
-      <BrowserRouter>
-        <div className="App">
-          <NavbarC />
-          <div style={margin}>
-            <Switch>
-              <Route exact path="/" component={LandingPC} />
-              <Route path="/welcome" component={LandingPC} />
-              <Route path="/home" component={HomePC} />
-            </Switch>
+      <div>
+        <BrowserRouter>
+          <div className="App">
+            <NavbarC />
+            <div style={margin}>
+              <Switch>
+                <Route exact path="/" component={LandingPC} />
+                <Route exact path="/recipes/recipe" component={RecipeC} />
+                <Route path="/welcome" component={LandingPC} />
+                <Route path="/home" component={HomePC} />
+                <Route path="/shoppinglist" component={ShoppinglistPC} />
+                <Route path="/recipes" component={RecipeBrowserPC} />
+                <Route path="/pantry" component={PantryBrowserPC} />
+              </Switch>
+            </div>
           </div>
-        </div>
-      </BrowserRouter>
+        </BrowserRouter>
+      </div>
     );
   }
 }
