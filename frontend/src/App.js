@@ -7,6 +7,7 @@ import HomePC from "./pages/Home/HomePC";
 import ShoppinglistPC from "./pages/Shoppinglist/ShoppinglistPC";
 import RecipeBrowserPC from "./pages/RecipeBrowser/RecipeBrowserPC";
 import RecipeC from "./components/Recipe/RecipeC";
+import PantryBrowserPC from "./pages/Pantry/PantryBrowserPC";
 
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -33,6 +34,7 @@ class App extends Component {
                 <Route path="/home" component={HomePC} />
                 <Route path="/shoppinglist" component={ShoppinglistPC} />
                 <Route path="/recipes" component={RecipeBrowserPC} />
+                <Route path="/pantry" component={PantryBrowserPC} />
               </Switch>
             </div>
           </div>
