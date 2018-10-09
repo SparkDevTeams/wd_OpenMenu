@@ -34,5 +34,17 @@
   "Role": {
     "dataSource": "db",
     "public": false
+  },
+  "Items": {
+    "dataSource": "db",
+    "public": true
+  },
+  "Recipes": {
+    "dataSource": "db",
+    "public": true
+  },
+  "Menus": {
+    "dataSource": "db",
+    "public": true
   }
 }
