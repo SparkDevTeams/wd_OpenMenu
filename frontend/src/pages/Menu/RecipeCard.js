@@ -24,7 +24,7 @@ const RecipeCard = props => {
       <CardActionArea>
         <CardMedia
           className={classes.media}
-          image="https://static.olocdn.net/menu/applebees/ef0be810e965d2ef8ade562baf084952.jpg"
+          image="http://www.mawbroonskitchen.com/wp-content/themes/dct-mawbroons-full/assets/img/titles/recipes-title.png"
           title="Recipe"
         />
         <CardContent>

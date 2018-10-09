@@ -55,7 +55,7 @@ const MenuV = props => {
           <CardActionArea>
             <CardMedia
               className={classes.media}
-              image="https://static.olocdn.net/menu/applebees/ef0be810e965d2ef8ade562baf084952.jpg"
+              image="https://pbs.twimg.com/profile_images/895676609167937538/-1o6Yg8f_400x400.jpg"
               title="Menu"
             />
             <CardContent>
