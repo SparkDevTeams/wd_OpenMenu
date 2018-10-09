@@ -8,7 +8,8 @@ import ShoppinglistPC from "./pages/Shoppinglist/ShoppinglistPC";
 import RecipeBrowserPC from "./pages/RecipeBrowser/RecipeBrowserPC";
 import RecipeC from "./components/Recipe/RecipeC";
 import PantryBrowserPC from "./pages/Pantry/PantryBrowserPC";
-
+import MenuBrowserPC from "./pages/MenuBrowser/MenuBrowserPC";
+import MenuC from "./pages/Menu/MenuC";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
@@ -30,6 +31,7 @@ class App extends Component {
               <Switch>
                 <Route exact path="/" component={LandingPC} />
                 <Route exact path="/recipes/recipe" component={RecipeC} />
+                <Route exact path="/menu" component={MenuC} />
                 <Route path="/welcome" component={LandingPC} />
                 <Route path="/home" component={HomePC} />
                 <Route path="/shoppinglist" component={ShoppinglistPC} />
