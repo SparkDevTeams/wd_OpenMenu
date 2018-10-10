@@ -51,6 +51,9 @@ class ItemC extends Component {
 
   editItem = () => {
     console.log(this.state);
+    this.setState({
+      editToggle: false
+    });
     alert("Edit");
   };
 
