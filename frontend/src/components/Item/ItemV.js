@@ -46,7 +46,14 @@ const styles = {
   },
   editDialog: {
     padding: 10,
-    textAlign: "center"
+    textAlign: "left",
+    maxWidth: 500
+  },
+  textBox: {
+    marginTop: "8px",
+    marginBottom: "8px",
+    overflow: "hidden",
+    width: "99%"
   }
 };
 
@@ -81,36 +88,45 @@ const ItemV = props => {
       </Dialog>
 
       {/* edit dialog */}
-      <Dialog open={props.editOpen} style={styles.editDialog}>
-        <DialogTitle id="form-dialog-title">Edit Item</DialogTitle>
-        <TextField
-          autoFocus
-          margin="dense"
-          placeholder={props.name}
-          id={props.name + "edit-name"}
-          label="New name"
-          type="name"
-          value={props.newName}
-          onChange={props.addName}
-          fullWidth
-        />
-        <TextField
-          autoFocus
-          margin="dense"
-          id={props.name + "edit-description"}
-          placeholder={props.description}
-          label="New description"
-          type="description"
-          value={props.newDescription}
-          onChange={props.addDescription}
-          fullWidth
-        />
-        <Button onClick={props.editItem} color="primary">
-          Save Changes
-        </Button>
-        <Button onClick={props.editToggle} color="primary">
-          Cancel
-        </Button>
+      <Dialog open={!props.editOpen}>
+        <div style={styles.editDialog}>
+          <DialogTitle
+            style={{ marginLeft: "-10px" }}
+            id={props.itemName + "form-dialog"}
+          >
+            Edit Item
+          </DialogTitle>
+          <TextField
+            autoFocus
+            id={props.name + "edit-name"}
+            margin="dense"
+            placeholder="New name"
+            defaultValue={props.name}
+            type="name"
+            value={props.newName}
+            onChange={props.addName}
+            fullWidth
+          />
+          <TextField
+            autoFocus
+            id={props.name + "edit-description"}
+            style={styles.textBox}
+            placeholder="New Description"
+            defaultValue={props.description}
+            type="description"
+            value={props.newDescription}
+            onChange={props.addDescription}
+            multiline
+            margin="normal"
+            variant="outlined"
+          />
+          <Button onClick={props.editItem} color="primary">
+            Save Changes
+          </Button>
+          <Button onClick={props.editToggle} color="primary">
+            Cancel
+          </Button>
+        </div>
       </Dialog>
     </Fragment>
   );

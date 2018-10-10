@@ -11,7 +11,7 @@ class ItemC extends Component {
       tags: ["tasty", "delicious", "italian", "Vegan"],
       description: "A tasty dish.",
       detailsOpen: false,
-      EditOpen: true,
+      EditOpen: false,
       newName: "",
       newDescription: ""
     };
@@ -36,10 +36,10 @@ class ItemC extends Component {
     let name = this.state.newName;
     let description = this.state.Newdescription;
 
-    if (name == false || description == false) {
-      alert("Name and description cannot be empty");
-      return;
-    }
+    // if (name == false || description == false) {
+    //   alert("Name and description cannot be empty");
+    //   return;
+    // }
 
     alert("Edit");
   }
