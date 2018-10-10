@@ -54,6 +54,11 @@ const styles = {
     marginBottom: "8px",
     overflow: "hidden",
     width: "99%"
+  },
+  subTitle: {
+    margin: "2px 0px 8px 3px",
+    fontSize: 14,
+    display: "inline"
   }
 };
 
@@ -79,9 +84,21 @@ const ItemV = props => {
       <Dialog open={props.detailsOpen} onClose={props.detailsToggle}>
         <CloseIcon style={styles.closeBtn} onClick={props.detailsToggle} />
         <img src={props.img} style={styles.img} />
-        <DialogTitle id="form-dialog-title">{props.name}</DialogTitle>
-        <DialogContent>
-          <DialogContentText>{props.description}</DialogContentText>
+        <DialogTitle style={{ paddingBottom: 5 }} id="form-dialog-title">
+          {props.name}
+        </DialogTitle>
+        <DialogContent style={{ marginTop: -3 }}>
+          <p style={styles.subTitle}>
+            <strong>Price: </strong>
+            {props.price}
+          </p>
+          <p style={styles.subTitle}>
+            <strong>Size: </strong>
+            {props.size}
+          </p>
+          <DialogContentText style={{ marginTop: 10 }}>
+            {props.description}
+          </DialogContentText>
         </DialogContent>
         <Divider style={{ marginTop: -5 }} />
         <div style={{ padding: 20 }}>{props.tags()}</div>
@@ -98,27 +115,78 @@ const ItemV = props => {
           </DialogTitle>
           <TextField
             autoFocus
-            id={props.name + "edit-name"}
-            margin="dense"
-            placeholder="New name"
-            defaultValue={props.name}
-            type="name"
+            name="name"
+            label="Name"
             value={props.newName}
-            onChange={props.addName}
+            onChange={props.editItemDetails}
+            style={{ margin: "8px 0px" }}
+            defaultValue={props.name}
+            margin="normal"
+            variant="outlined"
+            InputLabelProps={{
+              shrink: true
+            }}
             fullWidth
           />
           <TextField
             autoFocus
-            id={props.name + "edit-description"}
-            style={styles.textBox}
-            placeholder="New Description"
-            defaultValue={props.description}
-            type="description"
-            value={props.newDescription}
-            onChange={props.addDescription}
-            multiline
+            name="price"
+            label="Price"
+            value={props.newPrice}
+            onChange={props.editItemDetails}
+            style={{ margin: "8px 0px" }}
+            defaultValue={props.price}
             margin="normal"
             variant="outlined"
+            InputLabelProps={{
+              shrink: true
+            }}
+            fullWidth
+          />
+          <TextField
+            autoFocus
+            name="size"
+            label="Size"
+            value={props.newSize}
+            onChange={props.editItemDetails}
+            style={{ margin: "8px 0px" }}
+            defaultValue={props.size}
+            margin="normal"
+            variant="outlined"
+            InputLabelProps={{
+              shrink: true
+            }}
+            fullWidth
+          />
+          <TextField
+            autoFocus
+            name="description"
+            label="Description"
+            value={props.newDescription}
+            onChange={props.editItemDetails}
+            style={{ margin: "8px 0px" }}
+            defaultValue={props.description}
+            margin="normal"
+            variant="outlined"
+            InputLabelProps={{
+              shrink: true
+            }}
+            fullWidth
+          />
+          <TextField
+            autoFocus
+            name="tags"
+            label="Tags (must be separated by commas)"
+            value={props.newTags}
+            onChange={props.editItemDetails}
+            style={{ margin: "8px 0px" }}
+            defaultValue={props.tagArr}
+            margin="normal"
+            variant="outlined"
+            InputLabelProps={{
+              shrink: true
+            }}
+            fullWidth
           />
           <Button onClick={props.editItem} color="primary">
             Save Changes
