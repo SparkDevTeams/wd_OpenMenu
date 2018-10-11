@@ -105,7 +105,7 @@ const ItemV = props => {
       </Dialog>
 
       {/* edit dialog */}
-      <Dialog open={!props.editOpen}>
+      <Dialog open={props.editOpen}>
         <div style={styles.editDialog}>
           <DialogTitle
             style={{ marginLeft: "-10px" }}
