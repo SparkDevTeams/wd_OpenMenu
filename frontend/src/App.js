@@ -8,12 +8,8 @@ import ShoppinglistPC from "./pages/Shoppinglist/ShoppinglistPC";
 import RecipeBrowserPC from "./pages/RecipeBrowser/RecipeBrowserPC";
 import RecipeC from "./components/Recipe/RecipeC";
 import PantryBrowserPC from "./pages/Pantry/PantryBrowserPC";
-import MenuBrowserPC from "./pages/MenuBrowser/MenuBrowserPC";
 import MenuC from "./pages/Menu/MenuC";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
+
 // import { Toolbar } from "@material-ui/core";
 
 class App extends Component {
