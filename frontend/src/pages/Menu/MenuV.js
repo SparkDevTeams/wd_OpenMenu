@@ -9,7 +9,7 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import Tooltip from "@material-ui/core/Tooltip";
-import AddIcon from "@material-ui/icons/Add";
+import Icon from '@material-ui/core/Icon';
 import RecipeCard from "./RecipeCard";
 
 const styles = theme => ({
@@ -87,7 +87,7 @@ const MenuV = props => {
           color="secondary"
           className={classes.addRecipeButton}
         >
-          <AddIcon />
+          <Icon>add_circle</Icon>
         </Button>
       </Tooltip>
     </div>

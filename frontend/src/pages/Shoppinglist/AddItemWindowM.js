@@ -1,5 +1,5 @@
 import React from "react";
-import CloseIcon from '@material-ui/icons/Close'
+import Icon from '@material-ui/core/Icon';
 import '../../styles/ShoppinglistS.css';
 
 const AddItemWindowM = props => {
@@ -9,7 +9,7 @@ const AddItemWindowM = props => {
 
       <div className="window-box">
         <div className="close-icon-container" onClick={props.closeWindowFunction}>
-          <CloseIcon/>
+          <Icon>add_circle</Icon>
         </div>
       </div>
 
