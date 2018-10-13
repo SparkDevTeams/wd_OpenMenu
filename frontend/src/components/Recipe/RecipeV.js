@@ -32,7 +32,7 @@ const RecipeV = props => {
       {/* Show list of ingredients */}
       {props.recipe.ingredients.length > 0
         ? props.recipe.ingredients.map(item => {
-            return <ItemCard itemID={item.itemID} amount={item.amount} />;
+            return <ItemCard itemId={item.itemId} amount={item.amount} />;
           })
         : console.log("No ingredient. Add some")}
       {/* Add recipe */}
