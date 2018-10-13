@@ -9,22 +9,27 @@ import RecipeA from "../../store/actions/RecipeA";
 class HomePC extends Component {
   componentWillMount() {
     this.props.recipeFn.getRecipes();
+    this.props.menuFn.getMenus();
   }
 
   render() {
-    return <HomePV recipes={this.props.userRecipes} />;
+    return (
+      <HomePV recipes={this.props.userRecipes} menus={this.props.userMenus} />
+    );
   }
 }
 
 const mapStateToProps = state => {
   return {
-    userRecipes: state.RecipeR.userRecipes
+    userRecipes: state.RecipeR.userRecipes,
+    userMenus: state.MenuR.userMenus
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    recipeFn: RecipeA(dispatch)
+    recipeFn: RecipeA(dispatch),
+    menuFn: MenuA(dispatch)
   };
 };
 
