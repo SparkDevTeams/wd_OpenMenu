@@ -27,7 +27,9 @@ function RecipeDetail(props) {
         </div>
         <CardActionArea>
           <CardContent>
-            <Typography component="h2">{props.name}</Typography>
+            <Typography gutterBottom variant="headline" component="h1">
+              {props.name}
+            </Typography>
             <Typography component="p">{props.instructions}</Typography>
           </CardContent>
         </CardActionArea>
