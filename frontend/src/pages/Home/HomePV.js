@@ -8,7 +8,7 @@ const HomePV = props => {
       {props.recipes.map(recipe => (
         <RecipeCard name={recipe.name} />
       ))}
-      <h1>Recipes</h1>
+      <h1>Menus</h1>
       {props.menus.map(menu => (
         <RecipeCard name={menu.name} />
       ))}
