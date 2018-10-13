@@ -133,7 +133,6 @@ class ItemC extends Component {
       default:
         break;
     }
-    // console.log(this.state.newName);
   };
 
   render() {
