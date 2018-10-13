@@ -1,7 +1,4 @@
-import DummyItems from "./../../components/Recipe/DummyItems";
-
 const initState = {
-  items: DummyItems,
   userRecipes: []
 };
 

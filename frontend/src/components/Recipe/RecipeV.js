@@ -64,7 +64,7 @@ const RecipeV = props => {
                 margin="dense"
                 id="name"
                 label="Name"
-                type="email"
+                type="text"
                 fullWidth
               />
             </form>
