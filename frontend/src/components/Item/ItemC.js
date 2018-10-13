@@ -1,8 +1,8 @@
 import React, { Component, Fragment } from "react";
 import ItemV from "./ItemV.js";
-import ItemA from '../../store/actions/ItemA';
-import { connect } from 'react-redux';
- 
+import ItemA from "../../store/actions/ItemA";
+import { connect } from "react-redux";
+
 class ItemC extends Component {
   constructor(props) {
     super(props);
@@ -46,15 +46,15 @@ class ItemC extends Component {
     });
   }
 
-  componentDidMount(){
-    let userItem = this.props.userItems.filter(item =>{
+  componentDidMount() {
+    let userItem = this.props.userItems.filter(item => {
       console.log(item.uid, " " + this.props.itemId);
       return item.uid === this.props.itemId;
     });
 
     this.setState({
       currentItem: userItem
-    })
+    });
   }
 
   generateTags = () => {
@@ -138,13 +138,13 @@ class ItemC extends Component {
   };
 
   render() {
-    let userItem = this.props.userItems.filter(item =>{
+    let userItem = this.props.userItems.filter(item => {
       console.log(item.uid, " " + this.props.itemId);
       return item.uid === this.props.itemId;
     });
 
     console.log(this.state.currentItem);
-    
+
     return (
       <Fragment>
         <ItemV
@@ -189,7 +189,7 @@ const Tag = props => {
   );
 };
 
-const mapStateToProps = state =>{
+const mapStateToProps = state => {
   return {
     userItems: state.ItemR.userItems
   };
