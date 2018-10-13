@@ -1,6 +1,8 @@
 import React, { Component, Fragment } from "react";
 import ItemV from "./ItemV.js";
-
+import ItemA from '../../store/actions/ItemA';
+import { connect } from 'react-redux';
+ 
 class ItemC extends Component {
   constructor(props) {
     super(props);
@@ -20,7 +22,8 @@ class ItemC extends Component {
       newImg: "",
       newSize: "",
       newTags: "",
-      newPrice: ""
+      newPrice: "",
+      currentItem: {}
     };
 
     this.generateTags = this.generateTags.bind(this);
@@ -41,6 +44,17 @@ class ItemC extends Component {
       newTags: this.state.tags,
       newPrice: this.state.price
     });
+  }
+
+  componentDidMount(){
+    let userItem = this.props.userItems.filter(item =>{
+      console.log(item.uid, " " + this.props.itemId);
+      return item.uid === this.props.itemId;
+    });
+
+    this.setState({
+      currentItem: userItem
+    })
   }
 
   generateTags = () => {
@@ -124,21 +138,28 @@ class ItemC extends Component {
   };
 
   render() {
+    let userItem = this.props.userItems.filter(item =>{
+      console.log(item.uid, " " + this.props.itemId);
+      return item.uid === this.props.itemId;
+    });
+
+    console.log(this.state.currentItem);
+    
     return (
       <Fragment>
         <ItemV
-          name={this.state.name}
-          description={this.state.description}
-          img={this.state.img}
-          size={this.state.size}
-          price={this.state.price}
+          name={this.state.currentItem.name}
+          description={userItem[0].description}
+          img={userItem.image}
+          size={userItem.size}
+          price={userItem.price}
           deleteItem={this.deleteItem}
           editItem={this.editItem}
           editToggle={this.editToggle}
           editOpen={this.state.editOpen}
           shareItem={this.shareItem}
           tags={this.generateTags}
-          tagArr={this.state.tags}
+          tagArr={userItem.tags}
           detailsToggle={this.detailsToggle}
           detailsOpen={this.state.detailsOpen}
           editItemDetails={this.editItemDetails}
@@ -168,4 +189,10 @@ const Tag = props => {
   );
 };
 
-export default ItemC;
+const mapStateToProps = state =>{
+  return {
+    userItems: state.ItemR.userItems
+  };
+};
+
+export default connect(mapStateToProps)(ItemC);
