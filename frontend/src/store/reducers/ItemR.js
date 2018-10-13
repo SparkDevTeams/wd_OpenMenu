@@ -1,13 +1,13 @@
 import React from "react";
 
 const initState = {
-  items: []
+  userItems: []
 };
 
 function ItemR(state = initState, action) {
   switch (action.type) {
     case "GET_ITEMS":
-      return { ...state, items: action.data };
+      return { ...state, userItems: action.data };
     default:
       return state;
   }
