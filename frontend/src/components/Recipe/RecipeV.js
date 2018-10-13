@@ -28,7 +28,7 @@ const RecipeV = props => {
         );
       })()} */}
 
-      {props.recipe.ingredients > 0
+      {props.recipe.ingredients.length > 0
         ? props.recipe.ingredients.map(item => {
             return <ItemCardV itemID={item.itemID} amount={item.amount} />;
           })
