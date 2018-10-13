@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 const recipeID = "1539371834732MushroomSausageRaguuser1";
 
 class RecipeC extends Component {
+  addItem = () => {};
   render() {
     return (
       <div>
@@ -14,7 +15,7 @@ class RecipeC extends Component {
             return recipe.uid === recipeID;
           })
           .map(returnRecipe => {
-            return <RecipeV recipe={returnRecipe} />;
+            return <RecipeV recipe={returnRecipe} onClick={this.addItem} />;
           })}
       </div>
     );
