@@ -28,7 +28,7 @@ const mapStateToProps = state => {
   return {
     userRecipes: state.RecipeR.userRecipes,
     userMenus: state.MenuR.userMenus,
-    userItems: state.ItemR.items
+    userItems: state.ItemR.userItems
   };
 };
 
