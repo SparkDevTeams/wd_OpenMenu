@@ -3,7 +3,11 @@ import PantryBrowserPV from "./PantryBrowserPV";
 
 class PantryBrowserPC extends Component {
   render() {
-    return <PantryBrowserPV />;
+    return (
+      <div>
+        <PantryBrowserPV />
+      </div>
+    );
   }
 }
 
