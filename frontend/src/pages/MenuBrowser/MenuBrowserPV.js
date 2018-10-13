@@ -1,9 +1,13 @@
 import React from "react";
+import RecipeCard from "../Menu/RecipeCard";
+import { Link } from "react-router-dom";
 
 const MenuBrowserPV = props => {
   return (
     <div>
-      <h1>This is the menu page!</h1>
+      <Link to="/menus/menu">
+        <RecipeCard />
+      </Link>
     </div>
   );
 };
