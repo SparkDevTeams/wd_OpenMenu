@@ -1,7 +1,7 @@
 import React from "react";
 import RecipeDetailV from "./RecipeDetailV";
 import ItemCardV from "./ItemCardV";
-// import ItemCard from "./../../components/Item/ItemV";
+import ItemCard from "./../../components/Item/ItemC";
 
 import TextField from "@material-ui/core/TextField";
 import Dialog from "@material-ui/core/Dialog";
@@ -32,7 +32,7 @@ const RecipeV = props => {
       {/* Show list of ingredients */}
       {props.recipe.ingredients.length > 0
         ? props.recipe.ingredients.map(item => {
-            return <ItemCardV itemID={item.itemID} amount={item.amount} />;
+            return <ItemCard itemID={item.itemID} amount={item.amount} />;
           })
         : console.log("No ingredient. Add some")}
       {/* Add recipe */}
