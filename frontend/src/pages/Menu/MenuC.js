@@ -5,18 +5,18 @@ import { connect } from "react-redux";
 
 class MenuC extends Component {
   render() {
-    return <MenuV />;
+    return <MenuV menus={this.props.userMenus} />;
   }
 }
 const mapStateToProps = state => {
   return {
-    menus: state.MenuR.menus
+    userMenus: state.MenuR.userMenus
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    menuAction: MenuA(dispatch)
+    menuFn: MenuA(dispatch)
   };
 };
 

@@ -4,7 +4,7 @@ const MenuA = dispatch => {
   return {
     getMenus: () => {
       axios
-        .get(/* REACT_APP_ITEM_URL */)
+        .get(process.env.REACT_APP_MENUS_URL)
         .then(res => {
           dispatch({ type: "GET_MENUS", data: res.data });
         })

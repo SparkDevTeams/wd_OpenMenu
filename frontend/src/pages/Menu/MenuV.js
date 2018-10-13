@@ -58,6 +58,7 @@ const MenuV = props => {
               image="https://pbs.twimg.com/profile_images/895676609167937538/-1o6Yg8f_400x400.jpg"
               title="Menu"
             />
+            <img src="https://pbs.twimg.com/profile_images/895676609167937538/-1o6Yg8f_400x400.jpg" />
             <CardContent>
               <Typography>Menu</Typography>
             </CardContent>
