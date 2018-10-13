@@ -4,11 +4,18 @@ import RecipeCard from "./../../components/Recipe/ItemCardV";
 const HomePV = props => {
   return (
     <div>
-      <h1>Home Page!</h1>
+      <h1>Recipes</h1>
       {props.recipes.map(recipe => (
-        <h1>{recipe.name}</h1>
+        <RecipeCard name={recipe.name} />
       ))}
-      <RecipeCard name={props.recipes.name} />
+      <h1>Menus</h1>
+      {props.menus.map(menu => (
+        <RecipeCard name={menu.name} />
+      ))}
+      <h1>Items</h1>
+      {props.items.map(item => (
+        <RecipeCard name={item.name} />
+      ))}
     </div>
   );
 };
