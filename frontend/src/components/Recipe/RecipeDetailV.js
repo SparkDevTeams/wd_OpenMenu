@@ -23,15 +23,12 @@ function RecipeDetail(props) {
     <div>
       <Card className={classes.card}>
         <div>
-          <CardMedia
-            className={classes.media}
-            image="https://static.olocdn.net/menu/applebees/ef0be810e965d2ef8ade562baf084952.jpg"
-          />
+          <CardMedia className={classes.media} image={props.image} />
         </div>
         <CardActionArea>
           <CardContent>
-            <Typography component="h2">Salad</Typography>
-            <Typography component="p">Instruction</Typography>
+            <Typography component="h2">{props.name}</Typography>
+            <Typography component="p">{props.instructions}</Typography>
           </CardContent>
         </CardActionArea>
       </Card>

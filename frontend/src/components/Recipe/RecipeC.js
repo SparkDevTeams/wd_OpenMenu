@@ -1,13 +1,21 @@
 import React, { Component } from "react";
 import RecipeV from "./RecipeV";
-import RecipeA from "./../../store/actions/RecipeA";
+// import RecipeA from "./../../store/actions/RecipeA";
 import { connect } from "react-redux";
+
+const recipeID = "1539371834732MushroomSausageRaguuser1";
 
 class RecipeC extends Component {
   render() {
     return (
       <div>
-        <RecipeV items={this.props.items} />
+        {this.props.userRecipes
+          .filter(recipe => {
+            return recipe.uid === recipeID;
+          })
+          .map(returnRecipe => {
+            return <RecipeV recipe={returnRecipe} />;
+          })}
       </div>
     );
   }
@@ -15,14 +23,12 @@ class RecipeC extends Component {
 
 const mapStateToProps = state => {
   return {
-    items: state.RecipeR.items
+    userRecipes: state.RecipeR.userRecipes
   };
 };
 
 const mapDispatchToProps = dispatch => {
-  return {
-    recipeFn: RecipeA(dispatch)
-  };
+  return {};
 };
 
 export default connect(

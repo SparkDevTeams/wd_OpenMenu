@@ -7,7 +7,12 @@ import ItemCardV from "./ItemCardV";
 const RecipeV = props => {
   return (
     <div>
-      <RecipeDetailV />
+      <RecipeDetailV
+        name={props.recipe.name}
+        image={props.recipe.image}
+        instructions={props.recipe.instructions}
+      />
+      <h1>Ingredients</h1>
       {/* if you want to execute the function immediately 
       after it is defined, you have to wrap the whole declaration 
       in parenthesis (to convert it to an expression) and execute
@@ -22,17 +27,17 @@ const RecipeV = props => {
           </div>
         );
       })()} */}
+
+      {props.recipe.ingredients > 0
+        ? props.recipe.ingredients.map(item => {
+            return <ItemCardV itemID={item.itemID} amount={item.amount} />;
+          })
+        : console.log("items array is empty")}
       <div className="row my-5">
         <Button variant="fab" color="secondary" aria-label="Add">
           <AddIcon />
         </Button>
       </div>
-
-      {props.items.length > 0
-        ? props.items.map(item => {
-            return <ItemCardV name={item.item} img={item.image} />;
-          })
-        : console.log("items array is empty")}
     </div>
   );
 };
