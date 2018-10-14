@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from "react";
 import ItemV from "./ItemV.js";
+import { connect } from "react-redux";
 
 class ItemC extends Component {
   constructor(props) {
@@ -20,16 +21,17 @@ class ItemC extends Component {
       newImg: "",
       newSize: "",
       newTags: "",
-      newPrice: ""
+      newPrice: "",
+      currentItem: {}
     };
 
-    this.generateTags = this.generateTags.bind(this);
-    this.deleteItem = this.deleteItem.bind(this);
-    this.editItem = this.editItem.bind(this);
-    this.shareItem = this.shareItem.bind(this);
-    this.detailsToggle = this.detailsToggle.bind(this);
-    this.editToggle = this.editToggle.bind(this);
-    this.editItemDetails = this.editItemDetails.bind(this);
+    // this.generateTags = this.generateTags.bind(this);
+    // this.deleteItem = this.deleteItem.bind(this);
+    // this.editItem = this.editItem.bind(this);
+    // this.shareItem = this.shareItem.bind(this);
+    // this.detailsToggle = this.detailsToggle.bind(this);
+    // this.editToggle = this.editToggle.bind(this);
+    // this.editItemDetails = this.editItemDetails.bind(this);
   }
 
   componentWillMount() {
@@ -43,6 +45,17 @@ class ItemC extends Component {
     });
   }
 
+  componentDidMount() {
+    let userItem = this.props.userItems.filter(item => {
+      // console.log(item.uid, " " + this.props.itemId);
+      return item.uid === this.props.itemId;
+    });
+
+    this.setState({
+      currentItem: userItem
+    });
+  }
+
   generateTags = () => {
     return this.state.tags.map((tagText, index) => {
       return <Tag key={this.state.name + "tag" + index} tag={tagText} />;
@@ -50,7 +63,7 @@ class ItemC extends Component {
   };
 
   editItem = () => {
-    console.log(this.state);
+    // console.log(this.state);
     this.setState({
       editToggle: false
     });
@@ -84,7 +97,7 @@ class ItemC extends Component {
       newTags: this.state.tags,
       newPrice: this.state.price
     });
-    console.log(this.state);
+    // console.log(this.state);
   };
 
   editItemDetails = e => {
@@ -120,25 +133,30 @@ class ItemC extends Component {
       default:
         break;
     }
-    console.log(this.state.newName);
   };
 
   render() {
+    let userItem = this.props.userItems.filter(item => {
+      // console.log(item.uid, " " + this.props.itemId);
+      return item.uid === this.props.itemId;
+    });
+    userItem = userItem[0];
+
     return (
       <Fragment>
         <ItemV
-          name={this.state.name}
-          description={this.state.description}
-          img={this.state.img}
-          size={this.state.size}
-          price={this.state.price}
+          name={userItem.name}
+          description={userItem.description}
+          img={userItem.image}
+          size={this.props.amount}
+          price={userItem.price}
           deleteItem={this.deleteItem}
           editItem={this.editItem}
           editToggle={this.editToggle}
           editOpen={this.state.editOpen}
           shareItem={this.shareItem}
           tags={this.generateTags}
-          tagArr={this.state.tags}
+          tagArr={userItem.tags}
           detailsToggle={this.detailsToggle}
           detailsOpen={this.state.detailsOpen}
           editItemDetails={this.editItemDetails}
@@ -168,4 +186,10 @@ const Tag = props => {
   );
 };
 
-export default ItemC;
+const mapStateToProps = state => {
+  return {
+    userItems: state.ItemR.userItems
+  };
+};
+
+export default connect(mapStateToProps)(ItemC);

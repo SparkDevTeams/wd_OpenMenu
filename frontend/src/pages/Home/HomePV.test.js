@@ -1,10 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import HomePV from "./HomePC";
 import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import thunk from "redux-thunk";
-import App from "../App";
-import RootR from "../store/reducers/RootR";
+import RootR from "../../store/reducers/RootR";
 
 const store = createStore(
   RootR,
@@ -16,7 +16,7 @@ it("renders without crashing", () => {
   const div = document.createElement("div");
   ReactDOM.render(
     <Provider store={store}>
-      <App />
+      <HomePV />
     </Provider>,
     div
   );

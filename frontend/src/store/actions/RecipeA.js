@@ -24,6 +24,9 @@ const RecipeA = dispatch => {
           dispatch({ type: "GET_RECIPES_ERR" });
         });
     }
+    // addItemToRecipe: data => {
+    //   axios.put(process.env.REACT_APP_RECIPES_URL + "/${}");
+    // }
   };
 };
 
