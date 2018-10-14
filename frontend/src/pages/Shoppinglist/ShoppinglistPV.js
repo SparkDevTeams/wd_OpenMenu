@@ -5,9 +5,9 @@ import "../../styles/ShoppinglistS.css";
 
 
 const ShoppinglistPV = props => {
+
   return (
     <div>
-      <h1>Shopping list</h1>
       <div onClick={props.openWindowFunction} className="fab-add-button">
         <Button variant="fab" color="secondary" aria-label="Add">
           <AddIcon />
