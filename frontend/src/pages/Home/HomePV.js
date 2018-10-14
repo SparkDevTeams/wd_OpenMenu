@@ -3,6 +3,7 @@ import RecipeCard from "./../../components/Recipe/ItemCardV";
 
 const HomePV = props => {
   return (
+    // This part need better styling
     <div>
       <h1>Recipes</h1>
       {props.recipes.map(recipe => (
