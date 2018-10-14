@@ -27,9 +27,9 @@ class ShoppinglistPC extends Component {
     if (this.state.addItemWindowVisibility === true) {
        componentToReturn = (
                           <div>
-                          <ShoppinglistPV 
-                           openWindowFunction={this.openAddItemWindow.bind(this)} />
-                          <AddItemWindowM closeWindowFunction={this.closeAddItemWindow.bind(this)}/>
+                            <ShoppinglistPV 
+                            openWindowFunction={this.openAddItemWindow.bind(this)} />
+                            <AddItemWindowM closeWindowFunction={this.closeAddItemWindow.bind(this)}/>
                           </div>
                           );
     }
