@@ -4,6 +4,7 @@ import '../../styles/ShoppinglistS.css';
 import RecipeCard from "../../components/Recipe/ItemCardV";
 import Checkbox from '@material-ui/core/Checkbox';
 
+
 const AddItemWindowM = props => {
 
   let recipes = [];
@@ -24,10 +25,9 @@ const AddItemWindowM = props => {
     items = [];
   }
 
+  console.log(items);
+
   return (
-    
-
-
       <div className="window-box">
         <div className="windowHeader">
           <div className="filering-container">

@@ -7,6 +7,8 @@ import MenuA from "../../store/actions/MenuA";
 import ItemA from "../../store/actions/ItemA";
 import RecipeA from "../../store/actions/RecipeA";
 
+import HomePC from "../Home/HomePC";
+
 class ShoppinglistPC extends Component {
 
   constructor() {
@@ -17,13 +19,6 @@ class ShoppinglistPC extends Component {
       recipesChecked: false
     };
   }
-
-  componentWillMount(){
-    this.props.recipeFn.getRecipes();
-    this.props.menuFn.getMenus();
-    this.props.itemFn.getItems();
-  }
-
 
   openAddItemWindow() {
     this.setState({
@@ -77,6 +72,8 @@ class ShoppinglistPC extends Component {
 
     }
 
+   
+
     return componentToReturn;
 
     
@@ -91,16 +88,7 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    recipeFn: RecipeA(dispatch),
-    menuFn: MenuA(dispatch),
-    itemFn: ItemA(dispatch)
-  };
-};
-
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+  mapStateToProps
 )(ShoppinglistPC);
 
