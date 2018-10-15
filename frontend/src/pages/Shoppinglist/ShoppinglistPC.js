@@ -3,10 +3,6 @@ import ShoppinglistPV from "./ShoppinglistPV";
 import AddItemWindowM from "./AddItemWindowM";
 import { connect } from "react-redux";
 
-import MenuA from "../../store/actions/MenuA";
-import ItemA from "../../store/actions/ItemA";
-import RecipeA from "../../store/actions/RecipeA";
-
 import HomePC from "../Home/HomePC";
 
 class ShoppinglistPC extends Component {
