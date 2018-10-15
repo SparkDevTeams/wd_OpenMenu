@@ -1,35 +1,24 @@
 import React from "react";
+import RecipeCard from "./../../components/Recipe/ItemCardV";
 
-import JabinC from "../../components/JabinC"
-import AndresC from "../../components/AndresC";
-import ElliotC from "../../components/ElliotC";
-import Card from "@material-ui/core/Card";
-import MauricioC from "../../components/MauricioC";
-import CristianC from "../../components/CristianC";
-import OctavioC from "../../components/OctavioC";
-import MiaC from "../../components/MiaC";
-import TommyC from "./../../components/TommyC";
-import AmyC from "../../components/AmyC";
-import SoyaD from "../../components/SoyaD";
-
-const LandingPV = props => {
+const HomePV = props => {
   return (
+    // This part need better styling
     <div>
-      <Card>
-        <h1>Home Page!</h1>
-        <JabinC />
-        <CristianC />
-        <AmyC />
-        <MiaC />
-        <MauricioC />
-        <AndresC />
-        <ElliotC />
-        <TommyC />
-        <OctavioC />
-        <SoyaD />
-      </Card>
+      <h1>Recipes</h1>
+      {props.recipes.map(recipe => (
+        <RecipeCard name={recipe.name} />
+      ))}
+      <h1>Menus</h1>
+      {props.menus.map(menu => (
+        <RecipeCard name={menu.name} />
+      ))}
+      <h1>Items</h1>
+      {props.items.map(item => (
+        <RecipeCard name={item.name} />
+      ))}
     </div>
   );
 };
 
-export default LandingPV;
+export default HomePV;
