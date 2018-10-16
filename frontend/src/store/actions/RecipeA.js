@@ -13,17 +13,20 @@ const RecipeA = dispatch => {
           dispatch({ type: "LOAD_ITEMS_ERR" });
         });
     },
-    loadRecipes: () => {
+    getRecipes: () => {
       axios
-        .get(/* REACT_APP_RECIPE_URL*/)
+        .get(process.env.REACT_APP_RECIPES_URL)
         .then(res => {
-          dispatch({ type: "LOAD_RECIPES", data: res.data });
+          dispatch({ type: "GET_RECIPES", data: res.data });
         })
         .catch(err => {
           console.log(err);
-          dispatch({ type: "LOAD_RECIPES_ERR" });
+          dispatch({ type: "GET_RECIPES_ERR" });
         });
     }
+    // addItemToRecipe: data => {
+    //   axios.put(process.env.REACT_APP_RECIPES_URL + "/${}");
+    // }
   };
 };
 

@@ -11,7 +11,7 @@ import { withStyles } from "@material-ui/core";
 
 const styles = {
   card: {
-    width: 250
+    width: 300
   },
   media: {
     height: 140
@@ -27,6 +27,7 @@ const RecipeCard = props => {
           image="http://www.mawbroonskitchen.com/wp-content/themes/dct-mawbroons-full/assets/img/titles/recipes-title.png"
           title="Recipe"
         />
+        <img src="http://www.mawbroonskitchen.com/wp-content/themes/dct-mawbroons-full/assets/img/titles/recipes-title.png" />
         <CardContent>
           <Typography>Recipe</Typography>
         </CardContent>
