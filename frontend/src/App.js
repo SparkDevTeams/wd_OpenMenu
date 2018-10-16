@@ -32,6 +32,10 @@ class App extends Component {
                 <Route exact path="/" component={LandingPC} />
                 <Route exact path="/recipes/recipe" component={RecipeC} />
                 <Route exact path="/menus/menu" component={MenuC} />
+<<<<<<< HEAD
+=======
+                <Route path="/menus" component={MenuBrowserPC} />
+>>>>>>> dev
                 <Route path="/welcome" component={LandingPC} />
                 <Route path="/home" component={HomePC} />
                 <Route path="/shoppinglist" component={ShoppinglistPC} />
