@@ -92,7 +92,7 @@ function NavbarV(props) {
             {" "}
             Open Menu{" "}
           </Typography>
-          <Link to="/home">
+          <Link to="/home" style={{textDecoration: 'none', color: 'white'}}>
             <IconButton color="inherit">
               <i class="material-icons">
                 home
@@ -100,28 +100,28 @@ function NavbarV(props) {
             </IconButton>
           </Link>
 
-          <Link to="/menus">
+          <Link to="/menus" style={{textDecoration: 'none', color: 'white'}}>
             <IconButton color="inherit">
             <i class="material-icons">
               restaurant_menu
             </i>
             </IconButton>
           </Link>
-          <Link to="/recipes">
+          <Link to="/recipes" style={{textDecoration: 'none', color: 'white'}}>
             <IconButton color="inherit">
             <i class="material-icons">
               restaurant
             </i>
             </IconButton>
           </Link>
-          <Link to="/pantry">
+          <Link to="/pantry" style={{textDecoration: 'none', color: 'white'}}>
             <IconButton color="inherit">
             <i class="material-icons">
               collections_bookmark
             </i>
             </IconButton>
           </Link>
-          <Link to="/shoppinglist">
+          <Link to="/shoppinglist" style={{textDecoration: 'none', color: 'white'}}>
             <IconButton color="inherit">
               <i class="material-icons">
                 shopping_cart
