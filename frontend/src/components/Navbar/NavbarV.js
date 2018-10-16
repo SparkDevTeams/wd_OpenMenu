@@ -5,6 +5,18 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
+import IconButton from '@material-ui/core/IconButton';
+import DeleteIcon from '@material-ui/icons/Delete';
+import SvgIcon from '@material-ui/core/SvgIcon';
+
+
+function HomeIcon(props) {
+  return (
+    <SvgIcon {...props}>
+      <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
+    </SvgIcon>
+  );
+}
 
 const NavbarV = props => {
   if (props.auth) {
@@ -16,34 +28,48 @@ const NavbarV = props => {
             Open Menu{" "}
           </Typography>
           <Link to="/home">
-            <Button color="inherit">
-              Home
-            </Button>
+            <IconButton>
+              <i class="material-icons">
+                home
+              </i>
+            </IconButton>
           </Link>
+
           <Link to="/menus">
-            <Button color="inherit">
-              Menus
-            </Button>
+            <IconButton>
+            <i class="material-icons">
+              restaurant_menu
+            </i>
+            </IconButton>
           </Link>
           <Link to="/recipes">
-            <Button color="inherit">
-              Recipes
-            </Button>
+            <IconButton style={{textDecoration: 'none'}}>
+            <i class="material-icons">
+              restaurant
+            </i>
+            </IconButton>
           </Link>
           <Link to="/pantry">
-            <Button color="inherit">
-              Pantry
-            </Button>
+            <IconButton>
+            <i class="material-icons">
+              collections_bookmark
+            </i>
+            </IconButton>
           </Link>
           <Link to="/shoppinglist">
-            <Button color="inherit">
-              Shopping list
-            </Button>
+            <IconButton>
+              <i class="material-icons">
+                shopping_cart
+              </i>
+            </IconButton>
           </Link>
           <Link to="/">
-            <Button onClick={props.logout} color="inherit">
-              Logout
-            </Button>
+            
+            <IconButton onClick={props.logout}>
+            <i class="material-icons">
+              power_settings_new
+            </i>
+            </IconButton>
           </Link>
         </Toolbar>
       </AppBar>
