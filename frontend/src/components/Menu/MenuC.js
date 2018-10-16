@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 
 class MenuC extends Component {
   constructor(props) {
-    super();
+    super(props);
     this.state = {
       openRecipeDialog: false
     };
@@ -25,7 +25,7 @@ class MenuC extends Component {
         menus={this.props.userMenus}
         openDialog={this.state.openRecipeDialog}
         handleOpen={this.handleOpenDialog}
-        handleClosed={this.handleCloseDialog}
+        handleClose={this.handleCloseDialog}
       />
     );
   }
