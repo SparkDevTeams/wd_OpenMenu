@@ -3,9 +3,17 @@ import Button from "@material-ui/core/Button";
 import AddIcon from "@material-ui/icons/Add";
 import "../../styles/ShoppinglistS.css";
 
+const styles = theme => ({
+  button: {
+    margin: theme.spacing.unit
+  },
+  extendedIcon: {
+    marginRight: theme.spacing.unit
+  }
+});
 
-const ShoppinglistPV = props => {
-
+function ShoppinglistPV(props) {
+  const { classes } = props;
   return (
     <div>
       <div onClick={props.openWindowFunction} className="fab-add-button">
@@ -15,6 +23,6 @@ const ShoppinglistPV = props => {
       </div>
     </div>
   );
-};
+}
 
 export default ShoppinglistPV;
