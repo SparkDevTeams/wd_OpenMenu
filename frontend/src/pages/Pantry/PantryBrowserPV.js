@@ -1,9 +1,17 @@
 import React from "react";
+import Button from "@material-ui/core/Button";
+import AddIcon from "@material-ui/icons/Add";
+import "../../styles/ShoppinglistS.css";
 
 const PantryBrowserPV = props => {
   return (
     <div>
-      <h1>This is the Pantry page!</h1>
+      <h1>PantryBrowserPV :)</h1>
+      <div onClick={props.openWindowFunction} className="fab-add-button">
+        <Button variant="fab" color="secondary" aria-label="Add">
+          <AddIcon />
+        </Button>
+      </div>
     </div>
   );
 };

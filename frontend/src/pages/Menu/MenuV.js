@@ -11,6 +11,11 @@ import Typography from "@material-ui/core/Typography";
 import Tooltip from "@material-ui/core/Tooltip";
 import AddIcon from "@material-ui/icons/Add";
 import RecipeCard from "./RecipeCard";
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogTitle from "@material-ui/core/DialogTitle";
 
 const styles = theme => ({
   mainContainer: {
@@ -32,32 +37,35 @@ const styles = theme => ({
     marginRight: 70
   },
   media: {
-    height: 250
+    height: 200
   },
   recipeRow: {
     display: "flex",
     flexDirection: "row"
   },
   addRecipeButton: {
-    position: "fixed",
-    bottom: theme.spacing.unit * 2,
-    right: theme.spacing.unit * 3
+    position: "absolute",
+    right: 0
+    //bottom: theme.spacing.unit * 2,
+    //right: theme.spacing.unit * 3
   }
 });
 
 const MenuV = props => {
-  const { classes } = props;
+  //const { classes } = props;
   return (
-    <div className={classes.mainContainer}>
-      <h1 className={classes.header}>Menu</h1>
-      <div className={classes.menuDetails}>
-        <Card className={classes.card}>
+    <div style={styles.mainContainer}>
+      <h1 style={styles.header}>Menu</h1>
+      <div style={styles.menuDetails} /*className={classes.menuDetails}*/>
+        <Card style={styles.card}>
           <CardActionArea>
             <CardMedia
-              className={classes.media}
+              //className={classes.media}
+              style={styles.media}
               image="https://pbs.twimg.com/profile_images/895676609167937538/-1o6Yg8f_400x400.jpg"
               title="Menu"
             />
+            <img src="http://s3.amazonaws.com/product-images.imshopping.com/nimblebuy/5-for-10-worth-of-peruvian-food-from-fusion-peru-7611072-regular.jpg" />
             <CardContent>
               <Typography>Menu</Typography>
             </CardContent>
@@ -66,7 +74,7 @@ const MenuV = props => {
             <Button>Share</Button>
           </CardActions>
         </Card>
-        <div className={classes.menuInfo}>
+        <div style={styles.menuInfo} /*className={classes.menuInfo}*/>
           <h2>Menu Name</h2>
           <h2>Details</h2>
         </div>
@@ -74,24 +82,45 @@ const MenuV = props => {
           <Button size="large">Edit</Button>
         </div>
       </div>
-      <div className={classes.recipeRow}>
+      <div style={styles.recipeRow} /*className={classes.recipeRow}*/>
         <h2>Recipes: </h2>
         <RecipeCard />
         <RecipeCard />
         <RecipeCard />
         <RecipeCard />
       </div>
-      <Tooltip title="Add recipe">
-        <Button
-          variant="fab"
-          color="secondary"
-          className={classes.addRecipeButton}
-        >
-          <AddIcon />
-        </Button>
-      </Tooltip>
+      <div>
+        <Tooltip title="Add recipe">
+          <Button
+            variant="fab"
+            color="secondary"
+            style={styles.addRecipeButton}
+            /*className={classes.addRecipeButton}*/
+            onClick={props.handleOpen}
+            scroll="paper"
+            aria-labelledby="addrecipes"
+          >
+            <AddIcon />
+          </Button>
+        </Tooltip>
+        <Dialog>
+          open=
+          {props.openDialog}
+          onClose=
+          {props.handleClose}
+          <DialogTitle id="addrecipes">Add Recipes</DialogTitle>
+          <DialogContent>
+            <RecipeCard />
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={props.handleClose} color="primary">
+              Cancel
+            </Button>
+          </DialogActions>
+        </Dialog>
+      </div>
     </div>
   );
 };
 
-export default withStyles(styles)(MenuV);
+export default MenuV;
