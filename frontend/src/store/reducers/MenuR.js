@@ -8,7 +8,7 @@ function MenuR(state = initState, action) {
   switch (action.type) {
     case "GET_MENUS":
       return { ...state, userMenus: action.data };
-    case "ADD_MENU":
+    case "CREATE_MENU":
       return { ...state, userMenus: action.data };
     case "UPDATE_MENU":
       return { ...state, userMenus: action.data };
