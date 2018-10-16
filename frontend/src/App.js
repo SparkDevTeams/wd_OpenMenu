@@ -31,11 +31,12 @@ class App extends Component {
               <Switch>
                 <Route exact path="/" component={LandingPC} />
                 <Route exact path="/recipes/recipe" component={RecipeC} />
-                <Route exact path="/menu" component={MenuC} />
+                <Route exact path="/menus/menu" component={MenuC} />
                 <Route path="/welcome" component={LandingPC} />
                 <Route path="/home" component={HomePC} />
                 <Route path="/shoppinglist" component={ShoppinglistPC} />
                 <Route path="/recipes" component={RecipeBrowserPC} />
+                <Route path="/menus" component={MenuBrowserPC} />
                 <Route path="/pantry" component={PantryBrowserPC} />
               </Switch>
             </div>
