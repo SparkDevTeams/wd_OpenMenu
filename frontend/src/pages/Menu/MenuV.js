@@ -105,13 +105,11 @@ const MenuV = props => {
             <AddIcon />
           </Button>
         </Tooltip>
-        <Dialog>
-          open=
-          {props.openDialog}
-          onClose=
-          {props.handleClose}
+        <Dialog open={props.openDialog} onClose={props.handleClose}>
           <DialogTitle id="addrecipes">Add Recipes</DialogTitle>
           <DialogContent>
+            <RecipeCard />
+            <RecipeCard />
             <RecipeCard />
           </DialogContent>
           <DialogActions>
