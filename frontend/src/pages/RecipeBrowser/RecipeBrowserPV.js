@@ -1,12 +1,8 @@
 import React from "react";
 import RecipeCardV from "./../../components/Recipe/RecipeCardV";
 
-// import TextField from "@material-ui/core/TextField";
-// import Dialog from "@material-ui/core/Dialog";
-// import DialogActions from "@material-ui/core/DialogActions";
-// import DialogContent from "@material-ui/core/DialogContent";
-// import DialogContentText from "@material-ui/core/DialogContentText";
-// import DialogTitle from "@material-ui/core/DialogTitle";
+import Dialog from "@material-ui/core/Dialog";
+import CloseIcon from "@material-ui/icons/Close";
 import Button from "@material-ui/core/Button";
 import AddIcon from "@material-ui/icons/Add";
 import RecipeBrowserM from "./RecipeBrowserM";
@@ -34,12 +30,27 @@ const RecipeBrowserPV = props => {
         >
           <AddIcon />
         </Button>
-        {/* <Dialog
+
+        <Dialog
           open={props.openDialog}
           onClose={props.handleCloseDialog}
           aria-labelledby="form-dialog-title"
         >
-          <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
+          <div onClick={props.handleCloseDialog}>
+            <CloseIcon />
+          </div>
+          <RecipeBrowserM
+            openDialog={props.openDialog}
+            handleOpenDialog={props.handleOpenDialog}
+            handleCloseDialog={props.handleCloseDialog}
+            handleOnChangeForm={props.handleOnChangeForm}
+            userItems={props.userItems}
+            handleIngredientForm={props.handleIngredientForm}
+            addNewRecipe={props.addNewRecipe}
+            ingredients={props.ingredients}
+            handleAddItem={props.handleAddItem}
+          />
+          {/* <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
           <DialogContent>
             <DialogContentText>
               To subscribe to this website, please enter your email address
@@ -63,9 +74,8 @@ const RecipeBrowserPV = props => {
             <Button onClick={props.handleCloseDialog} color="primary">
               Add Recipe
             </Button>
-          </DialogActions>
-        </Dialog> */}
-        <RecipeBrowserM />
+          </DialogActions> */}
+        </Dialog>
       </div>
     </div>
   );
