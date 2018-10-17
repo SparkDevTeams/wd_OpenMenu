@@ -1,12 +1,12 @@
 import React from "react";
-import RecipeCard from "../Menu/RecipeCard";
+import RecipeCardV from "../../components/Recipe/RecipeCardV";
 import { Link } from "react-router-dom";
 
 const MenuBrowserPV = props => {
   return (
     <div>
       <Link to="/menus/menu">
-        <RecipeCard />
+        <RecipeCardV />
       </Link>
     </div>
   );
