@@ -13,16 +13,12 @@ const MenuA = dispatch => {
           dispatch({ type: "GET_MENUS_ERR" });
         });
     },
-    addMenu: () => {
-      axios
-        .get(/* REACT_APP_ITEM_URL */)
-        .then(res => {
-          dispatch({ type: "ADD_MENU", data: res.data });
-        })
-        .catch(err => {
-          console.log(err);
-          dispatch({ type: "ADD_MENU_ERR" });
+    createMenu: data => {
+      axios.post(process.env.REACT_APP_MENUS_URL, data).then(res => {
+        axios.get(process.env.REACT_APP_MENUS_URL).then(res => {
+          dispatch({ type: "CREATE_MENU", data: res.data });
         });
+      });
     },
     updateMenu: () => {
       axios
