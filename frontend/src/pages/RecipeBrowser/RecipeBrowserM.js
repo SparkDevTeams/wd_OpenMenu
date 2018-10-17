@@ -15,9 +15,10 @@ const RecipeBrowserM = props => {
         <DialogTitle style={{ marginLeft: "-10px" }}>Create Recipe</DialogTitle>
         <TextField
           autoFocus
+          required
           name="name"
           label="Name"
-          value={props.newName}
+          // value={props.newName}
           onChange={props.handleOnChangeForm}
           style={{ margin: "8px 0px" }}
           margin="normal"
@@ -29,6 +30,7 @@ const RecipeBrowserM = props => {
         />
         <TextField
           autoFocus
+          required
           name="image"
           label="image"
           value={props.newImageURL}
@@ -55,11 +57,11 @@ const RecipeBrowserM = props => {
           fullWidth
         />
         <TextField
-          autoFocus
           select
+          required
           name="ingredients"
           label="ingredients"
-          value={props.newSize}
+          value={props.currentIngredient}
           onChange={props.handleIngredientForm}
           style={{ margin: "8px 0px" }}
           margin="normal"
@@ -69,14 +71,13 @@ const RecipeBrowserM = props => {
           }}
         >
           {props.userItems.map(userItem => (
-            <MenuItem key={userItem.name} value={userItem.uid}>
-              {userItem.name}
-            </MenuItem>
+            <MenuItem value={userItem.uid}>{userItem.name}</MenuItem>
           ))}
         </TextField>
 
         <TextField
           autoFocus
+          required
           name="amount"
           label="amount"
           value={props.newDescription}
@@ -96,18 +97,26 @@ const RecipeBrowserM = props => {
           Add Item
         </Button>
 
-        {props.ingredients.map(ingredient => (
-          <Button autoFocus color="primary" fullWidth>
-            {
-              props.userItems.filter(userItem => {
+        {props.ingredients.length > 0
+          ? props.ingredients.map(ingredient => {
+              let filteredItem = props.userItems.filter(userItem => {
                 return userItem.uid === ingredient.itemId;
-              }).name
-            }
-          </Button>
-        ))}
+              });
+              let buttonDisplay =
+                String(filteredItem[0].name) + "  " + String(ingredient.amount);
+              console.log(buttonDisplay);
+              return (
+                <Button color="primary" fullWidth>
+                  {/* JSON.stringify(ingredient) */}
+                  {buttonDisplay}
+                </Button>
+              );
+            })
+          : console.log("ingredients array is empty")}
 
         <TextField
           autoFocus
+          required
           name="instruction"
           label="instruction"
           value={props.newDescription}

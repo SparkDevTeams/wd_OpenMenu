@@ -49,6 +49,8 @@ const RecipeBrowserPV = props => {
             addNewRecipe={props.addNewRecipe}
             ingredients={props.ingredients}
             handleAddItem={props.handleAddItem}
+            currentIngredient={props.currentIngredient}
+            currentIngredientAmount={props.currentIngredientAmount}
           />
           {/* <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
           <DialogContent>

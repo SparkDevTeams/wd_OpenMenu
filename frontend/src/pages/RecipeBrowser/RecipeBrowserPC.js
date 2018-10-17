@@ -25,6 +25,7 @@ class RecipeBrowserPC extends Component {
   handleOnChangeForm = e => {
     let field = e.target.name;
     let value = e.target.value;
+    // console.log(e.target.value);
 
     switch (field) {
       case "name":
@@ -39,7 +40,7 @@ class RecipeBrowserPC extends Component {
         break;
       case "instruction":
         this.setState({
-          name: value
+          instructions: value
         });
         break;
 
@@ -74,7 +75,7 @@ class RecipeBrowserPC extends Component {
       amount: this.state.currentIngredientAmount
     };
     this.setState({
-      ingredients: this.state.ingredients.push(newItem)
+      ingredients: [...this.state.ingredients, newItem]
     });
     console.log(this.state.ingredients);
     // clear the current value
@@ -89,11 +90,12 @@ class RecipeBrowserPC extends Component {
     let recipeInfo = {
       name: name,
       user: user,
-      image: this.state.imageURL,
+      image: this.state.image,
       ingredients: this.state.ingredients,
-      instructions: this.state.instruction,
+      instructions: this.state.instructions,
       uid: this.generateId(name, user)
     };
+    // console.log(recipeInfo);
     this.props.recipeFn.createRecipe(recipeInfo);
   };
 
@@ -121,6 +123,8 @@ class RecipeBrowserPC extends Component {
         addNewRecipe={this.addNewRecipe}
         ingredients={this.state.ingredients}
         handleAddItem={this.handleAddItem}
+        currentIngredient={this.state.currentIngredient}
+        currentIngredientAmount={this.state.currentIngredientAmount}
       />
     );
   }
