@@ -7,20 +7,25 @@ import ItemA from "../../store/actions/ItemA";
 import RecipeA from "../../store/actions/RecipeA";
 
 class HomePC extends Component {
-  componentWillMount() {
+  componentDidMount() {
     this.props.recipeFn.getRecipes();
     this.props.menuFn.getMenus();
     this.props.itemFn.getItems();
-  }
-  componentDidMount() {
-    this.loadRecipeImages();
-  }
 
-  loadRecipeImages = () => {
+    console.log(this.props.userRecipes);
     this.props.userRecipes.map(recipe => {
-      this.props.recipeFn.getImage(recipe.image_name);
+      this.props.recipeFn.getImage(recipe.image);
     });
-  };
+  }
+  // componentDidUpdate() {
+  //   this.loadRecipeImages();
+  // }
+
+  // loadRecipeImages = () => {
+  //   this.props.userRecipes.map(recipe => {
+  //     this.props.recipeFn.getImage(recipe.image);
+  //   });
+  // };
 
   render() {
     return (
