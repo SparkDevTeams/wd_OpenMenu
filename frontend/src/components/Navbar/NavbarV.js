@@ -80,6 +80,12 @@ const styles = theme => ({
       },
     },
   },
+  sectionDesktop: {
+    display: 'none',
+    [theme.breakpoints.up('md')]: {
+      display: 'flex',
+    },
+  },
 });
 
 function NavbarV(props) {
@@ -128,23 +134,29 @@ function NavbarV(props) {
               </i>
             </IconButton>
           </Link>
-          <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
+
+            <div className={classes.grow}>
+            <div className={classes.search}>
+              <div className={classes.searchIcon}>
+                <SearchIcon />
+              </div>
+              <InputBase
+                placeholder="Search…"
+                classes={{
+                  root: classes.inputRoot,
+                  input: classes.inputInput,
+                }}
+              />
             </div>
-            <InputBase
-              placeholder="Search…"
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-            />
-          </div>
-            <IconButton onClick={props.logout} color="inherit">
-            <i class="material-icons">
-              power_settings_new
-            </i>
-            </IconButton>
+            </div>
+
+            <div className={classes.sectionDesktop}>
+              <IconButton onClick={props.logout} color="inherit">
+              <i class="material-icons">
+                power_settings_new
+              </i>
+              </IconButton>
+            </div>
         </Toolbar>
       </AppBar>
     );

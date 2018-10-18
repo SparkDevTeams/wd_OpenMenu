@@ -30,14 +30,16 @@ class App extends Component {
             <div style={margin}>
               <Switch>
                 <Route exact path="/" component={LandingPC} />
-                <Route exact path="/recipes/recipe" component={RecipeC} />
-                <Route exact path="/menus/menu" component={MenuC} />
-                <Route path="/menus" component={MenuBrowserPC} />
                 <Route path="/welcome" component={LandingPC} />
                 <Route path="/home" component={HomePC} />
                 <Route path="/shoppinglist" component={ShoppinglistPC} />
-                <Route path="/recipes" component={RecipeBrowserPC} />
                 <Route path="/pantry" component={PantryBrowserPC} />
+
+                <Route exact path="/menus" component={MenuBrowserPC} />
+                <Route exact path="/recipes" component={RecipeBrowserPC} />
+
+                <Route exact path="/recipes/:id" component={RecipeC} />
+                <Route exact path="/menus/:id" component={MenuC} />
               </Switch>
             </div>
           </div>

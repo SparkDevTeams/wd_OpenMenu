@@ -114,7 +114,7 @@ const MenuV = props => {
           </DialogContent>
           <DialogActions>
             <Button onClick={props.handleClose} color="primary">
-              Add Recipe(s)
+              Add Recipes
             </Button>
             <Button onClick={props.handleClose} color="primary">
               Cancel
