@@ -46,5 +46,9 @@
   "Menus": {
     "dataSource": "db",
     "public": true
+  },
+  "Image": {
+    "dataSource": "s3",
+    "public": true
   }
 }
