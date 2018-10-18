@@ -57,6 +57,11 @@ const RecipeBrowserPV = props => {
             handleAddItem={props.handleAddItem}
             currentIngredient={props.currentIngredient}
             currentIngredientAmount={props.currentIngredientAmount}
+            recipe_name={props.recipe_name}
+            image_name={props.image_name}
+            sendImg={props.sendImg}
+            setImageForm={props.setImageForm}
+            setImageName={props.setImageName}
           />
         </Dialog>
       </div>

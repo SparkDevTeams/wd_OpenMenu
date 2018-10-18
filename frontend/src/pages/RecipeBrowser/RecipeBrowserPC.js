@@ -2,16 +2,19 @@ import React, { Component } from "react";
 import RecipeBrowserPV from "./RecipeBrowserPV";
 import { connect } from "react-redux";
 import RecipeA from "./../../store/actions/RecipeA";
+import axios from "axios";
 
 class RecipeBrowserPC extends Component {
   state = {
-    name: "",
+    recipe_name: "",
     image: "", //contain rurl
     ingredients: [], //contain itemId
     instructions: "",
     openAddItemDialog: false,
     currentIngredient: "",
-    currentIngredientAmount: ""
+    currentIngredientAmount: "",
+    image_form: "",
+    image_name: ""
   };
 
   handleClickOpen = () => {
@@ -30,7 +33,7 @@ class RecipeBrowserPC extends Component {
     switch (field) {
       case "name":
         this.setState({
-          name: value
+          recipe_name: value
         });
         break;
       case "image":
@@ -84,19 +87,21 @@ class RecipeBrowserPC extends Component {
 
   addNewRecipe = () => {
     const user = localStorage.getItem("user");
-    const name = this.state.name;
+    const recipe_name = this.state.recipe_name;
 
     // uid is comming from tommy's pull request
     let recipeInfo = {
-      name: name,
+      name: recipe_name,
       user: user,
-      image: this.state.image,
+      image: this.state.image_name,
       ingredients: this.state.ingredients,
       instructions: this.state.instructions,
-      uid: this.generateId(name, user)
+      uid: this.generateId(recipe_name, user)
     };
     // console.log(recipeInfo);
     this.props.recipeFn.createRecipe(recipeInfo);
+    this.sendImg();
+    this.handleClose();
   };
 
   generateId = (name, user) => {
@@ -108,6 +113,26 @@ class RecipeBrowserPC extends Component {
     let id = date + newName + newUser;
 
     return id;
+  };
+
+  setImageForm = form => {
+    this.setState({ image_form: form });
+  };
+
+  setImageName = name => {
+    this.setState({ image_name: name });
+  };
+
+  sendImg = () => {
+    // Post image to s3
+    axios
+      .post(process.env.REACT_APP_UPLOAD_IMG, this.state.image_form)
+      .then(res => {
+        console.log(res.body);
+      })
+      .catch(err => {
+        console.log(err);
+      });
   };
 
   render() {
@@ -126,6 +151,11 @@ class RecipeBrowserPC extends Component {
         handleAddItem={this.handleAddItem}
         currentIngredient={this.state.currentIngredient}
         currentIngredientAmount={this.state.currentIngredientAmount}
+        recipe_name={this.state.recipe_name}
+        image_name={this.state.image_name}
+        sendImg={this.sendImg}
+        setImageForm={this.setImageForm}
+        setImageName={this.setImageName}
       />
     );
   }

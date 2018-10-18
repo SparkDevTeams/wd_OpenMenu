@@ -3,7 +3,7 @@ import RecipeV from "./RecipeV";
 import RecipeA from "./../../store/actions/RecipeA";
 import { connect } from "react-redux";
 
-const recipeID = "1539371834732MushroomSausageRaguuser1";
+// const recipeID = "1539371834732MushroomSausageRaguuser1";
 
 class RecipeC extends Component {
   state = {
@@ -88,7 +88,7 @@ class RecipeC extends Component {
       <div>
         {this.props.userRecipes
           .filter(recipe => {
-            return recipe.uid === recipeID;
+            return recipe.uid === this.props.match.params.id;
           })
           .map(returnRecipe => {
             return (

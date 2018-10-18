@@ -60,7 +60,7 @@ const RecipeV = props => {
           onClose={props.handleCloseDialog}
           aria-labelledby="form-dialog-title"
         >
-          {props.addButtonClicked && <RecipeAddItemM />}
+          {props.addButtonClicked && <RecipeAddItemM recipe={props.recipe} />}
           {props.editButtonClicked && <RecipeEditRecipeM />}
         </Dialog>
       </div>

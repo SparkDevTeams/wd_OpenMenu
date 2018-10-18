@@ -33,7 +33,7 @@ function MediaCard(props) {
         />
         <CardContent>
           <Typography gutterBottom variant="headline" component="h2">
-            Salad
+            {props.recipe.name}
           </Typography>
           <Typography component="p">{props.recipe.description}</Typography>
         </CardContent>
