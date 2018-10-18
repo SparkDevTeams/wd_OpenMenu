@@ -12,6 +12,15 @@ class HomePC extends Component {
     this.props.menuFn.getMenus();
     this.props.itemFn.getItems();
   }
+  componentDidMount() {
+    this.loadRecipeImages();
+  }
+
+  loadRecipeImages = () => {
+    this.props.userRecipes.map(recipe => {
+      this.props.recipeFn.getImage(recipe.image_name);
+    });
+  };
 
   render() {
     return (
