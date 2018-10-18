@@ -19,6 +19,21 @@ const RecipeA = dispatch => {
           dispatch({ type: "GET_RECIPES", data: res.data });
         });
       });
+    },
+    getImage: image_name => {
+      let url = process.env.REACT_APP_DOWNLOAD_IMG + "/" + image_name;
+      axios.post(url, { responseType: "blob" }).then(res => {
+        // Create new filereader
+        let reader = new FileReader();
+
+        // Decode the file data, aka blob
+        reader.readAsDataURL(new File([res.data], image_name));
+
+        // Add result attribute to event, and store it in state to display
+        reader.onload = event => {
+          dispatch({ type: "ADD_IMAGE", img: event.target.result });
+        };
+      });
     }
   };
 };
