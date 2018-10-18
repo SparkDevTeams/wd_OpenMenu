@@ -19,6 +19,7 @@ class HomePC extends Component {
         recipes={this.props.userRecipes}
         menus={this.props.userMenus}
         items={this.props.userItems}
+        recipeImages={this.props.userRecipeImages}
       />
     );
   }
@@ -28,7 +29,8 @@ const mapStateToProps = state => {
   return {
     userRecipes: state.RecipeR.userRecipes,
     userMenus: state.MenuR.userMenus,
-    userItems: state.ItemR.userItems
+    userItems: state.ItemR.userItems,
+    userRecipeImages: state.RecipeR.recipeImages
   };
 };
 
