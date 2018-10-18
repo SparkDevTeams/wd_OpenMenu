@@ -1,5 +1,4 @@
-import React from "react";
-
+import React, { Fragment } from "react";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActions";
 import CardActions from "@material-ui/core/CardActions";
@@ -18,27 +17,28 @@ const styles = {
   }
 };
 const RecipeCard = props => {
-  const { classes } = props;
   return (
-    <Card className={classes.card}>
-      <CardActionArea>
-        <CardMedia
-          className={classes.media}
-          image="http://www.mawbroonskitchen.com/wp-content/themes/dct-mawbroons-full/assets/img/titles/recipes-title.png"
-          title="Recipe"
-        />
-        <img src="http://www.mawbroonskitchen.com/wp-content/themes/dct-mawbroons-full/assets/img/titles/recipes-title.png" />
-        <CardContent>
-          <Typography>Recipe</Typography>
-        </CardContent>
-      </CardActionArea>
-      <CardActions>
-        <Button>Tag</Button>
-        <Button>Tag</Button>
-        <Button>Tag</Button>
-      </CardActions>
-    </Card>
+    <Fragment>
+      <Card style={styles.card}>
+        <CardActionArea>
+          <CardMedia
+            style={styles.media}
+            image="http://www.mawbroonskitchen.com/wp-content/themes/dct-mawbroons-full/assets/img/titles/recipes-title.png"
+            title="Recipe"
+          />
+          <img src="http://www.mawbroonskitchen.com/wp-content/themes/dct-mawbroons-full/assets/img/titles/recipes-title.png" />
+          <CardContent>
+            <Typography>Recipe</Typography>
+          </CardContent>
+        </CardActionArea>
+        <CardActions>
+          <Button>Tag</Button>
+          <Button>Tag</Button>
+          <Button>Tag</Button>
+        </CardActions>
+      </Card>
+    </Fragment>
   );
 };
 
-export default withStyles(styles)(RecipeCard);
+export default RecipeCard;
