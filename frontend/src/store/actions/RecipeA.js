@@ -22,7 +22,7 @@ const RecipeA = dispatch => {
     },
     getImage: image_name => {
       let url = process.env.REACT_APP_DOWNLOAD_IMG + "/" + image_name;
-      axios.post(url, { responseType: "blob" }).then(res => {
+      axios.get(url, { responseType: "blob" }).then(res => {
         // Create new filereader
         let reader = new FileReader();
 
@@ -31,7 +31,10 @@ const RecipeA = dispatch => {
 
         // Add result attribute to event, and store it in state to display
         reader.onload = event => {
-          dispatch({ type: "ADD_IMAGE", img: event.target.result });
+          dispatch({
+            type: "ADD_IMAGE",
+            data: { name: image_name, data: event.target.result }
+          });
         };
       });
     }
