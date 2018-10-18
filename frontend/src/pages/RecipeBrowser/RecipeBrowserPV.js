@@ -52,31 +52,6 @@ const RecipeBrowserPV = props => {
             currentIngredient={props.currentIngredient}
             currentIngredientAmount={props.currentIngredientAmount}
           />
-          {/* <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
-          <DialogContent>
-            <DialogContentText>
-              To subscribe to this website, please enter your email address
-              here. We will send updates occasionally.
-            </DialogContentText>
-            <form>
-              <TextField
-                autoFocus
-                margin="dense"
-                id="name"
-                label="Name"
-                type="text"
-                fullWidth
-              />
-            </form>
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={props.handleCloseDialog} color="primary">
-              Cancel
-            </Button>
-            <Button onClick={props.handleCloseDialog} color="primary">
-              Add Recipe
-            </Button>
-          </DialogActions> */}
         </Dialog>
       </div>
     </div>
