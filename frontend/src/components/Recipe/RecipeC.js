@@ -8,15 +8,33 @@ const recipeID = "1539371834732MushroomSausageRaguuser1";
 class RecipeC extends Component {
   state = {
     openAddItemDialog: false,
-    itemName: ""
+    itemName: "",
+    editButtonClicked: false,
+    addButtonClicked: false
   };
 
-  handleClickOpen = () => {
-    this.setState({ openAddItemDialog: true });
+  handleEditClickOpen = () => {
+    this.setState({
+      openAddItemDialog: true,
+      editButtonClicked: true,
+      addButtonClicked: false
+    });
+  };
+
+  handleAddClickOpen = () => {
+    this.setState({
+      openAddItemDialog: true,
+      addButtonClicked: true,
+      editButtonClicked: false
+    });
   };
 
   handleClose = () => {
-    this.setState({ openAddItemDialog: false });
+    this.setState({
+      openAddItemDialog: false,
+      addButtonClicked: false,
+      editButtonClicked: false
+    });
   };
 
   editItemDetails = e => {
@@ -77,9 +95,12 @@ class RecipeC extends Component {
               <RecipeV
                 recipe={returnRecipe}
                 openDialog={this.state.openAddItemDialog}
-                handleOpenDialog={this.handleClickOpen}
+                handleEditClickOpen={this.handleEditClickOpen}
+                handleAddClickOpen={this.handleAddClickOpen}
                 handleCloseDialog={this.handleClose}
                 editItemDetails={this.editItemDetails}
+                addButtonClicked={this.state.addButtonClicked}
+                editButtonClicked={this.state.editButtonClicked}
               />
             );
           })}
