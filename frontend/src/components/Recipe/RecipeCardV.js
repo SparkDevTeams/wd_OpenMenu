@@ -28,20 +28,17 @@ function MediaCard(props) {
       <CardActionArea>
         <CardMedia
           className={classes.media}
-          image="https://static.olocdn.net/menu/applebees/ef0be810e965d2ef8ade562baf084952.jpg"
-          title="Salad"
+          image={props.recipe.image}
+          title={props.recipe.name}
         />
         <CardContent>
           <Typography gutterBottom variant="headline" component="h2">
             Salad
           </Typography>
-          <Typography component="p">
-            Lizards are a widespread group of squamate reptiles, with over 6,000
-            species, ranging across all continents except Antarctica
-          </Typography>
+          <Typography component="p">{props.recipe.description}</Typography>
         </CardContent>
       </CardActionArea>
-      <CardActions>
+      {/* <CardActions>
         <Button size="small" color="primary">
           Share
         </Button>
@@ -50,7 +47,7 @@ function MediaCard(props) {
             Learn More
           </Button>
         </Link>
-      </CardActions>
+      </CardActions> */}
     </Card>
   );
 }

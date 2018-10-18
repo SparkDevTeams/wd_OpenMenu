@@ -119,6 +119,7 @@ class RecipeBrowserPC extends Component {
         handleCloseDialog={this.handleClose}
         handleOnChangeForm={this.handleOnChangeForm}
         userItems={this.props.userItems}
+        userRecipes={this.props.userRecipes}
         handleIngredientForm={this.handleIngredientForm}
         addNewRecipe={this.addNewRecipe}
         ingredients={this.state.ingredients}
@@ -132,7 +133,8 @@ class RecipeBrowserPC extends Component {
 
 const mapStateToProps = state => {
   return {
-    userItems: state.ItemR.userItems
+    userItems: state.ItemR.userItems,
+    userRecipes: state.RecipeR.userRecipes
   };
 };
 

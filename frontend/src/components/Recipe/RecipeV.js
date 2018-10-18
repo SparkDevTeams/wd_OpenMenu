@@ -1,6 +1,6 @@
 import React from "react";
+
 import RecipeDetailV from "./RecipeDetailV";
-import ItemCardV from "./ItemCardV";
 import ItemCard from "./../../components/Item/ItemC";
 
 import TextField from "@material-ui/core/TextField";
@@ -23,6 +23,7 @@ const RecipeV = props => {
   return (
     <div>
       {/* show detail of recipe */}
+
       <RecipeDetailV
         name={props.recipe.name}
         image={props.recipe.image}

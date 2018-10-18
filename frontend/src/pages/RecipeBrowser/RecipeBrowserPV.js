@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import RecipeCardV from "./../../components/Recipe/RecipeCardV";
 
 import Dialog from "@material-ui/core/Dialog";
@@ -18,7 +19,12 @@ const RecipeBrowserPV = props => {
   return (
     <div>
       <h1>This is the Recipe page!</h1>
-      <RecipeCardV />
+      {props.userRecipes.map(recipe => (
+        <Link to={{ pathname: "/recipes/" + recipe.uid }}>
+          <RecipeCardV recipe={recipe} />
+        </Link>
+      ))}
+
       <div>
         <Button
           style={styles.bttn}
