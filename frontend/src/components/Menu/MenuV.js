@@ -11,7 +11,7 @@ import Typography from "@material-ui/core/Typography";
 import Tooltip from "@material-ui/core/Tooltip";
 import Icon from "@material-ui/core/Icon";
 import AddIcon from "@material-ui/icons/Add";
-
+import RecipeC from "../Recipe/RecipeC";
 import RecipeCard from "./RecipeCard";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
@@ -57,7 +57,7 @@ const MenuV = props => {
   //const { classes } = props;
   return (
     <div style={styles.mainContainer}>
-      <h1 style={styles.header}>Menu</h1>
+      <h1 style={styles.header}>{props.name}</h1>
       <div style={styles.menuDetails} /*className={classes.menuDetails}*/>
         <Card style={styles.card}>
           <CardActionArea>
@@ -86,10 +86,10 @@ const MenuV = props => {
       </div>
       <div style={styles.recipeRow} /*className={classes.recipeRow}*/>
         <h2>Recipes: </h2>
+        {/* <RecipeCard />
         <RecipeCard />
         <RecipeCard />
-        <RecipeCard />
-        <RecipeCard />
+        <RecipeCard /> */}
       </div>
       <div>
         <Tooltip title="Add recipe">
