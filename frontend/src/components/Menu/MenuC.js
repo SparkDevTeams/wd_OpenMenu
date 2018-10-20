@@ -21,12 +21,13 @@ class MenuC extends Component {
   }
 
   componentDidMount() {
-    console.log(this.state.menu);
+    console.log(this.state.menu.recipes.length);
     let rLen = this.state.menu.recipes.length;
     let count = 0;
-    this.state.menu.recipes.map(r_uid => {
-      for (let i = 0; i < this.props.userRecipes.length; i++) {
-        if (r_uid === this.props.userRecipes[i].uid) {
+    this.state.menu.recipes.map(r => {
+      for (let i = 0; i < rLen; i++) {
+        if (r.uid === this.props.userRecipes[i].uid) {
+          console.log("Match!");
           this.setState(previousState => ({
             menuRecipes: [
               ...previousState.menuRecipes,

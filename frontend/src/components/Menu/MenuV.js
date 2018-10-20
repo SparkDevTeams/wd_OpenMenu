@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
@@ -58,9 +59,11 @@ const MenuV = props => {
       </div>
       <div style={styles.recipeRow}>
         <h2>Recipes: </h2>
-        {props.menuRecipes.map(recipe => {
-          return <RecipeCardV name={recipe.name} />;
-        })}
+        {props.menuRecipes.map(recipe => (
+          <Link to={{ pathname: "/recipes/" + recipe.uid }}>
+            <RecipeCardV recipe={recipe} />
+          </Link>
+        ))}
       </div>
       <div>
         <Tooltip title="Add recipe">

@@ -44,10 +44,10 @@ class HomePC extends Component {
   render() {
     return (
       <HomePV
-        recipes={this.props.userRecipes}
-        menus={this.props.userMenus}
-        items={this.props.userItems}
-        recipeImages={this.props.userRecipeImages}
+        userRecipes={this.props.userRecipes}
+        userMenus={this.props.userMenus}
+        userItems={this.props.userItems}
+        userRecipeImages={this.props.userRecipeImages}
         loadRecipeImages={this.loadRecipeImages}
       />
     );
