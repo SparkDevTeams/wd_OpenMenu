@@ -29,8 +29,7 @@ class MenuBrowserPC extends Component {
   state = {
     menu_name: "",
     image: "", //contain rurl
-    recipes: [], //contain itemId
-    addedRecipes: [],
+    addedRecipes: [], //recipe uid's
     description: "",
     openAddItemDialog: false,
     currentRecipe: "",
@@ -84,8 +83,6 @@ class MenuBrowserPC extends Component {
     this.setState({
       addedRecipes: [...this.state.addedRecipes, newRecipe]
     });
-    // console.log(this.state.recipes);
-    // clear the current value
     this.setState({ currentRecipe: "" });
   };
 
@@ -98,7 +95,7 @@ class MenuBrowserPC extends Component {
       name: menu_name,
       user: user,
       image: this.state.image_name,
-      recipes: this.state.recipes,
+      recipes: this.state.addedRecipes,
       description: this.state.description,
       last_accessed: Date.now(),
       created_date: Date.now(),
@@ -113,9 +110,7 @@ class MenuBrowserPC extends Component {
   generateId = (name, user) => {
     let newName = name.replace(/\W/g, "");
     let newUser = user.replace(/\W/g, "");
-
     let date = Date.now();
-
     let id = date + newName + newUser;
 
     return id;
