@@ -24,29 +24,29 @@ class MenuCard extends Component {
     super(props);
     this.state = {
       image: "",
+      image_data: null,
       userMenuImages: []
     };
   }
 
   componentWillMount() {
-    console.log(this.props);
     this.setState({ image: this.props.menu.image });
     this.setState({ userMenuImages: this.props.userMenuImages });
   }
 
-  // componentDidMount() {
-  //   this.getImage(this.state.image);
-  // }
-
   getImage = img_name => {
-    for (let i = 0; i < this.state.userMenuImages; i++) {
-      if (this.userMenuImages[i].name === img_name) {
-        this.setState({ image: this.userMenuImages[i].data });
-      }
-    }
+    for (let i = 0; i < this.props.userMenuImages.length; i++) {
+      if (this.props.userMenuImages[i].name === img_name) {
+        this.setState({ image_data: this.props.userMenuImages[i].data });
+        break;
+      } // end if
+    } // end for
   }; // end getImage()
 
   render() {
+    if (this.props.userMenuImages.length && this.state.image_data === null) {
+      this.getImage(this.state.image);
+    }
     return (
       <Fragment>
         <Card style={styles.card}>
@@ -58,10 +58,9 @@ class MenuCard extends Component {
 
               <CardMedia
                 style={styles.media}
-                image={this.state.image}
+                image={this.state.image_data}
                 title={this.props.menu.name}
               />
-              {/* <img src={this.state.image} /> */}
 
               <Typography component="p">
                 {this.props.menu.description}
