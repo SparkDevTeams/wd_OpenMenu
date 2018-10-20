@@ -7,9 +7,9 @@ const RecipeA = dispatch => {
       axios
         .get(process.env.REACT_APP_RECIPES_URL)
         .then(res => {
-          res.data.map(recipe => {
-            downloadImage(recipe.image, dispatch);
-          });
+          // res.data.map(recipe => {
+          //   downloadImage(recipe.image, dispatch);
+          // });
           dispatch({ type: "GET_RECIPES", data: res.data });
         })
         .catch(err => {

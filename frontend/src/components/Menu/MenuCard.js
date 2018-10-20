@@ -20,23 +20,27 @@ const styles = {
 };
 
 class MenuCard extends Component {
-  state = {
-    image: "",
-    userMenuImages: []
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      image: "",
+      userMenuImages: []
+    };
+  }
 
   componentWillMount() {
+    console.log(this.props);
     this.setState({ image: this.props.menu.image });
     this.setState({ userMenuImages: this.props.userMenuImages });
   }
 
-  componentDidMount() {
-    this.getImage(this.state.image);
-  }
+  // componentDidMount() {
+  //   this.getImage(this.state.image);
+  // }
 
   getImage = img_name => {
     for (let i = 0; i < this.state.userMenuImages; i++) {
-      if (this.userMenuImages[i].name == img_name) {
+      if (this.userMenuImages[i].name === img_name) {
         this.setState({ image: this.userMenuImages[i].data });
       }
     }
@@ -47,20 +51,27 @@ class MenuCard extends Component {
       <Fragment>
         <Card style={styles.card}>
           <CardActionArea>
-            <CardMedia
-              style={styles.media}
-              image={this.state.image}
-              title={this.props.menu.name}
-            />
-            {/* <img src={this.state.image} /> */}
             <CardContent>
-              <Typography>{this.props.menu.description}</Typography>
+              <Typography gutterBottom variant="headline" component="h2">
+                {this.props.menu.name}
+              </Typography>
+
+              <CardMedia
+                style={styles.media}
+                image={this.state.image}
+                title={this.props.menu.name}
+              />
+              {/* <img src={this.state.image} /> */}
+
+              <Typography component="p">
+                {this.props.menu.description}
+              </Typography>
             </CardContent>
           </CardActionArea>
           <CardActions>
+            {/* <Button>Tag</Button>
             <Button>Tag</Button>
-            <Button>Tag</Button>
-            <Button>Tag</Button>
+            <Button>Tag</Button> */}
           </CardActions>
         </Card>
       </Fragment>

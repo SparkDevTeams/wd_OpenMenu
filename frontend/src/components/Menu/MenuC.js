@@ -3,31 +3,40 @@ import MenuV from "./MenuV";
 import MenuA from "../../store/actions/MenuA";
 import { connect } from "react-redux";
 
-const menuID = "1539372364811ItaliansFavoritesuser1";
-
 class MenuC extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      menuID: "1539372364811ItaliansFavoritesuser1",
       openRecipeDialog: false,
-      name: "Italian Favorites",
-      user: "user1",
-      recipes: [],
-      uid: "",
-      lastAccessed: "",
-      currentMenu: {}
+      menu: null,
+      menuRecipes: []
     };
   }
 
-  componentDidMount() {
-    let userMenu = this.props.userMenus.filter(menu => {
-      // console.log(item.uid, " " + this.props.itemId);
-      return menu.uid === "1539372364811ItaliansFavoritesuser1";
+  componentWillMount() {
+    let filteredItem = this.props.userMenus.filter(menu => {
+      return menu.uid === this.props.match.params.id;
     });
+    this.setState({ menu: filteredItem[0] });
+  }
 
-    this.setState({
-      currentMenu: userMenu
+  componentDidMount() {
+    console.log(this.state.menu);
+    let rLen = this.state.menu.recipes.length;
+    let count = 0;
+    this.state.menu.recipes.map(r_uid => {
+      for (let i = 0; i < this.props.userRecipes.length; i++) {
+        if (r_uid === this.props.userRecipes[i].uid) {
+          this.setState(previousState => ({
+            menuRecipes: [
+              ...previousState.menuRecipes,
+              this.props.userRecipes[i]
+            ]
+          }));
+        }
+        count++;
+        if (rLen === count) break;
+      }
     });
   }
 
@@ -41,17 +50,12 @@ class MenuC extends Component {
   };
 
   render() {
-    let userMenu = this.props.userMenus.filter(menu => {
-      console.log(menu);
-      return menu.uid === "1539372364811ItaliansFavoritesuser1";
-    });
     //userMenu = userMenu[0];
     return (
       <MenuV
-        name={userMenu.name}
-        menuName={this.state.name}
-        menus={this.props.userMenus}
-        openDialog={this.state.openRecipeDialog}
+        menu={this.state.menu}
+        menuRecipes={this.state.menuRecipes}
+        openRecipeDialog={this.state.openRecipeDialog}
         handleOpen={this.handleOpenDialog}
         handleClose={this.handleCloseDialog}
       />
@@ -60,7 +64,8 @@ class MenuC extends Component {
 }
 const mapStateToProps = state => {
   return {
-    userMenus: state.MenuR.userMenus
+    userMenus: state.MenuR.userMenus,
+    userRecipes: state.RecipeR.userRecipes
   };
 };
 

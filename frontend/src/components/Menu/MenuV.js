@@ -51,28 +51,16 @@ const MenuV = props => {
   //const { classes } = props;
   return (
     <div style={styles.mainContainer}>
-      <h1 style={styles.header}>{props.name}</h1>
-      <div style={styles.menuDetails} /*className={classes.menuDetails}*/>
+      <div style={styles.menuDetails}>
         <Card style={styles.card}>
-          <MenuCard menu={this.props.menu} />
-          <CardActions>
-            <Button>Share</Button>
-          </CardActions>
+          <MenuCard menu={props.menu} />
         </Card>
-        <div style={styles.menuInfo} /*className={classes.menuInfo}*/>
-          <h2>Menu Name</h2>
-          <h2>Details</h2>
-        </div>
-        <div>
-          <Button size="large">Edit</Button>
-        </div>
       </div>
-      <div style={styles.recipeRow} /*className={classes.recipeRow}*/>
+      <div style={styles.recipeRow}>
         <h2>Recipes: </h2>
-        {/* <RecipeCard />
-        <RecipeCard />
-        <RecipeCard />
-        <RecipeCard /> */}
+        {props.menuRecipes.map(recipe => {
+          return <RecipeCardV name={recipe.name} />;
+        })}
       </div>
       <div>
         <Tooltip title="Add recipe">
