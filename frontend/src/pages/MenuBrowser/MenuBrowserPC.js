@@ -1,5 +1,8 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import axios from "axios";
 import MenuBrowserPV from "./MenuBrowserPV";
+import MenuA from "../../store/actions/MenuA";
 
 /**
  * Description:
@@ -20,11 +23,162 @@ import MenuBrowserPV from "./MenuBrowserPV";
  *
  * Todo:
  *  - Improve styling
+ *  - Filter menus by tags
  */
 class MenuBrowserPC extends Component {
+  state = {
+    menu_name: "",
+    image: "", //contain rurl
+    recipes: [], //contain itemId
+    addedRecipes: [],
+    description: "",
+    openAddItemDialog: false,
+    currentRecipe: "",
+    image_form: "",
+    image_name: ""
+  };
+
+  handleClickOpen = () => {
+    this.setState({ openAddItemDialog: true });
+  };
+
+  handleClose = () => {
+    this.setState({ openAddItemDialog: false });
+  };
+
+  handleOnChangeForm = e => {
+    let field = e.target.name;
+    let value = e.target.value;
+
+    switch (field) {
+      case "name":
+        this.setState({
+          menu_name: value
+        });
+        break;
+      case "image":
+        this.setState({
+          image: value
+        });
+        break;
+      case "description":
+        this.setState({
+          description: value
+        });
+        break;
+      default:
+        break;
+    }
+  };
+
+  handleRecipeForm = e => {
+    this.setState({
+      currentRecipe: e.target.value
+    });
+  };
+
+  handleAddRecipe = () => {
+    let newRecipe = {
+      uid: this.state.currentRecipe
+    };
+    this.setState({
+      addedRecipes: [...this.state.addedRecipes, newRecipe]
+    });
+    // console.log(this.state.recipes);
+    // clear the current value
+    this.setState({ currentRecipe: "" });
+  };
+
+  addNewMenu = () => {
+    const user = localStorage.getItem("user");
+    const menu_name = this.state.menu_name;
+
+    // uid is comming from tommy's pull request
+    let menuInfo = {
+      name: menu_name,
+      user: user,
+      image: this.state.image_name,
+      recipes: this.state.recipes,
+      description: this.state.description,
+      last_accessed: Date.now(),
+      created_date: Date.now(),
+      uid: this.generateId(menu_name, user)
+    };
+    console.log(menuInfo);
+    this.props.menuFn.createMenu(menuInfo);
+    this.sendImg();
+    this.handleClose();
+  };
+
+  generateId = (name, user) => {
+    let newName = name.replace(/\W/g, "");
+    let newUser = user.replace(/\W/g, "");
+
+    let date = Date.now();
+
+    let id = date + newName + newUser;
+
+    return id;
+  };
+
+  setImageForm = form => {
+    this.setState({ image_form: form });
+  };
+
+  setImageName = name => {
+    this.setState({ image_name: name });
+  };
+
+  sendImg = () => {
+    // Post image to s3
+    axios
+      .post(process.env.REACT_APP_UPLOAD_IMG, this.state.image_form)
+      .then(res => {
+        console.log(res.body);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
   render() {
-    return <MenuBrowserPV to be used ierPV />;
+    return (
+      <MenuBrowserPV
+        openDialog={this.state.openAddItemDialog}
+        handleOpenDialog={this.handleClickOpen}
+        handleCloseDialog={this.handleClose}
+        handleOnChangeForm={this.handleOnChangeForm}
+        userMenus={this.props.userMenus}
+        userRecipes={this.props.userRecipes}
+        addedRecipes={this.state.addedRecipes}
+        handleRecipeForm={this.handleRecipeForm}
+        addNewMenu={this.addNewMenu}
+        ingredients={this.state.ingredients}
+        handleAddRecipe={this.handleAddRecipe}
+        currentRecipe={this.state.currentRecipe}
+        menu_name={this.state.menu_name}
+        image_name={this.state.image_name}
+        sendImg={this.sendImg}
+        setImageForm={this.setImageForm}
+        setImageName={this.setImageName}
+      />
+    );
   }
 }
 
-export default MenuBrowserPC;
+const mapStateToProps = state => {
+  return {
+    userMenus: state.MenuR.userMenus,
+    userRecipes: state.RecipeR.userRecipes
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    menuFn: MenuA(dispatch)
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(MenuBrowserPC);

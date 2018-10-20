@@ -4,6 +4,8 @@ import axios from "axios";
  * Used by Actions to download and store images to central store once
  * menu/recipe/item object lists are downloaded from DB.
  *
+ * Expects coresponding Reducer to have a case for "ADD_IMAGE"
+ *
  * @param {string} image_name name of the image to download
  * @param {method()} dispatch Recieved from redux
  */

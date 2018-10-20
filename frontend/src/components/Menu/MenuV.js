@@ -1,23 +1,17 @@
 import React, { Component } from "react";
-import { withStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
 import Card from "@material-ui/core/Card";
-import CardActionArea from "@material-ui/core/CardActions";
 import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
-import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
 import Tooltip from "@material-ui/core/Tooltip";
-import Icon from "@material-ui/core/Icon";
 import AddIcon from "@material-ui/icons/Add";
-import RecipeC from "../Recipe/RecipeC";
-import RecipeCard from "./RecipeCard";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
+
+import MenuCard from "./MenuCard";
+import RecipeCardV from "../Recipe/RecipeCardV";
 
 const styles = theme => ({
   mainContainer: {
@@ -60,18 +54,7 @@ const MenuV = props => {
       <h1 style={styles.header}>{props.name}</h1>
       <div style={styles.menuDetails} /*className={classes.menuDetails}*/>
         <Card style={styles.card}>
-          <CardActionArea>
-            <CardMedia
-              //className={classes.media}
-              style={styles.media}
-              image="https://pbs.twimg.com/profile_images/895676609167937538/-1o6Yg8f_400x400.jpg"
-              title="Menu"
-            />
-            <img src="http://s3.amazonaws.com/product-images.imshopping.com/nimblebuy/5-for-10-worth-of-peruvian-food-from-fusion-peru-7611072-regular.jpg" />
-            <CardContent>
-              <Typography>Menu</Typography>
-            </CardContent>
-          </CardActionArea>
+          <MenuCard menu={this.props.menu} />
           <CardActions>
             <Button>Share</Button>
           </CardActions>
@@ -108,9 +91,9 @@ const MenuV = props => {
         <Dialog open={props.openDialog} onClose={props.handleClose}>
           <DialogTitle id="addrecipes">Add Recipes</DialogTitle>
           <DialogContent>
+            {/* <RecipeCard />
             <RecipeCard />
-            <RecipeCard />
-            <RecipeCard />
+            <RecipeCard /> */}
           </DialogContent>
           <DialogActions>
             <Button onClick={props.handleClose} color="primary">

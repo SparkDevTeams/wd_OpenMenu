@@ -1,7 +1,6 @@
-import React from "react";
-
 const initState = {
-  userMenus: []
+  userMenus: [],
+  userMenuImages: []
 };
 
 function MenuR(state = initState, action) {
@@ -16,6 +15,8 @@ function MenuR(state = initState, action) {
       return { ...state, userMenus: action.data };
     case "SHARE_MENU":
       return { ...state, userMenus: action.data };
+    case "ADD_IMAGE":
+      return { ...state, userMenuImages: [state.userMenuImages, action.data] };
     default:
       return state;
   }

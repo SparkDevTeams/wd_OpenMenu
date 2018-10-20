@@ -1,11 +1,34 @@
 import axios from "axios";
+import { downloadImage } from "../../utils/downloadImage";
 
+/**
+ * Description:
+ * Menu Action for beckend interaction and image uploading/downloading.
+ *
+ * @param dispatch Recieved from redux. Dispatched actions to central store
+ *
+ * Output: Modifies central store
+ *  - userItems: Gets list of Menu objects
+ *  - menuImages: Downloads and store menu related images
+ *
+ * Components used: None
+ *
+ * Local State: None
+ *
+ * Central store:
+ *
+ * Todo:
+ *  - Get Menus for specific user only
+ */
 const MenuA = dispatch => {
   return {
     getMenus: () => {
       axios
         .get(process.env.REACT_APP_MENUS_URL)
         .then(res => {
+          res.data.map(menu => {
+            downloadImage(menu.image, dispatch);
+          });
           dispatch({ type: "GET_MENUS", data: res.data });
         })
         .catch(err => {
