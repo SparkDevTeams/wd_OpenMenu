@@ -23,7 +23,7 @@ import MenuBrowserPV from "./MenuBrowserPV";
  */
 class MenuBrowserPC extends Component {
   render() {
-    return <MenuBrows to be used ierPV />;
+    return <MenuBrowserPV to be used ierPV />;
   }
 }
 
