@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from "react";
 import ItemV from "./ItemV.js";
 import { connect } from "react-redux";
+import ItemA from '../../store/actions/ItemA'
 
 class ItemC extends Component {
   constructor(props) {
@@ -16,6 +17,7 @@ class ItemC extends Component {
       price: "$9.50",
       detailsOpen: false,
       EditOpen: false,
+      deleteOpen: false,
       newName: "",
       newDescription: "",
       newImg: "",
@@ -75,15 +77,22 @@ class ItemC extends Component {
     alert("share");
   };
 
-  deleteItem = e => {
-    e.stopPropagation();
-    alert("delete item");
+  deleteItem = () => {
+    this.props.itemFn.deleteItems(this.state.currentItem[0].id);
   };
 
   detailsToggle = () => {
     this.setState({
       detailsOpen: !this.state.detailsOpen
     });
+  };
+
+  deleteToggle = e => {
+    e.stopPropagation();
+    this.setState({
+      deleteOpen: !this.state.deleteOpen
+    });
+    console.log('Opening delete')
   };
 
   editToggle = e => {
@@ -141,6 +150,7 @@ class ItemC extends Component {
       return item.uid === this.props.itemId;
     });
     userItem = userItem[0];
+    console.log(userItem);
 
     return (
       <Fragment>
@@ -158,7 +168,9 @@ class ItemC extends Component {
           tags={this.generateTags}
           tagArr={userItem.tags}
           detailsToggle={this.detailsToggle}
+          deleteToggle={this.deleteToggle}
           detailsOpen={this.state.detailsOpen}
+          deleteOpen={this.state.deleteOpen}
           editItemDetails={this.editItemDetails}
         />
       </Fragment>
@@ -192,4 +204,11 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(ItemC);
+const mapDispatchToProps = dispatch =>{
+  return{
+    itemFn: ItemA(dispatch)
+  }
+}
+
+
+export default connect(mapStateToProps,mapDispatchToProps)(ItemC);
