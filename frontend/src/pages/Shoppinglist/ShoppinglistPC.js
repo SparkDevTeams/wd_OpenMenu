@@ -12,7 +12,9 @@ class ShoppinglistPC extends Component {
     this.state = {
       addItemWindowVisibility: false,
       itemsChecked: true,
-      recipesChecked: false
+      recipesChecked: false,
+      menusChecked: false,
+      addedItems: []
     };
   }
 
@@ -39,13 +41,26 @@ class ShoppinglistPC extends Component {
     });
   }
 
+  toggleMenusChecked() {
+    this.setState({
+      menusChecked: !this.state.menusChecked
+    });
+  }
+
+  getAddedItems(addedItems){
+    this.setState({
+      addedItems: addedItems
+    });
+  }
+
   render() {
     let componentToReturn;
     if (this.state.addItemWindowVisibility === true) {
        componentToReturn = (
                           <div>
                             <ShoppinglistPV 
-                            openWindowFunction={this.openAddItemWindow.bind(this)} />
+                            openWindowFunction={this.openAddItemWindow.bind(this)} 
+                            addedItems={this.state.addedItems}/>
                             <AddItemWindowM closeWindowFunction={this.closeAddItemWindow.bind(this)}
 
                             items={this.props.userItems} 
@@ -56,6 +71,12 @@ class ShoppinglistPC extends Component {
                             recipesChecked={this.state.recipesChecked} 
                             toggleRecipeCheckFunction={this.toggleRecipesChecked.bind(this)}
 
+                            menus={this.props.userMenus} 
+                            menusChecked={this.state.menusChecked} 
+                            toggleMenuCheckFunction={this.toggleMenusChecked.bind(this)}
+
+                            getAddedItems={this.getAddedItems.bind(this)}
+                            addedItems={this.state.addedItems}
                             />
                           </div>
                           );
@@ -63,7 +84,8 @@ class ShoppinglistPC extends Component {
     else {
       
        componentToReturn = (<ShoppinglistPV 
-                           openWindowFunction={this.openAddItemWindow.bind(this)}/>);
+                           openWindowFunction={this.openAddItemWindow.bind(this)}
+                           addedItems={this.state.addedItems}/>);
       
 
     }
