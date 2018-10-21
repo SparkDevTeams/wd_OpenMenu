@@ -1,16 +1,14 @@
-import DummyItems from "./../../components/Recipe/DummyItems";
-
 const initState = {
-  items: DummyItems,
-  userRecipes: []
+  userRecipes: [],
+  recipeImages: []
 };
 
 function RecipeR(state = initState, action) {
   switch (action.type) {
-    case "LOAD_ITEMS":
-      return { ...state, items: action.data };
     case "GET_RECIPES":
       return { ...state, userRecipes: action.data };
+    case "ADD_IMAGE":
+      return { ...state, recipeImages: [state.recipeImages, action.data] };
     default:
       return state;
   }

@@ -1,21 +1,30 @@
 import React from "react";
-import RecipeCard from "./../../components/Recipe/ItemCardV";
+import { Link } from "react-router-dom";
+
+import RecipeCardV from "../../components/Recipe/ItemCardV";
+import MenuCard from "../../components/Menu/MenuCard";
 
 const HomePV = props => {
   return (
     // This part need better styling
     <div>
       <h1>Recipes</h1>
-      {props.recipes.map(recipe => (
-        <RecipeCard name={recipe.name} />
+      {props.userRecipes.map(recipe => (
+        <Link to={{ pathname: "/recipes/" + recipe.uid }}>
+          <RecipeCardV recipe={recipe} />
+        </Link>
       ))}
+
       <h1>Menus</h1>
-      {props.menus.map(menu => (
-        <RecipeCard name={menu.name} />
+      {props.userMenus.map(menu => (
+        <Link to={{ pathname: "/menus/" + menu.uid }}>
+          <MenuCard menu={menu} />
+        </Link>
       ))}
+
       <h1>Items</h1>
-      {props.items.map(item => (
-        <RecipeCard name={item.name} />
+      {props.userItems.map(item => (
+        <RecipeCardV name={item.name} />
       ))}
     </div>
   );
