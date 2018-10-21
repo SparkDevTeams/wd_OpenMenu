@@ -94,6 +94,7 @@ class RecipeC extends Component {
             return (
               <RecipeV
                 recipe={returnRecipe}
+                userItems={this.props.userItems}
                 openDialog={this.state.openAddItemDialog}
                 handleEditClickOpen={this.handleEditClickOpen}
                 handleAddClickOpen={this.handleAddClickOpen}
@@ -111,7 +112,8 @@ class RecipeC extends Component {
 
 const mapStateToProps = state => {
   return {
-    userRecipes: state.RecipeR.userRecipes
+    userRecipes: state.RecipeR.userRecipes,
+    userItems: state.ItemR.userItems
   };
 };
 

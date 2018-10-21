@@ -21,7 +21,6 @@ const RecipeV = props => {
   return (
     <div>
       {/* show detail of recipe */}
-
       <RecipeDetailV
         name={props.recipe.name}
         image={props.recipe.image}
@@ -31,9 +30,15 @@ const RecipeV = props => {
       {/* Show list of ingredients */}
       {props.recipe.ingredients.length > 0
         ? props.recipe.ingredients.map(item => {
-            return <ItemCard itemId={item.itemId} amount={item.amount} />;
+            for (let i = 0; i < props.userItems.length; i++) {
+              if (item.itemId === props.userItems[i].uid) {
+                console.log(item.itemId);
+                return <ItemCard itemId={item.itemId} amount={item.amount} />;
+              }
+            }
           })
         : console.log("No ingredient. Add some")}
+
       {/* Add recipe */}
       <div>
         <Button

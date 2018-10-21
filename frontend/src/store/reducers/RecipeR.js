@@ -8,7 +8,7 @@ function RecipeR(state = initState, action) {
     case "GET_RECIPES":
       return { ...state, userRecipes: action.data };
     case "ADD_IMAGE":
-      return { ...state, recipeImages: [state.recipeImages, action.data] };
+      return { ...state, recipeImages: state.recipeImages.concat(action.data) };
     default:
       return state;
   }

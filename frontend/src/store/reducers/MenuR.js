@@ -16,17 +16,10 @@ function MenuR(state = initState, action) {
     case "SHARE_MENU":
       return { ...state, userMenus: action.data };
     case "ADD_IMAGE":
-      let umi = state.userMenuImages.map(img => {
-        return img;
-      });
-
-      umi.push(action.data);
-
       return {
         ...state,
-        userMenuImages: umi
+        userMenuImages: state.userMenuImages.concat(action.data)
       };
-    // return { ...state, userMenuImages: [state.userMenuImages, action.data] };
     default:
       return state;
   }
