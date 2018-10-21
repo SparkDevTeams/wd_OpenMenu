@@ -13,6 +13,13 @@ const ItemA = dispatch => {
           dispatch({ type: "GET_ITEMS", data: res.data });
         });
       });
+    },
+    deleteItems: data =>{
+      axios.delete(process.env.REACT_APP_ITEMS_URL + "/" + data).then(res =>{
+        axios.get(process.env.REACT_APP_ITEMS_URL).then(res => {
+          dispatch({ type: "GET_ITEMS", data: res.data });
+        });
+      });
     }
   };
 };

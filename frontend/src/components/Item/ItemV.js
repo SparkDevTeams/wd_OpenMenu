@@ -75,7 +75,7 @@ const ItemV = props => {
         <div style={{ margin: "3px 0 8px 0" }}>
           <EditIcon style={styles.icon} onClick={props.editToggle} />
           <ShareIcon style={styles.icon} onClick={props.shareItem} />
-          <DeleteIcon style={styles.icon} onClick={props.deleteItem} />
+          <DeleteIcon style={styles.icon} onClick={props.deleteToggle} />
         </div>
         <div>{props.tags()}</div>
       </Card>
@@ -196,6 +196,22 @@ const ItemV = props => {
           </Button>
         </div>
       </Dialog>
+
+        {/*delete dialog */}
+        <Dialog open={props.deleteOpen} onClose={props.deleteToggle}>
+        <DialogContent style={{ marginTop: -3 }}>
+        <DialogTitle style={{ paddingBottom: 8 }}>
+          {`Are you sure you want to delete ${props.name} ?`}
+        </DialogTitle>
+        <Button onClick={props.deleteItem} color="primary">
+            Delete Item
+          </Button>
+          <Button onClick={props.deleteToggle} color="primary">
+            Cancel
+          </Button>
+        </DialogContent>
+      </Dialog>
+
     </Fragment>
   );
 };
