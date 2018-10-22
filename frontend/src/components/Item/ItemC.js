@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 import ItemV from "./ItemV.js";
 import { connect } from "react-redux";
-import ItemA from '../../store/actions/ItemA'
+import ItemA from "../../store/actions/ItemA";
 
 class ItemC extends Component {
   constructor(props) {
@@ -92,7 +92,7 @@ class ItemC extends Component {
     this.setState({
       deleteOpen: !this.state.deleteOpen
     });
-    console.log('Opening delete')
+    console.log("Opening delete");
   };
 
   editToggle = e => {
@@ -204,11 +204,13 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = dispatch =>{
-  return{
+const mapDispatchToProps = dispatch => {
+  return {
     itemFn: ItemA(dispatch)
-  }
-}
+  };
+};
 
-
-export default connect(mapStateToProps,mapDispatchToProps)(ItemC);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ItemC);
