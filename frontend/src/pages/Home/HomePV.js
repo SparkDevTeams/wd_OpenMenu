@@ -23,9 +23,9 @@ const HomePV = props => {
       ))}
 
       <h1>Items</h1>
-      {/* {props.userItems.map(item => (
-        <RecipeCardV name={item.name} showIns={false} />
-      ))} */}
+      {props.userItems.map(item => (
+        <RecipeCardV recipe={item} showIns={false} />
+      ))}
     </div>
   );
 };
