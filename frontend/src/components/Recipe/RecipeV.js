@@ -6,8 +6,6 @@ import ItemCard from "./../../components/Item/ItemC";
 import Dialog from "@material-ui/core/Dialog";
 import Icon from "@material-ui/core/Icon";
 import Button from "@material-ui/core/Button";
-import AddIcon from "@material-ui/icons/Add";
-import RecipeAddItemM from "./RecipeAddItemM";
 import RecipeEditRecipeM from "./RecipeEditRecipeM";
 
 const styles = {
@@ -54,6 +52,8 @@ const RecipeV = props => {
           <RecipeEditRecipeM
             userItems={props.userItems}
             recipe={props.recipe}
+            handleOnChangeForm={props.handleOnChangeForm}
+            handleAddItem={props.handleAddItem}
           />
         </Dialog>
       </div>

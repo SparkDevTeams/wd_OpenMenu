@@ -8,7 +8,14 @@ import { connect } from "react-redux";
 class RecipeC extends Component {
   state = {
     openEditDialog: false,
-    itemName: ""
+    recipe_name: "",
+    image: "", //contain rurl
+    ingredients: [], //contain itemId
+    instructions: "",
+    currentIngredient: "",
+    currentIngredientAmount: "",
+    image_form: "",
+    image_name: ""
   };
 
   handleEditClickOpen = () => {
@@ -36,40 +43,51 @@ class RecipeC extends Component {
     this.setState({ currentIngredient: "", currentIngredientAmount: "" });
   };
 
-  editItemDetails = e => {
+  updateRecipe = () => {
+    const user = localStorage.getItem("user");
+    const recipe_name = this.state.recipe_name;
+
+    // uid is comming from tommy's pull request
+    let recipeInfo = {
+      name: recipe_name,
+      user: user,
+      image: this.state.image_name,
+      ingredients: this.state.ingredients,
+      instructions: this.state.instructions,
+      uid: this.generateId(recipe_name, user)
+    };
+    // console.log(recipeInfo);
+    this.props.recipeFn.createRecipe(recipeInfo);
+    this.sendImg();
+    this.handleClose();
+  };
+
+  handleOnChangeForm = e => {
     let field = e.target.name;
     let value = e.target.value;
+    // console.log(e.target.value);
 
     switch (field) {
       case "name":
         this.setState({
-          newName: value
+          recipe_name: value
+        });
+        break;
+      case "image":
+        this.setState({
+          image: value
+        });
+        break;
+      case "instruction":
+        this.setState({
+          instructions: value
         });
         break;
 
       default:
         break;
     }
-    console.log(this.state.newName);
   };
-
-  // addNewItem = () => {
-  //   const user = localStorage.getRecipe("user");
-  //   const name = this.state.newName;
-
-  //   // uid is comming from tommy's pull request
-  //   let itemInfo = {
-  //     name: name,
-  //     user: user,
-  //     image: this.state.newImageURL,
-  //     description: this.state.newDescription,
-  //     size: this.state.newSize,
-  //     price: this.state.newPrice,
-  //     tags: this.state.newTags,
-  //     uid: this.generateId(name, user)
-  //   };
-  //   this.props.recipeFn.createRecipes(itemInfo);
-  // };
 
   generateId = (name, user) => {
     let newName = name.replace(/\W/g, "");
@@ -97,6 +115,10 @@ class RecipeC extends Component {
                 openEditDialog={this.state.openEditDialog}
                 handleEditClickOpen={this.handleEditClickOpen}
                 handleCloseDialog={this.handleClose}
+                handleOnChangeForm={this.handleOnChangeForm}
+                handleAddItem={this.handleAddItem}
+                currentIngredient={this.state.currentIngredient}
+                currentIngredientAmount={this.state.currentIngredientAmount}
               />
             );
           })}
