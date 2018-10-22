@@ -197,13 +197,13 @@ const ItemV = props => {
         </div>
       </Dialog>
 
-        {/*delete dialog */}
-        <Dialog open={props.deleteOpen} onClose={props.deleteToggle}>
+      {/*delete dialog */}
+      <Dialog open={props.deleteOpen} onClose={props.deleteToggle}>
         <DialogContent style={{ marginTop: -3 }}>
-        <DialogTitle style={{ paddingBottom: 8 }}>
-          {`Are you sure you want to delete ${props.name} ?`}
-        </DialogTitle>
-        <Button onClick={props.deleteItem} color="primary">
+          <DialogTitle style={{ paddingBottom: 8 }}>
+            {`Are you sure you want to delete ${props.name} ?`}
+          </DialogTitle>
+          <Button onClick={props.deleteItem} color="primary">
             Delete Item
           </Button>
           <Button onClick={props.deleteToggle} color="primary">
@@ -211,7 +211,6 @@ const ItemV = props => {
           </Button>
         </DialogContent>
       </Dialog>
-
     </Fragment>
   );
 };
