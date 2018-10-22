@@ -23,6 +23,19 @@ class RecipeC extends Component {
     });
   };
 
+  handleAddItem = () => {
+    let newItem = {
+      itemId: this.state.currentIngredient,
+      amount: this.state.currentIngredientAmount
+    };
+    this.setState({
+      ingredients: this.state.ingredients.concat(newItem)
+    });
+    console.log(this.state.ingredients);
+    // clear the current value
+    this.setState({ currentIngredient: "", currentIngredientAmount: "" });
+  };
+
   editItemDetails = e => {
     let field = e.target.name;
     let value = e.target.value;
