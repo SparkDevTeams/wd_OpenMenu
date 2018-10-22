@@ -31,18 +31,18 @@ class MenuBrowserPC extends Component {
     image: "", //contain rurl
     addedRecipes: [], //recipe uid's
     description: "",
-    openAddItemDialog: false,
+    addMenuModalOpenState: false,
     currentRecipe: "",
     image_form: "",
     image_name: ""
   };
 
   handleClickOpen = () => {
-    this.setState({ openAddItemDialog: true });
+    this.setState({ addMenuModalOpenState: true });
   };
 
   handleClose = () => {
-    this.setState({ openAddItemDialog: false });
+    this.setState({ addMenuModalOpenState: false });
   };
 
   handleOnChangeForm = e => {
@@ -101,9 +101,9 @@ class MenuBrowserPC extends Component {
       created_date: Date.now(),
       uid: this.generateId(menu_name, user)
     };
-    console.log(menuInfo);
-    this.props.menuFn.createMenu(menuInfo);
+    // console.log(menuInfo);
     this.sendImg();
+    this.props.menuFn.createMenu(menuInfo);
     this.handleClose();
   };
 
@@ -138,8 +138,8 @@ class MenuBrowserPC extends Component {
   render() {
     return (
       <MenuBrowserPV
-        openDialog={this.state.openAddItemDialog}
-        handleOpenDialog={this.handleClickOpen}
+        addMenuModalOpenState={this.state.addMenuModalOpenState}
+        handleClickOpen={this.handleClickOpen}
         handleCloseDialog={this.handleClose}
         handleOnChangeForm={this.handleOnChangeForm}
         userMenus={this.props.userMenus}

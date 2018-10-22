@@ -7,14 +7,13 @@ class ItemC extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: "dummy-id",
-      name: "ItemName",
-      img:
-        "https://drop.ndtv.com/albums/COOKS/pasta-vegetarian/pastaveg_640x480.jpg",
-      tags: ["tasty", "delicious", "italian", "Vegan"],
-      description: "A tasty dish.",
-      size: "Gallon",
-      price: "$9.50",
+      name: "",
+      image_data: null,
+      userItemImages: [],
+      tags: [],
+      description: "",
+      size: "",
+      price: "",
       detailsOpen: false,
       EditOpen: false,
       deleteOpen: false,
@@ -43,7 +42,8 @@ class ItemC extends Component {
       newImg: this.state.img,
       newSize: this.state.size,
       newTags: this.state.tags,
-      newPrice: this.state.price
+      newPrice: this.state.price,
+      userItemImages: this.props.userItemImages
     });
   }
 
@@ -144,20 +144,31 @@ class ItemC extends Component {
     }
   };
 
+  getImage = img_name => {
+    for (let i = 0; i < this.props.userItemImages.length; i++) {
+      if (this.props.userItemImages[i].name === img_name) {
+        this.setState({ image_data: this.props.userItemImages[i].data });
+        break;
+      } // end if
+    } // end for
+  }; // end getImage()
+
   render() {
     let userItem = this.props.userItems.filter(item => {
-      // console.log(item.uid, " " + this.props.itemId);
       return item.uid === this.props.itemId;
     });
     userItem = userItem[0];
-    console.log(userItem);
+
+    if (this.props.userItemImages.length && this.state.image_data === null) {
+      this.getImage(userItem.image);
+    }
 
     return (
       <Fragment>
         <ItemV
           name={userItem.name}
           description={userItem.description}
-          img={userItem.image}
+          img={this.state.image_data}
           size={this.props.amount}
           price={userItem.price}
           deleteItem={this.deleteItem}
@@ -172,6 +183,7 @@ class ItemC extends Component {
           detailsOpen={this.state.detailsOpen}
           deleteOpen={this.state.deleteOpen}
           editItemDetails={this.editItemDetails}
+          userItemImages={this.props.userItemImages}
         />
       </Fragment>
     );
@@ -200,7 +212,8 @@ const Tag = props => {
 
 const mapStateToProps = state => {
   return {
-    userItems: state.ItemR.userItems
+    userItems: state.ItemR.userItems,
+    userItemImages: state.ItemR.userItemImages
   };
 };
 
