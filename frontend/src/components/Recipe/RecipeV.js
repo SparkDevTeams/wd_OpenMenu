@@ -42,17 +42,19 @@ const RecipeV = props => {
           variant="fab"
           color="secondary"
           aria-label="Edit"
-          onClick={props.handleOpenDialog}
+          onClick={props.handleEditClickOpen}
         >
           <Icon>edit_icon</Icon>
         </Button>
         <Dialog
-          open={props.openDialog}
+          open={props.openEditDialog}
           onClose={props.handleCloseDialog}
           aria-labelledby="form-dialog-title"
         >
-          {props.addButtonClicked && <RecipeAddItemM recipe={props.recipe} />}
-          {props.editButtonClicked && <RecipeEditRecipeM />}
+          <RecipeEditRecipeM
+            userItems={props.userItems}
+            recipe={props.recipe}
+          />
         </Dialog>
       </div>
     </div>

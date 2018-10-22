@@ -7,33 +7,19 @@ import { connect } from "react-redux";
 
 class RecipeC extends Component {
   state = {
-    openAddItemDialog: false,
-    itemName: "",
-    editButtonClicked: false,
-    addButtonClicked: false
+    openEditDialog: false,
+    itemName: ""
   };
 
   handleEditClickOpen = () => {
     this.setState({
-      openAddItemDialog: true,
-      editButtonClicked: true,
-      addButtonClicked: false
-    });
-  };
-
-  handleAddClickOpen = () => {
-    this.setState({
-      openAddItemDialog: true,
-      addButtonClicked: true,
-      editButtonClicked: false
+      openEditDialog: true
     });
   };
 
   handleClose = () => {
     this.setState({
-      openAddItemDialog: false,
-      addButtonClicked: false,
-      editButtonClicked: false
+      openEditDialog: false
     });
   };
 
@@ -95,13 +81,9 @@ class RecipeC extends Component {
               <RecipeV
                 recipe={returnRecipe}
                 userItems={this.props.userItems}
-                openDialog={this.state.openAddItemDialog}
+                openEditDialog={this.state.openEditDialog}
                 handleEditClickOpen={this.handleEditClickOpen}
-                handleAddClickOpen={this.handleAddClickOpen}
                 handleCloseDialog={this.handleClose}
-                editItemDetails={this.editItemDetails}
-                addButtonClicked={this.state.addButtonClicked}
-                editButtonClicked={this.state.editButtonClicked}
               />
             );
           })}

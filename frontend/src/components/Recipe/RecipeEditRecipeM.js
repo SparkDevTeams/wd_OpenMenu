@@ -97,9 +97,27 @@ const RecipeEditRecipeM = props => {
           Add Item
         </Button>
 
-        {props.ingredients.length > 0
-          ? props.ingredients.map(ingredient => {
-              let filteredItem = props.userItems.filter(userItem => {
+        {props.recipe.ingredients.length > 0
+          ? props.recipe.ingredients.map(ingredient => {
+              for (let i = 0; i < props.userItems.length; ++i) {
+                if (props.userItems[i].uid === ingredient.itemId) {
+                  let buttonDisplay =
+                    String(props.userItems[i].name) +
+                    "  " +
+                    String(ingredient.amount);
+                  console.log(buttonDisplay);
+                  return (
+                    <Button color="primary" fullWidth>
+                      {/* JSON.stringify(ingredient) */}
+                      {buttonDisplay}
+                    </Button>
+                  );
+                }
+              }
+            })
+          : console.log("no ingredients")}
+
+        {/* let filteredItem = props.userItems.filter(userItem => {
                 return userItem.uid === ingredient.itemId;
               });
               let buttonDisplay =
@@ -108,11 +126,11 @@ const RecipeEditRecipeM = props => {
               return (
                 <Button color="primary" fullWidth>
                   {/* JSON.stringify(ingredient) */}
-                  {buttonDisplay}
+        {/* {buttonDisplay}
                 </Button>
               );
             })
-          : console.log("ingredients array is empty")}
+          : console.log("ingredients array is empty")} */}
 
         <TextField
           autoFocus
