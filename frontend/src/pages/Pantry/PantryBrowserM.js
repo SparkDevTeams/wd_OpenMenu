@@ -67,12 +67,6 @@ class PantryBrowserM extends Component {
   render() {
     return (
       <div>
-        <div
-          className="close-icon-container"
-          onClick={this.props.closeWindowFunction}
-        >
-          <CloseIcon />
-        </div>
         <div style={this.styles.editDialog}>
           <DialogTitle
             style={{ marginLeft: "-10px" }}
@@ -181,7 +175,10 @@ class PantryBrowserM extends Component {
             fullWidth
           />
           <Button onClick={this.props.addNewItem} color="primary">
-            Save Changes
+            Create Item
+          </Button>
+          <Button onClick={this.props.closeAddItemWindow} color="primary">
+            Cancel
           </Button>
         </div>
       </div>
