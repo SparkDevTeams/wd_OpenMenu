@@ -19,6 +19,7 @@ const RecipeEditRecipeM = props => {
           name="name"
           label="Name"
           value={props.newName}
+          defaultValue={props.recipe.name}
           onChange={props.handleOnChangeForm}
           style={{ margin: "8px 0px" }}
           margin="normal"
@@ -108,8 +109,10 @@ const RecipeEditRecipeM = props => {
                   console.log(buttonDisplay);
                   return (
                     <Button color="primary" fullWidth>
-                      {/* JSON.stringify(ingredient) */}
                       {buttonDisplay}
+                      <IconButton>
+                        <i className="material-icons">clear</i>
+                      </IconButton>
                     </Button>
                   );
                 }
@@ -117,27 +120,13 @@ const RecipeEditRecipeM = props => {
             })
           : console.log("no ingredients")}
 
-        {/* let filteredItem = props.userItems.filter(userItem => {
-                return userItem.uid === ingredient.itemId;
-              });
-              let buttonDisplay =
-                String(filteredItem[0].name) + "  " + String(ingredient.amount);
-              console.log(buttonDisplay);
-              return (
-                <Button color="primary" fullWidth>
-                  {/* JSON.stringify(ingredient) */}
-        {/* {buttonDisplay}
-                </Button>
-              );
-            })
-          : console.log("ingredients array is empty")} */}
-
         <TextField
           autoFocus
           required
           name="instruction"
           label="instruction"
           value={props.newDescription}
+          defaultValue={props.recipe.instructions}
           onChange={props.handleOnChangeForm}
           style={{ margin: "8px 0px" }}
           margin="normal"
