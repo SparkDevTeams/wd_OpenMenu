@@ -1,14 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
-import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
-import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 
 // const screenWidth = window.screen.availWidth;
@@ -22,7 +19,7 @@ const styles = {
   }
 };
 
-class MediaCard extends Component {
+class RecipeCardV extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -35,6 +32,7 @@ class MediaCard extends Component {
   }
 
   componentWillMount() {
+    console.log(this.props.recipe);
     this.setState({ image: this.props.recipe.image });
     this.setState({ userRecipeImages: this.props.userRecipeImages });
   }
@@ -53,20 +51,27 @@ class MediaCard extends Component {
       this.getImage(this.state.image);
     }
     return (
-      <Card className={this.props.classes.card}>
+      <Card style={styles.card}>
         <CardActionArea>
-          <CardMedia
-            className={this.props.classes.media}
-            image={this.state.image_data}
-            title={this.props.recipe.name}
-          />
           <CardContent>
             <Typography gutterBottom variant="headline" component="h2">
               {this.props.recipe.name}
             </Typography>
+
+            <CardMedia
+              style={styles.media}
+              image={this.state.image_data}
+              title={this.props.recipe.name}
+            />
+
             <Typography component="p">
               {this.props.recipe.description}
             </Typography>
+            {this.props.showIns && (
+              <Typography component="p">
+                {this.props.recipe.instructions}
+              </Typography>
+            )}
           </CardContent>
         </CardActionArea>
       </Card>
@@ -74,7 +79,7 @@ class MediaCard extends Component {
   }
 }
 
-MediaCard.propTypes = {
+RecipeCardV.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
@@ -84,4 +89,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default withStyles(styles)(connect(mapStateToProps)(MediaCard));
+export default connect(mapStateToProps)(RecipeCardV);

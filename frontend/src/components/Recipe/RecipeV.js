@@ -1,6 +1,6 @@
 import React from "react";
 
-import RecipeDetailV from "./RecipeDetailV";
+import RecipeCardV from "./RecipeCardV";
 import ItemCard from "./../../components/Item/ItemC";
 
 import Dialog from "@material-ui/core/Dialog";
@@ -21,11 +21,7 @@ const RecipeV = props => {
   return (
     <div>
       {/* show detail of recipe */}
-      <RecipeDetailV
-        name={props.recipe.name}
-        image={props.recipe.image}
-        instructions={props.recipe.instructions}
-      />
+      <RecipeCardV recipe={props.recipe} showIns={true} />
       <h1>Ingredients</h1>
       {/* Show list of ingredients */}
       {props.recipe.ingredients.length > 0

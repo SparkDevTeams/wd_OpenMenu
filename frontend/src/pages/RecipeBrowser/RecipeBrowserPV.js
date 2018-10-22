@@ -21,7 +21,7 @@ const RecipeBrowserPV = props => {
       <h1>This is the Recipe page!</h1>
       {props.userRecipes.map(recipe => (
         <Link to={{ pathname: "/recipes/" + recipe.uid }}>
-          <RecipeCardV recipe={recipe} />
+          <RecipeCardV recipe={recipe} showIns={false} />
         </Link>
       ))}
 
