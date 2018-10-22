@@ -38,16 +38,6 @@ const RecipeV = props => {
       {/* Add recipe */}
       <div>
         <Button
-          style={styles.bttn}
-          margin-left="20px"
-          variant="fab"
-          color="secondary"
-          aria-label="Add"
-          onClick={props.handleOpenDialog}
-        >
-          <AddIcon />
-        </Button>
-        <Button
           margin-left="20px"
           variant="fab"
           color="secondary"
