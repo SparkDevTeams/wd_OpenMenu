@@ -24,7 +24,7 @@ const MenuA = dispatch => {
   return {
     getMenus: () => {
       axios
-        .get("http://localhost:3001/api/Menus")
+        .get(process.env.REACT_APP_MENUS_URL)
         .then(res => {
           res.data.map(menu => {
             downloadImage(menu.image, dispatch);
