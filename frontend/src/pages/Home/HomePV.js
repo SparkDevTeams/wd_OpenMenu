@@ -1,35 +1,31 @@
 import React from "react";
-import RecipeCard from "./../../components/Recipe/ItemCardV";
-import "./style.css";
+import { Link } from "react-router-dom";
+
+import RecipeCardV from "../../components/Recipe/RecipeCardV";
+import MenuCard from "../../components/Menu/MenuCard";
 
 const HomePV = props => {
   return (
     // This part need better styling
     <div>
-      <h1>Recipes</h1>
-      <div className="container">
-        {props.recipes.map(recipe => (
-          <div className="card">
-            <RecipeCard name={recipe.name} />
-          </div>
-        ))}
-      </div>
       <h1>Menus</h1>
-      <div className="container">
-        {props.menus.map(menu => (
-          <div className="card">
-            <RecipeCard name={menu.name} />
-          </div>
-        ))}
-      </div>
+      {props.userMenus.map(menu => (
+        <Link to={{ pathname: "/menus/" + menu.uid }}>
+          <MenuCard menu={menu} />
+        </Link>
+      ))}
+
+      <h1>Recipes</h1>
+      {props.userRecipes.map(recipe => (
+        <Link to={{ pathname: "/recipes/" + recipe.uid }}>
+          <RecipeCardV recipe={recipe} showIns={false} />
+        </Link>
+      ))}
+
       <h1>Items</h1>
-      <div className="container">
-        {props.items.map(item => (
-          <div className="card">
-            <RecipeCard name={item.name} />
-          </div>
-        ))}
-      </div>
+      {props.userItems.map(item => (
+        <RecipeCardV recipe={item} showIns={false} />
+      ))}
     </div>
   );
 };

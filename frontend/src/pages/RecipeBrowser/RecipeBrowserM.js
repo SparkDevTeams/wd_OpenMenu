@@ -1,16 +1,15 @@
 import React, { Component } from "react";
 
-import GetImageC from "../../components/GetImage/GetImageC";
-
-import CloseIcon from "@material-ui/icons/Close";
-// import "../../styles/ShoppinglistS.css";
-import Dialog from "@material-ui/core/Dialog";
+import "../../styles/ShoppinglistS.css";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
+import IconButton from "@material-ui/core/IconButton";
 import InputAdornment from "@material-ui/core/InputAdornment";
+import MenuItem from "@material-ui/core/MenuItem";
+import GetImageC from "../../components/GetImage/GetImageC";
 
-class PantryBrowserM extends Component {
+export default class RecipeBrowserM extends Component {
   styles = {
     Card: {
       margin: 10,
@@ -68,20 +67,17 @@ class PantryBrowserM extends Component {
     return (
       <div>
         <div style={this.styles.editDialog}>
-          <DialogTitle
-            style={{ marginLeft: "-10px" }}
-            id={this.props.itemName + "form-dialog"}
-          >
-            Add Item
+          <DialogTitle style={{ marginLeft: "-10px" }}>
+            Create Recipe
           </DialogTitle>
           <TextField
             autoFocus
+            required
             name="name"
             label="Name"
-            value={this.props.newName}
-            onChange={this.props.editItemDetails}
+            // value={this.props.newName}
+            onChange={this.props.handleOnChangeForm}
             style={{ margin: "8px 0px" }}
-            defaultValue={this.props.name}
             margin="normal"
             variant="outlined"
             InputLabelProps={{
@@ -91,26 +87,12 @@ class PantryBrowserM extends Component {
           />
           <TextField
             autoFocus
-            name="price"
-            label="Price"
-            value={this.props.newPrice}
-            onChange={this.props.editItemDetails}
-            style={{ margin: "8px 0px" }}
-            defaultValue={this.props.price}
-            margin="normal"
-            variant="outlined"
-            InputLabelProps={{
-              shrink: true
-            }}
-            fullWidth
-          />
-          <TextField
-            autoFocus
+            required
             name="image"
             label="image"
-            value={this.props.image_name}
+            value={this.props.newImageURL}
+            onChange={this.props.handleOnChangeForm}
             style={{ margin: "8px 0px" }}
-            // defaultValue={this.props.price}
             margin="normal"
             variant="outlined"
             InputLabelProps={{
@@ -119,54 +101,91 @@ class PantryBrowserM extends Component {
             InputProps={{
               endAdornment: (
                 <InputAdornment position="end">
+                  {/* <IconButton onClick={this.handleClickShowPassword} /> */}
                   <GetImageC
                     setImageForm={this.props.setImageForm}
                     setImageName={this.props.setImageName}
                     name={this.props.image_name}
                   />
+                  {/* <IconButton>
+                    <i className="material-icons">add_a_photo</i>
+                  </IconButton>
+                  <IconButton>
+                    <i className="material-icons">add_photo_alternate</i>
+                  </IconButton> */}
                 </InputAdornment>
               )
             }}
             fullWidth
           />
           <TextField
-            autoFocus
-            name="size"
-            label="Size"
-            value={this.props.newSize}
-            onChange={this.props.editItemDetails}
+            select
+            required
+            name="ingredients"
+            label="ingredients"
+            value={this.props.currentIngredient}
+            onChange={this.props.handleIngredientForm}
             style={{ margin: "8px 0px" }}
-            defaultValue={this.props.size}
             margin="normal"
             variant="outlined"
             InputLabelProps={{
               shrink: true
             }}
-            fullWidth
-          />
+          >
+            {this.props.userItems.map(userItem => (
+              <MenuItem value={userItem.uid}>{userItem.name}</MenuItem>
+            ))}
+          </TextField>
+
           <TextField
             autoFocus
-            name="description"
-            label="Description"
+            required
+            name="amount"
+            label="amount"
             value={this.props.newDescription}
-            onChange={this.props.editItemDetails}
-            style={{ margin: "8px 0px" }}
-            defaultValue={this.props.description}
+            onChange={this.props.handleIngredientForm}
+            style={{ margin: "8px 30px" }}
             margin="normal"
             variant="outlined"
             InputLabelProps={{
               shrink: true
             }}
-            fullWidth
           />
+          <Button
+            style={{ margin: "15px 0px" }}
+            onClick={this.props.handleAddItem}
+            color="primary"
+          >
+            Add Item
+          </Button>
+
+          {this.props.ingredients.length > 0
+            ? this.props.ingredients.map(ingredient => {
+                let filteredItem = this.props.userItems.filter(userItem => {
+                  return userItem.uid === ingredient.itemId;
+                });
+                let buttonDisplay =
+                  String(filteredItem[0].name) +
+                  "  " +
+                  String(ingredient.amount);
+                console.log(buttonDisplay);
+                return (
+                  <Button color="primary" fullWidth>
+                    {/* JSON.stringify(ingredient) */}
+                    {buttonDisplay}
+                  </Button>
+                );
+              })
+            : console.log("ingredients array is empty")}
+
           <TextField
             autoFocus
-            name="tags"
-            label="Tags (must be separated by commas)"
-            value={this.props.newTags}
-            onChange={this.props.editItemDetails}
+            required
+            name="instruction"
+            label="instruction"
+            value={this.props.newDescription}
+            onChange={this.props.handleOnChangeForm}
             style={{ margin: "8px 0px" }}
-            defaultValue={this.props.tagArr}
             margin="normal"
             variant="outlined"
             InputLabelProps={{
@@ -174,10 +193,10 @@ class PantryBrowserM extends Component {
             }}
             fullWidth
           />
-          <Button onClick={this.props.addNewItem} color="primary">
-            Create Item
+          <Button onClick={this.props.addNewRecipe} color="primary">
+            Save Changes
           </Button>
-          <Button onClick={this.props.closeAddItemWindow} color="primary">
+          <Button onClick={this.props.handleCloseDialog} color="primary">
             Cancel
           </Button>
         </div>
@@ -185,5 +204,3 @@ class PantryBrowserM extends Component {
     );
   }
 }
-
-export default PantryBrowserM;

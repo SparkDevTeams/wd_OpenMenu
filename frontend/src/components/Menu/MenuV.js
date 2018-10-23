@@ -1,25 +1,18 @@
 import React, { Component } from "react";
-import { withStyles } from "@material-ui/core/styles";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import Card from "@material-ui/core/Card";
-import CardActionArea from "@material-ui/core/CardActions";
 import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
-import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
 import Tooltip from "@material-ui/core/Tooltip";
-import Icon from "@material-ui/core/Icon";
 import AddIcon from "@material-ui/icons/Add";
-
-import RecipeCard from "./RecipeCard";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 
-import "./style.css";
+import MenuCard from "./MenuCard";
+import RecipeCardV from "../Recipe/RecipeCardV";
 
 const styles = theme => ({
   mainContainer: {
@@ -59,36 +52,18 @@ const MenuV = props => {
   //const { classes } = props;
   return (
     <div style={styles.mainContainer}>
-      <h1 style={styles.header}>Menu</h1>
-      <div style={styles.menuDetails} /*className={classes.menuDetails}*/>
+      <div style={styles.menuDetails}>
         <Card style={styles.card}>
-          <CardActionArea>
-            <CardMedia
-              //className={classes.media}
-              style={styles.media}
-              image="https://pbs.twimg.com/profile_images/895676609167937538/-1o6Yg8f_400x400.jpg"
-              title="Menu"
-            />
-            <img src="http://s3.amazonaws.com/product-images.imshopping.com/nimblebuy/5-for-10-worth-of-peruvian-food-from-fusion-peru-7611072-regular.jpg" />
-          </CardActionArea>
-          <CardActions>
-            <Button>Share</Button>
-          </CardActions>
+          <MenuCard menu={props.menu} />
         </Card>
-        <div style={styles.menuInfo} /*className={classes.menuInfo}*/>
-          <h2>Menu Name</h2>
-          <h2>Details</h2>
-        </div>
-        <div>
-          <Button size="large">Edit</Button>
-        </div>
       </div>
-      <h2>Recipes: </h2>
-      <div className="container" /*className={classes.recipeRow}*/>
-        <RecipeCard />
-        <RecipeCard />
-        <RecipeCard />
-        <RecipeCard />
+      <div style={styles.recipeRow}>
+        <h2>Recipes: </h2>
+        {props.menuRecipes.map(recipe => (
+          <Link to={{ pathname: "/recipes/" + recipe.uid }}>
+            <RecipeCardV recipe={recipe} />
+          </Link>
+        ))}
       </div>
       <div>
         <Tooltip title="Add recipe">
@@ -107,9 +82,9 @@ const MenuV = props => {
         <Dialog open={props.openDialog} onClose={props.handleClose}>
           <DialogTitle id="addrecipes">Add Recipes</DialogTitle>
           <DialogContent>
+            {/* <RecipeCard />
             <RecipeCard />
-            <RecipeCard />
-            <RecipeCard />
+            <RecipeCard /> */}
           </DialogContent>
           <DialogActions>
             <Button onClick={props.handleClose} color="primary">

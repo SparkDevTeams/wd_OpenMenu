@@ -1,16 +1,14 @@
 import React from "react";
-import RecipeDetailV from "./RecipeDetailV";
-import ItemCardV from "./ItemCardV";
+
+import RecipeCardV from "./RecipeCardV";
 import ItemCard from "./../../components/Item/ItemC";
 
-import TextField from "@material-ui/core/TextField";
 import Dialog from "@material-ui/core/Dialog";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import DialogTitle from "@material-ui/core/DialogTitle";
+import Icon from "@material-ui/core/Icon";
 import Button from "@material-ui/core/Button";
 import AddIcon from "@material-ui/icons/Add";
+import RecipeAddItemM from "./RecipeAddItemM";
+import RecipeEditRecipeM from "./RecipeEditRecipeM";
 
 import "./style.css";
 
@@ -25,21 +23,21 @@ const RecipeV = props => {
   return (
     <div>
       {/* show detail of recipe */}
-      <RecipeDetailV
-        name={props.recipe.name}
-        image={props.recipe.image}
-        instructions={props.recipe.instructions}
-      />
+      <RecipeCardV recipe={props.recipe} showIns={true} />
       <h1>Ingredients</h1>
-      <div className="container">
-        {/* Show list of ingredients */}
-        {props.recipe.ingredients.length > 0
-          ? props.recipe.ingredients.map(item => {
-              return <ItemCard itemId={item.itemId} amount={item.amount} />;
-            })
-          : console.log("No ingredient. Add some")}
-        {/* Add recipe */}
-      </div>
+      {/* Show list of ingredients */}
+      {props.recipe.ingredients.length > 0
+        ? props.recipe.ingredients.map(item => {
+            for (let i = 0; i < props.userItems.length; i++) {
+              if (item.itemId === props.userItems[i].uid) {
+                console.log(item.itemId);
+                return <ItemCard itemId={item.itemId} amount={item.amount} />;
+              }
+            }
+          })
+        : console.log("No ingredient. Add some")}
+
+      {/* Add recipe */}
       <div>
         <Button
           style={styles.bttn}
@@ -51,36 +49,22 @@ const RecipeV = props => {
         >
           <AddIcon />
         </Button>
+        <Button
+          margin-left="20px"
+          variant="fab"
+          color="secondary"
+          aria-label="Edit"
+          onClick={props.handleOpenDialog}
+        >
+          <Icon>edit_icon</Icon>
+        </Button>
         <Dialog
           open={props.openDialog}
           onClose={props.handleCloseDialog}
           aria-labelledby="form-dialog-title"
         >
-          <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
-          <DialogContent>
-            <DialogContentText>
-              To subscribe to this website, please enter your email address
-              here. We will send updates occasionally.
-            </DialogContentText>
-            <form>
-              <TextField
-                autoFocus
-                margin="dense"
-                id="name"
-                label="Name"
-                type="text"
-                fullWidth
-              />
-            </form>
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={props.handleCloseDialog} color="primary">
-              Cancel
-            </Button>
-            <Button onClick={props.handleCloseDialog} color="primary">
-              Add Recipe
-            </Button>
-          </DialogActions>
+          {props.addButtonClicked && <RecipeAddItemM recipe={props.recipe} />}
+          {props.editButtonClicked && <RecipeEditRecipeM />}
         </Dialog>
       </div>
     </div>
@@ -88,22 +72,3 @@ const RecipeV = props => {
 };
 
 export default RecipeV;
-
-{
-  /* if you want to execute the function immediately 
-      after it is defined, you have to wrap the whole declaration 
-      in parenthesis (to convert it to an expression) and execute
-       it by adding two more parentheses (passing any arguments 
-       the function may take. */
-}
-{
-  /* {(() => {
-        return (
-          <div>
-            <ItemCardV />
-            <ItemCardV />
-            <ItemCardV />
-          </div>
-        );
-      })()} */
-}

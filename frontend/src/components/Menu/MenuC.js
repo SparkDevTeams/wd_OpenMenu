@@ -7,9 +7,38 @@ class MenuC extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      openRecipeDialog: false
+      openRecipeDialog: false,
+      menu: null,
+      menuRecipes: []
     };
   }
+
+  componentWillMount() {
+    let filteredItem = this.props.userMenus.filter(menu => {
+      return menu.uid === this.props.match.params.id;
+    });
+    this.setState({ menu: filteredItem[0] });
+  }
+
+  componentDidMount() {
+    let rLen = this.state.menu.recipes.length;
+    let count = 0;
+    this.state.menu.recipes.map(r => {
+      for (let i = 0; i < rLen; i++) {
+        if (r.uid === this.props.userRecipes[i].uid) {
+          this.setState(previousState => ({
+            menuRecipes: [
+              ...previousState.menuRecipes,
+              this.props.userRecipes[i]
+            ]
+          }));
+        }
+        count++;
+        if (rLen === count) break;
+      }
+    });
+  }
+
   handleOpenDialog = () => {
     this.setState({ openRecipeDialog: true });
     console.log("open");
@@ -20,10 +49,12 @@ class MenuC extends Component {
   };
 
   render() {
+    //userMenu = userMenu[0];
     return (
       <MenuV
-        menus={this.props.userMenus}
-        openDialog={this.state.openRecipeDialog}
+        menu={this.state.menu}
+        menuRecipes={this.state.menuRecipes}
+        openRecipeDialog={this.state.openRecipeDialog}
         handleOpen={this.handleOpenDialog}
         handleClose={this.handleCloseDialog}
       />
@@ -32,7 +63,8 @@ class MenuC extends Component {
 }
 const mapStateToProps = state => {
   return {
-    userMenus: state.MenuR.userMenus
+    userMenus: state.MenuR.userMenus,
+    userRecipes: state.RecipeR.userRecipes
   };
 };
 

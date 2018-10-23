@@ -1,21 +1,23 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PantryBrowserPV from "./PantryBrowserPV";
-import PantryBrowserM from "./PantryBrowserM";
+
 import ItemA from "../../store/actions/ItemA";
+import axios from "axios";
+import { generateId } from "../../utils/generateId";
 
 class PantryBrowserPC extends Component {
   constructor() {
     super();
     this.state = {
-      addItemWindowVisibility: false,
-      newName: "name",
-      newDescription: "description",
-      newSize: "the biggest",
-      newTags: "tag1,tag2",
-      newPrice: "$1.00",
-      newImageURL:
-        "https://images-na.ssl-images-amazon.com/images/I/81LmTsA9JwL._SY355_.jpg"
+      addModalWindowState: false,
+      newName: "",
+      newDescription: "",
+      newSize: "",
+      newTags: "",
+      newPrice: "",
+      image_form: "",
+      image_name: ""
     };
   }
 
@@ -49,11 +51,6 @@ class PantryBrowserPC extends Component {
           newTags: value.split(",")
         });
         break;
-      case "imageURL":
-        this.setState({
-          newImageURL: value
-        });
-        break;
       default:
         break;
     }
@@ -67,70 +64,83 @@ class PantryBrowserPC extends Component {
     let itemInfo = {
       name: name,
       user: user,
-      image: this.state.newImageURL,
+      image: this.state.image_name,
       description: this.state.newDescription,
       size: this.state.newSize,
       price: this.state.newPrice,
       tags: this.state.newTags,
-      uid: this.generateId(name, user)
+      uid: generateId(name, user)
     };
+    this.closeAddItemWindow();
     this.props.itemFn.createItems(itemInfo);
+    this.sendImg();
   };
 
-  generateId = (name, user) => {
-    let newName = name.replace(/\W/g, "");
-    let newUser = user.replace(/\W/g, "");
-
-    let date = Date.now();
-
-    let id = date + newName + newUser;
-
-    return id;
+  openAddItemWindow = () => {
+    this.setState({
+      addModalWindowState: true
+    });
   };
 
-  openAddItemWindow() {
+  closeAddItemWindow = () => {
     this.setState({
-      addItemWindowVisibility: true
+      addModalWindowState: false
     });
-  }
-  closeAddItemWindow() {
-    this.setState({
-      addItemWindowVisibility: false
-    });
-  }
+  };
+
+  setImageForm = form => {
+    this.setState({ image_form: form });
+  };
+
+  setImageName = name => {
+    this.setState({ image_name: name });
+  };
+
+  sendImg = () => {
+    // Post image to s3
+    axios
+      .post(process.env.REACT_APP_UPLOAD_IMG, this.state.image_form)
+      .then(res => {
+        console.log(res.body);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
 
   render() {
-    let componentToReturn;
-    if (this.state.addItemWindowVisibility === true) {
-      componentToReturn = (
-        <div>
-          <PantryBrowserPV
-            openWindowFunction={this.openAddItemWindow.bind(this)}
-          />
-          <PantryBrowserM
-            newName={this.state.newName}
-            newPrice={this.state.newPrice}
-            newImageURL={this.state.newImageURL}
-            newSize={this.state.newSize}
-            newDescription={this.state.newDescription}
-            newTags={this.state.newTags}
-            editItemDetails={this.editItemDetails}
-            closeWindowFunction={this.closeAddItemWindow.bind(this)}
-            addNewItem={this.addNewItem}
-          />
-        </div>
-      );
-    } else {
-      componentToReturn = (
+    return (
+      <div>
         <PantryBrowserPV
-          openWindowFunction={this.openAddItemWindow.bind(this)}
+          addModalWindowState={this.state.addModalWindowState}
+          openAddItemWindow={this.openAddItemWindow}
+          userItems={this.props.userItems}
+          userItemImages={this.props.userItemImages}
+          newName={this.state.newName}
+          newPrice={this.state.newPrice}
+          newImageURL={this.state.newImageURL}
+          newSize={this.state.newSize}
+          newDescription={this.state.newDescription}
+          newTags={this.state.newTags}
+          editItemDetails={this.editItemDetails}
+          closeAddItemWindow={this.closeAddItemWindow}
+          addNewItem={this.addNewItem}
+          image_name={this.state.image_name}
+          sendImg={this.sendImg}
+          setImageForm={this.setImageForm}
+          setImageName={this.setImageName}
         />
-      );
-    }
-
-    return componentToReturn;
+      </div>
+    );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    userItems: state.ItemR.userItems,
+    userItemImages: state.ItemR.userItemImages
+  };
+};
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -139,6 +149,6 @@ const mapDispatchToProps = dispatch => {
 };
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(PantryBrowserPC);
