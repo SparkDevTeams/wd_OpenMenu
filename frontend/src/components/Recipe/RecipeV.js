@@ -10,6 +10,8 @@ import AddIcon from "@material-ui/icons/Add";
 import RecipeAddItemM from "./RecipeAddItemM";
 import RecipeEditRecipeM from "./RecipeEditRecipeM";
 
+import "./style.css";
+
 const styles = {
   bttn: {
     position: "absolute",
