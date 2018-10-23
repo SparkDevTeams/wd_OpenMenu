@@ -36,6 +36,7 @@ const RecipeV = props => {
       {/* Add recipe */}
       <div>
         <Button
+          style={styles.bttn}
           margin-left="20px"
           variant="fab"
           color="secondary"

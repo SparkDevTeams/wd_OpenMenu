@@ -142,7 +142,7 @@ export default class RecipeBrowserM extends Component {
             required
             name="amount"
             label="amount"
-            value={this.props.newDescription}
+            value={this.props.currentIngredientAmount}
             onChange={this.props.handleIngredientForm}
             style={{ margin: "8px 30px" }}
             margin="normal"
