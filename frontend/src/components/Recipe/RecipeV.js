@@ -12,6 +12,8 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import Button from "@material-ui/core/Button";
 import AddIcon from "@material-ui/icons/Add";
 
+import "./style.css";
+
 const styles = {
   bttn: {
     position: "absolute",
@@ -29,13 +31,15 @@ const RecipeV = props => {
         instructions={props.recipe.instructions}
       />
       <h1>Ingredients</h1>
-      {/* Show list of ingredients */}
-      {props.recipe.ingredients.length > 0
-        ? props.recipe.ingredients.map(item => {
-            return <ItemCard itemId={item.itemId} amount={item.amount} />;
-          })
-        : console.log("No ingredient. Add some")}
-      {/* Add recipe */}
+      <div className="container">
+        {/* Show list of ingredients */}
+        {props.recipe.ingredients.length > 0
+          ? props.recipe.ingredients.map(item => {
+              return <ItemCard itemId={item.itemId} amount={item.amount} />;
+            })
+          : console.log("No ingredient. Add some")}
+        {/* Add recipe */}
+      </div>
       <div>
         <Button
           style={styles.bttn}

@@ -3,7 +3,7 @@ import axios from "axios";
 const ItemA = dispatch => {
   return {
     getItems: () => {
-      axios.get(process.env.REACT_APP_ITEMS_URL).then(res => {
+      axios.get("http://localhost:3001/api/Items").then(res => {
         dispatch({ type: "GET_ITEMS", data: res.data });
       });
     },

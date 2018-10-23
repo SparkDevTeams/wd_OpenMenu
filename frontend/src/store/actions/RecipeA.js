@@ -15,7 +15,7 @@ const RecipeA = dispatch => {
     },
     getRecipes: () => {
       axios
-        .get(process.env.REACT_APP_RECIPES_URL)
+        .get("http://localhost:3001/api/Recipes")
         .then(res => {
           dispatch({ type: "GET_RECIPES", data: res.data });
         })

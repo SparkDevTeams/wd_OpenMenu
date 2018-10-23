@@ -19,6 +19,8 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 
+import "./style.css";
+
 const styles = theme => ({
   mainContainer: {
     //height: 800
@@ -68,9 +70,6 @@ const MenuV = props => {
               title="Menu"
             />
             <img src="http://s3.amazonaws.com/product-images.imshopping.com/nimblebuy/5-for-10-worth-of-peruvian-food-from-fusion-peru-7611072-regular.jpg" />
-            <CardContent>
-              <Typography>Menu</Typography>
-            </CardContent>
           </CardActionArea>
           <CardActions>
             <Button>Share</Button>
@@ -84,8 +83,8 @@ const MenuV = props => {
           <Button size="large">Edit</Button>
         </div>
       </div>
-      <div style={styles.recipeRow} /*className={classes.recipeRow}*/>
-        <h2>Recipes: </h2>
+      <h2>Recipes: </h2>
+      <div className="container" /*className={classes.recipeRow}*/>
         <RecipeCard />
         <RecipeCard />
         <RecipeCard />
