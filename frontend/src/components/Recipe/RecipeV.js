@@ -8,6 +8,8 @@ import Icon from "@material-ui/core/Icon";
 import Button from "@material-ui/core/Button";
 import RecipeEditRecipeM from "./RecipeEditRecipeM";
 
+import "./style.css";
+
 const styles = {
   bttn: {
     position: "absolute",
