@@ -5,7 +5,7 @@ const RecipeA = dispatch => {
   return {
     getRecipes: () => {
       axios
-        .get("http://localhost:3001/api/Recipes")
+        .get(process.env.REACT_APP_RECIPES_URL)
         .then(res => {
           res.data.map(recipe => {
             downloadImage(recipe.image, dispatch);
