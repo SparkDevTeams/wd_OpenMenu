@@ -89,6 +89,26 @@ class RecipeC extends Component {
     }
   };
 
+  handleIngredientForm = e => {
+    let field = e.target.name;
+    let value = e.target.value;
+
+    switch (field) {
+      case "ingredients":
+        this.setState({
+          currentIngredient: value
+        });
+        break;
+      case "amount":
+        this.setState({
+          currentIngredientAmount: value
+        });
+        break;
+      default:
+        break;
+    }
+  };
+
   generateId = (name, user) => {
     let newName = name.replace(/\W/g, "");
     let newUser = user.replace(/\W/g, "");
@@ -119,6 +139,8 @@ class RecipeC extends Component {
                 handleAddItem={this.handleAddItem}
                 currentIngredient={this.state.currentIngredient}
                 currentIngredientAmount={this.state.currentIngredientAmount}
+                handleIngredientForm={this.handleIngredientForm}
+                updateRecipe={this.updateRecipe}
               />
             );
           })}

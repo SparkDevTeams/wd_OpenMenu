@@ -136,7 +136,7 @@ const RecipeEditRecipeM = props => {
           }}
           fullWidth
         />
-        <Button onClick={props.addNewRecipe} color="primary">
+        <Button onClick={props.updateRecipe} color="primary">
           Save Changes
         </Button>
         <Button onClick={props.handleCloseDialog} color="primary">

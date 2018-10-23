@@ -54,6 +54,10 @@ const RecipeV = props => {
             recipe={props.recipe}
             handleOnChangeForm={props.handleOnChangeForm}
             handleAddItem={props.handleAddItem}
+            currentIngredient={props.currentIngredient}
+            currentIngredientAmount={props.currentIngredientAmount}
+            updateRecipe={props.updateRecipe}
+            handleIngredientForm={props.handleIngredientForm}
           />
         </Dialog>
       </div>
