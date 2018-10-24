@@ -7,6 +7,7 @@ import TextField from "@material-ui/core/TextField";
 import IconButton from "@material-ui/core/IconButton";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import MenuItem from "@material-ui/core/MenuItem";
+import GetImageC from "./../GetImage/GetImageC";
 
 const RecipeEditRecipeM = props => {
   return (
@@ -46,12 +47,17 @@ const RecipeEditRecipeM = props => {
             endAdornment: (
               <InputAdornment position="end">
                 {/* <IconButton onClick={this.handleClickShowPassword} /> */}
-                <IconButton>
+                <GetImageC
+                  setImageForm={props.setImageForm}
+                  setImageName={props.setImageName}
+                  name={props.image_name}
+                />
+                {/* <IconButton>
                   <i className="material-icons">add_a_photo</i>
                 </IconButton>
                 <IconButton>
                   <i className="material-icons">add_photo_alternate</i>
-                </IconButton>
+                </IconButton> */}
               </InputAdornment>
             )
           }}
@@ -81,7 +87,7 @@ const RecipeEditRecipeM = props => {
           required
           name="amount"
           label="amount"
-          value={props.newDescription}
+          value={props.currentIngredientAmount}
           onChange={props.handleIngredientForm}
           style={{ margin: "8px 30px" }}
           margin="normal"
@@ -98,8 +104,8 @@ const RecipeEditRecipeM = props => {
           Add Item
         </Button>
 
-        {props.recipe.ingredients.length > 0
-          ? props.recipe.ingredients.map(ingredient => {
+        {props.ingredients.length > 0
+          ? props.ingredients.map(ingredient => {
               for (let i = 0; i < props.userItems.length; ++i) {
                 if (props.userItems[i].uid === ingredient.itemId) {
                   let buttonDisplay =
