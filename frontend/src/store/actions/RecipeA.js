@@ -1,28 +1,28 @@
 import axios from "axios";
+import { downloadImage } from "../../utils/downloadImage";
 
 const RecipeA = dispatch => {
   return {
-    loadItems: () => {
+    getRecipes: () => {
       axios
-        .get(/* REACT_APP_ITEM_URL */)
+        .get(process.env.REACT_APP_RECIPES_URL)
         .then(res => {
-          dispatch({ type: "LOAD_ITEMS", data: res.data });
+          res.data.map(recipe => {
+            downloadImage(recipe.image, dispatch);
+          });
+          dispatch({ type: "GET_RECIPES", data: res.data });
         })
         .catch(err => {
           console.log(err);
-          dispatch({ type: "LOAD_ITEMS_ERR" });
+          dispatch({ type: "GET_RECIPES_ERR" });
         });
     },
-    loadRecipes: () => {
-      axios
-        .get(/* REACT_APP_RECIPE_URL*/)
-        .then(res => {
-          dispatch({ type: "LOAD_RECIPES", data: res.data });
-        })
-        .catch(err => {
-          console.log(err);
-          dispatch({ type: "LOAD_RECIPES_ERR" });
+    createRecipe: data => {
+      axios.post(process.env.REACT_APP_RECIPES_URL, data).then(res => {
+        axios.get(process.env.REACT_APP_RECIPES_URL).then(res => {
+          dispatch({ type: "GET_RECIPES", data: res.data });
         });
+      });
     }
   };
 };

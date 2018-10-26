@@ -46,7 +46,19 @@ const styles = {
   },
   editDialog: {
     padding: 10,
-    textAlign: "center"
+    textAlign: "left",
+    maxWidth: 500
+  },
+  textBox: {
+    marginTop: "8px",
+    marginBottom: "8px",
+    overflow: "hidden",
+    width: "99%"
+  },
+  subTitle: {
+    margin: "2px 0px 8px 3px",
+    fontSize: 14,
+    display: "inline"
   }
 };
 
@@ -63,7 +75,7 @@ const ItemV = props => {
         <div style={{ margin: "3px 0 8px 0" }}>
           <EditIcon style={styles.icon} onClick={props.editToggle} />
           <ShareIcon style={styles.icon} onClick={props.shareItem} />
-          <DeleteIcon style={styles.icon} onClick={props.deleteItem} />
+          <DeleteIcon style={styles.icon} onClick={props.deleteToggle} />
         </div>
         <div>{props.tags()}</div>
       </Card>
@@ -72,45 +84,132 @@ const ItemV = props => {
       <Dialog open={props.detailsOpen} onClose={props.detailsToggle}>
         <CloseIcon style={styles.closeBtn} onClick={props.detailsToggle} />
         <img src={props.img} style={styles.img} />
-        <DialogTitle id="form-dialog-title">{props.name}</DialogTitle>
-        <DialogContent>
-          <DialogContentText>{props.description}</DialogContentText>
+        <DialogTitle style={{ paddingBottom: 5 }} id="form-dialog-title">
+          {props.name}
+        </DialogTitle>
+        <DialogContent style={{ marginTop: -3 }}>
+          <p style={styles.subTitle}>
+            <strong>Price: </strong>
+            {props.price}
+          </p>
+          <p style={styles.subTitle}>
+            <strong>Size: </strong>
+            {props.size}
+          </p>
+          <DialogContentText style={{ marginTop: 10 }}>
+            {props.description}
+          </DialogContentText>
         </DialogContent>
         <Divider style={{ marginTop: -5 }} />
         <div style={{ padding: 20 }}>{props.tags()}</div>
       </Dialog>
 
       {/* edit dialog */}
-      <Dialog open={props.editOpen} style={styles.editDialog}>
-        <DialogTitle id="form-dialog-title">Edit Item</DialogTitle>
-        <TextField
-          autoFocus
-          margin="dense"
-          placeholder={props.name}
-          id={props.name + "edit-name"}
-          label="New name"
-          type="name"
-          value={props.newName}
-          onChange={props.addName}
-          fullWidth
-        />
-        <TextField
-          autoFocus
-          margin="dense"
-          id={props.name + "edit-description"}
-          placeholder={props.description}
-          label="New description"
-          type="description"
-          value={props.newDescription}
-          onChange={props.addDescription}
-          fullWidth
-        />
-        <Button onClick={props.editItem} color="primary">
-          Save Changes
-        </Button>
-        <Button onClick={props.editToggle} color="primary">
-          Cancel
-        </Button>
+      <Dialog open={props.editOpen}>
+        <div style={styles.editDialog}>
+          <DialogTitle
+            style={{ marginLeft: "-10px" }}
+            id={props.itemName + "form-dialog"}
+          >
+            Edit Item
+          </DialogTitle>
+          <TextField
+            autoFocus
+            name="name"
+            label="Name"
+            value={props.newName}
+            onChange={props.editItemDetails}
+            style={{ margin: "8px 0px" }}
+            defaultValue={props.name}
+            margin="normal"
+            variant="outlined"
+            InputLabelProps={{
+              shrink: true
+            }}
+            fullWidth
+          />
+          <TextField
+            autoFocus
+            name="price"
+            label="Price"
+            value={props.newPrice}
+            onChange={props.editItemDetails}
+            style={{ margin: "8px 0px" }}
+            defaultValue={props.price}
+            margin="normal"
+            variant="outlined"
+            InputLabelProps={{
+              shrink: true
+            }}
+            fullWidth
+          />
+          <TextField
+            autoFocus
+            name="size"
+            label="Size"
+            value={props.newSize}
+            onChange={props.editItemDetails}
+            style={{ margin: "8px 0px" }}
+            defaultValue={props.size}
+            margin="normal"
+            variant="outlined"
+            InputLabelProps={{
+              shrink: true
+            }}
+            fullWidth
+          />
+          <TextField
+            autoFocus
+            name="description"
+            label="Description"
+            value={props.newDescription}
+            onChange={props.editItemDetails}
+            style={{ margin: "8px 0px" }}
+            defaultValue={props.description}
+            margin="normal"
+            variant="outlined"
+            InputLabelProps={{
+              shrink: true
+            }}
+            fullWidth
+          />
+          <TextField
+            autoFocus
+            name="tags"
+            label="Tags (must be separated by commas)"
+            value={props.newTags}
+            onChange={props.editItemDetails}
+            style={{ margin: "8px 0px" }}
+            defaultValue={props.tagArr}
+            margin="normal"
+            variant="outlined"
+            InputLabelProps={{
+              shrink: true
+            }}
+            fullWidth
+          />
+          <Button onClick={props.editItem} color="primary">
+            Save Changes
+          </Button>
+          <Button onClick={props.editToggle} color="primary">
+            Cancel
+          </Button>
+        </div>
+      </Dialog>
+
+      {/*delete dialog */}
+      <Dialog open={props.deleteOpen} onClose={props.deleteToggle}>
+        <DialogContent style={{ marginTop: -3 }}>
+          <DialogTitle style={{ paddingBottom: 8 }}>
+            {`Are you sure you want to delete ${props.name} ?`}
+          </DialogTitle>
+          <Button onClick={props.deleteItem} color="primary">
+            Delete Item
+          </Button>
+          <Button onClick={props.deleteToggle} color="primary">
+            Cancel
+          </Button>
+        </DialogContent>
       </Dialog>
     </Fragment>
   );

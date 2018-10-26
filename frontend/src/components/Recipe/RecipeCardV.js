@@ -1,13 +1,11 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { Component } from "react";
+import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
-import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
-import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 
 // const screenWidth = window.screen.availWidth;
@@ -21,42 +19,74 @@ const styles = {
   }
 };
 
-function MediaCard(props) {
-  const { classes } = props;
-  return (
-    <Card className={classes.card}>
-      <CardActionArea>
-        <CardMedia
-          className={classes.media}
-          image="https://static.olocdn.net/menu/applebees/ef0be810e965d2ef8ade562baf084952.jpg"
-          title="Salad"
-        />
-        <CardContent>
-          <Typography gutterBottom variant="headline" component="h2">
-            Salad
-          </Typography>
-          <Typography component="p">
-            Lizards are a widespread group of squamate reptiles, with over 6,000
-            species, ranging across all continents except Antarctica
-          </Typography>
-        </CardContent>
-      </CardActionArea>
-      <CardActions>
-        <Button size="small" color="primary">
-          Share
-        </Button>
-        <Link to="/recipes/recipe">
-          <Button size="small" color="primary">
-            Learn More
-          </Button>
-        </Link>
-      </CardActions>
-    </Card>
-  );
+class RecipeCardV extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      // uid
+      image: "",
+      // image data
+      image_data: null,
+      userRecipeImages: []
+    };
+  }
+
+  componentWillMount() {
+    console.log(this.props.recipe);
+    this.setState({ image: this.props.recipe.image });
+    this.setState({ userRecipeImages: this.props.userRecipeImages });
+  }
+
+  getImage = img_name => {
+    for (let i = 0; i < this.props.userRecipeImages.length; i++) {
+      if (this.props.userRecipeImages[i].name === img_name) {
+        this.setState({ image_data: this.props.userRecipeImages[i].data });
+        break;
+      } // end if
+    } // end for
+  }; // end getImage()
+
+  render() {
+    if (this.props.userRecipeImages.length && this.state.image_data === null) {
+      this.getImage(this.state.image);
+    }
+    return (
+      <Card style={styles.card}>
+        <CardActionArea>
+          <CardContent>
+            <Typography gutterBottom variant="headline" component="h2">
+              {this.props.recipe.name}
+            </Typography>
+
+            <CardMedia
+              style={styles.media}
+              image={this.state.image_data}
+              title={this.props.recipe.name}
+            />
+
+            <Typography component="p">
+              {this.props.recipe.description}
+            </Typography>
+            {this.props.showIns && (
+              <Typography component="p">
+                {this.props.recipe.instructions}
+              </Typography>
+            )}
+          </CardContent>
+        </CardActionArea>
+      </Card>
+    );
+  }
 }
 
-MediaCard.propTypes = {
+RecipeCardV.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(MediaCard);
+const mapStateToProps = state => {
+  return {
+    userRecipeImages: state.RecipeR.userRecipeImages
+  };
+};
+
+export default connect(mapStateToProps)(RecipeCardV);

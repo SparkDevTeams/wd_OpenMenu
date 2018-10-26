@@ -1,40 +1,31 @@
 import React from "react";
-import Grid from "@material-ui/core/Grid";
+import { Link } from "react-router-dom";
 
-const HomeCSS = {
-  marginTop: "100px"
-};
+import RecipeCardV from "../../components/Recipe/RecipeCardV";
+import MenuCard from "../../components/Menu/MenuCard";
 
-/*
-<Grid item> are basically columns 
-<Grid Continers> are basically rows
-*/
 const HomePV = props => {
   return (
-    <div style={HomeCSS}>
-      <Grid container spacing={24} justify="center">
-        <Grid item xs={3}>
-          <p>Link To History</p>
-          <p>Link To Trending</p>
-          <p>Link to Suggestions</p>
-        </Grid>
-        <Grid item xs={6}>
-          <Grid container spacing={24}>
-            <p>History</p>
-          </Grid>
-          <Grid container spacing={24}>
-            <p>Trending</p>
-          </Grid>
-          <Grid container spacing={24}>
-            <p>Suggestions</p>
-          </Grid>
-        </Grid>
-        <Grid item xs={3}>
-          <Grid>
-            <p>Advertisement</p>
-          </Grid>
-        </Grid>
-      </Grid>
+    // This part need better styling
+    <div>
+      <h1>Menus</h1>
+      {props.userMenus.map(menu => (
+        <Link to={{ pathname: "/menus/" + menu.uid }}>
+          <MenuCard menu={menu} />
+        </Link>
+      ))}
+
+      <h1>Recipes</h1>
+      {props.userRecipes.map(recipe => (
+        <Link to={{ pathname: "/recipes/" + recipe.uid }}>
+          <RecipeCardV recipe={recipe} showIns={false} />
+        </Link>
+      ))}
+
+      <h1>Items</h1>
+      {props.userItems.map(item => (
+        <RecipeCardV recipe={item} showIns={false} />
+      ))}
     </div>
   );
 };

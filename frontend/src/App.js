@@ -8,8 +8,12 @@ import ShoppinglistPC from "./pages/Shoppinglist/ShoppinglistPC";
 import RecipeBrowserPC from "./pages/RecipeBrowser/RecipeBrowserPC";
 import RecipeC from "./components/Recipe/RecipeC";
 import PantryBrowserPC from "./pages/Pantry/PantryBrowserPC";
-import MenuC from "./pages/Menu/MenuC";
-
+import MenuBrowserPC from "./pages/MenuBrowser/MenuBrowserPC";
+import MenuC from "./components/Menu/MenuC";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import Typography from "@material-ui/core/Typography";
+import Button from "@material-ui/core/Button";
 // import { Toolbar } from "@material-ui/core";
 
 class App extends Component {
@@ -26,14 +30,16 @@ class App extends Component {
             <div style={margin}>
               <Switch>
                 <Route exact path="/" component={LandingPC} />
-                {/* I think this one is unnecessary */}
                 <Route path="/welcome" component={LandingPC} />
                 <Route path="/home" component={HomePC} />
-                <Route exact path="/menu" component={MenuC} />
-                <Route path="/recipes" component={RecipeBrowserPC} />
-                <Route exact path="/recipes/recipe" component={RecipeC} />
-                <Route path="/pantry" component={PantryBrowserPC} />
                 <Route path="/shoppinglist" component={ShoppinglistPC} />
+                <Route path="/pantry" component={PantryBrowserPC} />
+
+                <Route exact path="/menus" component={MenuBrowserPC} />
+                <Route exact path="/recipes" component={RecipeBrowserPC} />
+
+                <Route exact path="/recipes/:id" component={RecipeC} />
+                <Route exact path="/menus/:id" component={MenuC} />
               </Switch>
             </div>
           </div>
