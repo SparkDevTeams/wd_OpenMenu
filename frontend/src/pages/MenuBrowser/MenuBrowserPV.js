@@ -8,13 +8,6 @@ import CloseIcon from "@material-ui/icons/Close";
 import Button from "@material-ui/core/Button";
 import AddIcon from "@material-ui/icons/Add";
 
-const styles = {
-  bttn: {
-    position: "absolute",
-    right: 0
-  }
-};
-
 const MenuBrowserPV = props => {
   return (
     <div>

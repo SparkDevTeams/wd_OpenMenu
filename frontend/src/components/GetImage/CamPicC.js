@@ -21,7 +21,7 @@ export default class CamPicC extends Component {
   };
 
   toggleCamera = () => {
-    if (this.state.camera == "front") {
+    if (this.state.camera === "front") {
       this.setState({ camera: "environment" });
     } else {
       this.setState({ camera: "front" });
