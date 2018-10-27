@@ -15,8 +15,8 @@ const styles = {
     height: "10%"
   },
   iconCard: {
-    width: 300,
-    height: 300
+    width: "50%",
+    height: "50%"
   },
   cardTitle: {
     textAlign: "center"

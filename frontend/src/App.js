@@ -10,6 +10,7 @@ import RecipeC from "./components/Recipe/RecipeC";
 import PantryBrowserPC from "./pages/Pantry/PantryBrowserPC";
 import MenuBrowserPC from "./pages/MenuBrowser/MenuBrowserPC";
 import MenuC from "./components/Menu/MenuC";
+import "./styles/App.css";
 
 class App extends Component {
   render() {

@@ -15,10 +15,7 @@ const styles = {
     },
     cardStyle: {
       justifySelf: "center",
-      marginBottom: 20
-    },
-    media: {
-      height: 140
+      marginBottom: "2%"
     }
   }
 };
@@ -41,6 +38,7 @@ const HomePV = props => {
           </Link>
         ))}
       </div>
+
       <h1>Recipes</h1>
       <div className={classes.cardContainer}>
         {props.userRecipes.map(recipe => (
@@ -49,10 +47,11 @@ const HomePV = props => {
             className={classes.cardStyle}
             to={{ pathname: "/recipes/" + recipe.uid }}
           >
-            <RecipeCardV recipe={recipe} showIns={false} />
+            <RecipeCardV recipe={recipe} large={false} />
           </Link>
         ))}
       </div>
+
       <h1>Items</h1>
       <div className={classes.cardContainer}>
         {props.userItems.map(item => (

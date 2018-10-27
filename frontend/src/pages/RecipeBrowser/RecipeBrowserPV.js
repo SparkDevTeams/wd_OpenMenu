@@ -11,7 +11,6 @@ import RecipeBrowserM from "./RecipeBrowserM";
 const RecipeBrowserPV = props => {
   return (
     <div>
-      <h1>This is the Recipe page!</h1>
       <div>
         <Button
           // style={styles.bttn}
@@ -23,7 +22,7 @@ const RecipeBrowserPV = props => {
         >
           <AddIcon />
         </Button>
-
+        <h1>Recipes</h1>
         <Dialog
           open={props.openDialog}
           onClose={props.handleCloseDialog}
@@ -54,7 +53,7 @@ const RecipeBrowserPV = props => {
       </div>
       {props.userRecipes.map(recipe => (
         <Link key={recipe.uid} to={{ pathname: "/recipes/" + recipe.uid }}>
-          <RecipeCardV recipe={recipe} showIns={false} />
+          <RecipeCardV recipe={recipe} large={false} />
         </Link>
       ))}
     </div>

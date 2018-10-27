@@ -88,17 +88,12 @@ export default class MenuBrowserM extends Component {
             }}
             fullWidth
           />
-          <InputAdornment
-            style={{ margin: "10px 0px 30px 0px", backgroundColor: "red" }}
-            position="end"
-          >
-            <GetImageC
-              setImageForm={this.props.setImageForm}
-              setImageName={this.props.setImageName}
-              name={this.props.image_name}
-              setIconImage={this.setIconImage}
-            />
-          </InputAdornment>
+          <GetImageC
+            setImageForm={this.props.setImageForm}
+            setImageName={this.props.setImageName}
+            name={this.props.image_name}
+            setIconImage={this.setIconImage}
+          />
           {this.state.iconImage != null ? (
             <Card className={this.styles.card}>
               <CardActionArea>
@@ -115,37 +110,6 @@ export default class MenuBrowserM extends Component {
           ) : (
             console.log("")
           )}
-          {/* <img
-            style={{ maxWidth: "250px", maxHeight: "250px" }}
-            src="https://projects.voanews.com/off-the-highway/archive/img/play-button_small.png"
-          /> */}
-          {/* <TextField
-            autoFocus
-            required
-            name="image"
-            label="Image"
-            value={this.props.newImageURL}
-            onChange={this.props.handleOnChangeForm}
-            style={{ margin: "8px 0px" }}
-            margin="normal"
-            variant="outlined"
-            InputLabelProps={{
-              shrink: true
-            }}
-            InputProps={{
-              endAdornment: (
-                <InputAdornment position="end">
-                  <GetImageC
-                    setImageForm={this.props.setImageForm}
-                    setImageName={this.props.setImageName}
-                    name={this.props.image_name}
-                    uploadImage={this.state.uploadImage}
-                  />
-                </InputAdornment>
-              )
-            }}
-            fullWidth
-          /> */}
           <TextField
             select
             required

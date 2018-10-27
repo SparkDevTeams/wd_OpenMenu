@@ -1,5 +1,8 @@
+@import url("https://fonts.googleapis.com/css?family=Chivo");
+
 .App {
   text-align: center;
+  font-family: "Chivo", sans-serif;
 }
 
 .App-logo {
@@ -22,8 +25,11 @@
   font-size: large;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+. @keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
-

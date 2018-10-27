@@ -4,9 +4,11 @@ import RecipeCardV from "./RecipeCardV";
 import ItemCard from "./../../components/Item/ItemC";
 
 import Dialog from "@material-ui/core/Dialog";
-import Icon from "@material-ui/core/Icon";
+// import Icon from "@material-ui/core/Icon";
+import IconButton from "@material-ui/core/IconButton";
 import Button from "@material-ui/core/Button";
 import RecipeEditRecipeM from "./RecipeEditRecipeM";
+import EditIcon from "@material-ui/icons/Edit";
 
 import "./style.css";
 
@@ -14,7 +16,7 @@ const RecipeV = props => {
   return (
     <div>
       {/* show detail of recipe */}
-      <RecipeCardV recipe={props.recipe} showIns={true} />
+      <RecipeCardV recipe={props.recipe} large={true} />
       <h1>Ingredients</h1>
 
       {/* Add recipe */}
@@ -27,7 +29,9 @@ const RecipeV = props => {
           aria-label="Edit"
           onClick={props.handleEditClickOpen}
         >
-          <Icon>edit_icon</Icon>
+          <IconButton color="inherit" onClick={props.handleEditClickOpen}>
+            <EditIcon />
+          </IconButton>
         </Button>
         <Dialog
           open={props.openEditDialog}
