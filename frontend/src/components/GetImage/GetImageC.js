@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
 
 /* View */
-import GetImageV from "./GetImageV";
 import SimpleDialogC from "./SimpleDialogC";
 
 class GetImageC extends Component {
@@ -130,7 +128,7 @@ class GetImageC extends Component {
     };
   };
 
-  /* Set button pressed after upload image selection */
+  /* Set button pressed after upload image selection. */
   setUploadFileHandler = () => {
     // Change name to fit conventions
     let ext = this.state.upload_file.name.split(".").pop();
@@ -144,6 +142,7 @@ class GetImageC extends Component {
     // Setup form to be passed to AddItemC
     let form = new FormData();
     form.append("", newFile);
+    this.props.setIconImage(this.state.upload_image);
     this.props.setImageForm(form);
 
     // Change modal to display the uploaded image
@@ -168,6 +167,7 @@ class GetImageC extends Component {
         // Setup form to send back to AddItemC
         let form = new FormData();
         form.append("", file);
+        this.props.setIconImage(img);
         this.props.setImageForm(form);
 
         // Change state to display the image
@@ -195,6 +195,7 @@ class GetImageC extends Component {
 
   handleClose = () => {
     this.setState({ open: false });
+    this.setState({ viewType: "" });
   };
 
   render() {
@@ -213,7 +214,7 @@ class GetImageC extends Component {
           upload_image={this.state.upload_image}
           webcam_image={this.state.webcam_image}
           open={this.state.open}
-          onClose={this.handleClose}
+          handleClose={this.handleClose}
         />
       </div>
     );

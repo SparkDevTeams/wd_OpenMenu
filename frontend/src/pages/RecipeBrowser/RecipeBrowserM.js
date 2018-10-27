@@ -4,8 +4,12 @@ import "../../styles/ShoppinglistS.css";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
-import IconButton from "@material-ui/core/IconButton";
-import InputAdornment from "@material-ui/core/InputAdornment";
+// import IconButton from "@material-ui/core/IconButton";
+// import InputAdornment from "@material-ui/core/InputAdornment";
+import Avatar from "@material-ui/core/Avatar";
+import Card from "@material-ui/core/Card";
+import CardActionArea from "@material-ui/core/CardActionArea";
+import CardMedia from "@material-ui/core/CardMedia";
 import MenuItem from "@material-ui/core/MenuItem";
 import GetImageC from "../../components/GetImage/GetImageC";
 
@@ -13,10 +17,9 @@ export default class RecipeBrowserM extends Component {
   styles = {
     Card: {
       margin: 10,
-      width: 300,
+      width: "100%",
       padding: 24,
       boxShadow: "0px 5px 20px rgba(0,0,0,0.3)",
-      cursor: "pointer",
       position: "relative",
       overflow: "hidden"
     },
@@ -55,12 +58,18 @@ export default class RecipeBrowserM extends Component {
       margin: "2px 0px 8px 3px",
       fontSize: 14,
       display: "inline"
+    },
+    media: {
+      objectFit: "cover"
     }
   };
 
   state = {
-    image_form: "",
-    image_name: ""
+    iconImage: null
+  };
+
+  setIconImage = img => {
+    this.setState({ iconImage: img });
   };
 
   render() {
@@ -85,39 +94,30 @@ export default class RecipeBrowserM extends Component {
             }}
             fullWidth
           />
-          <TextField
-            autoFocus
-            required
-            name="image"
-            label="image"
-            value={this.props.newImageURL}
-            onChange={this.props.handleOnChangeForm}
-            style={{ margin: "8px 0px" }}
-            margin="normal"
-            variant="outlined"
-            InputLabelProps={{
-              shrink: true
-            }}
-            InputProps={{
-              endAdornment: (
-                <InputAdornment position="end">
-                  {/* <IconButton onClick={this.handleClickShowPassword} /> */}
-                  <GetImageC
-                    setImageForm={this.props.setImageForm}
-                    setImageName={this.props.setImageName}
-                    name={this.props.image_name}
-                  />
-                  {/* <IconButton>
-                    <i className="material-icons">add_a_photo</i>
-                  </IconButton>
-                  <IconButton>
-                    <i className="material-icons">add_photo_alternate</i>
-                  </IconButton> */}
-                </InputAdornment>
-              )
-            }}
-            fullWidth
+
+          <GetImageC
+            setImageForm={this.props.setImageForm}
+            setImageName={this.props.setImageName}
+            name={this.props.image_name}
+            setIconImage={this.setIconImage}
           />
+          {this.state.iconImage != null ? (
+            <Card className={this.styles.card}>
+              <CardActionArea>
+                <CardMedia
+                  component="img"
+                  alt="user image"
+                  className={this.styles.media}
+                  height="20%"
+                  image={this.state.iconImage}
+                  title="Contemplative Reptile"
+                />
+              </CardActionArea>
+            </Card>
+          ) : (
+            console.log("")
+          )}
+
           <TextField
             select
             required
@@ -142,7 +142,7 @@ export default class RecipeBrowserM extends Component {
             required
             name="amount"
             label="amount"
-            value={this.props.newDescription}
+            value={this.props.currentIngredientAmount}
             onChange={this.props.handleIngredientForm}
             style={{ margin: "8px 30px" }}
             margin="normal"

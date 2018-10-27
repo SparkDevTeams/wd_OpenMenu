@@ -25,11 +25,11 @@ const styles = {
 
 class SimpleDialog extends React.Component {
   handleClose = () => {
-    this.props.onClose();
+    this.props.handleClose();
   };
 
   render() {
-    const { classes, onClose, selectedValue, ...other } = this.props;
+    const { classes, handleClose, selectedValue, ...other } = this.props;
 
     return (
       <Dialog
@@ -49,6 +49,7 @@ class SimpleDialog extends React.Component {
             viewType={this.props.viewType}
             upload_image={this.props.upload_image}
             webcam_image={this.props.webcam_image}
+            handleClose={this.handleClose}
           />
         </div>
       </Dialog>
