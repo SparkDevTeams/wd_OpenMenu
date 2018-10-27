@@ -4,8 +4,9 @@ import "../../styles/ShoppinglistS.css";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
-import IconButton from "@material-ui/core/IconButton";
-import InputAdornment from "@material-ui/core/InputAdornment";
+// import IconButton from "@material-ui/core/IconButton";
+// import InputAdornment from "@material-ui/core/InputAdornment";
+import Avatar from "@material-ui/core/Avatar";
 import MenuItem from "@material-ui/core/MenuItem";
 import GetImageC from "../../components/GetImage/GetImageC";
 
@@ -55,6 +56,10 @@ export default class RecipeBrowserM extends Component {
       margin: "2px 0px 8px 3px",
       fontSize: 14,
       display: "inline"
+    },
+    avatar: {
+      width: 60,
+      height: 60
     }
   };
 
@@ -85,7 +90,21 @@ export default class RecipeBrowserM extends Component {
             }}
             fullWidth
           />
-          <TextField
+
+          <GetImageC
+            setImageForm={this.props.setImageForm}
+            setImageName={this.props.setImageName}
+            name={this.props.image_name}
+          />
+
+          <Avatar
+            alt="Upload Image!"
+            src={this.state.image_form}
+            // src="https://images.pexels.com/photos/461198/pexels-photo-461198.jpeg"
+            style={this.styles.avatar}
+          />
+
+          {/* <TextField
             autoFocus
             required
             name="image"
@@ -101,23 +120,18 @@ export default class RecipeBrowserM extends Component {
             InputProps={{
               endAdornment: (
                 <InputAdornment position="end">
-                  {/* <IconButton onClick={this.handleClickShowPassword} /> */}
+                  
                   <GetImageC
                     setImageForm={this.props.setImageForm}
                     setImageName={this.props.setImageName}
                     name={this.props.image_name}
                   />
-                  {/* <IconButton>
-                    <i className="material-icons">add_a_photo</i>
-                  </IconButton>
-                  <IconButton>
-                    <i className="material-icons">add_photo_alternate</i>
-                  </IconButton> */}
+                
                 </InputAdornment>
               )
             }}
             fullWidth
-          />
+          /> */}
           <TextField
             select
             required
@@ -142,7 +156,7 @@ export default class RecipeBrowserM extends Component {
             required
             name="amount"
             label="amount"
-            value={this.props.newDescription}
+            value={this.props.currentIngredientAmount}
             onChange={this.props.handleIngredientForm}
             style={{ margin: "8px 30px" }}
             margin="normal"
