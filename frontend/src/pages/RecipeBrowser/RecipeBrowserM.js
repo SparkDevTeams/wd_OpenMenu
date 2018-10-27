@@ -85,7 +85,14 @@ export default class RecipeBrowserM extends Component {
             }}
             fullWidth
           />
-          <TextField
+
+          <GetImageC
+            setImageForm={this.props.setImageForm}
+            setImageName={this.props.setImageName}
+            name={this.props.image_name}
+          />
+
+          {/* <TextField
             autoFocus
             required
             name="image"
@@ -101,23 +108,18 @@ export default class RecipeBrowserM extends Component {
             InputProps={{
               endAdornment: (
                 <InputAdornment position="end">
-                  {/* <IconButton onClick={this.handleClickShowPassword} /> */}
+                  
                   <GetImageC
                     setImageForm={this.props.setImageForm}
                     setImageName={this.props.setImageName}
                     name={this.props.image_name}
                   />
-                  {/* <IconButton>
-                    <i className="material-icons">add_a_photo</i>
-                  </IconButton>
-                  <IconButton>
-                    <i className="material-icons">add_photo_alternate</i>
-                  </IconButton> */}
+                
                 </InputAdornment>
               )
             }}
             fullWidth
-          />
+          /> */}
           <TextField
             select
             required
