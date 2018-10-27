@@ -110,7 +110,6 @@ export default class RecipeBrowserM extends Component {
                   className={this.styles.media}
                   height="20%"
                   image={this.state.iconImage}
-                  title="Contemplative Reptile"
                 />
               </CardActionArea>
             </Card>

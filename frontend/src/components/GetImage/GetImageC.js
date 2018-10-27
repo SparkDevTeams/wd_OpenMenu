@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import Button from "@material-ui/core/Button";
+import IconButton from "@material-ui/core/IconButton";
+import PhotoCamera from "@material-ui/icons/PhotoCamera";
 
 /* View */
 import SimpleDialogC from "./SimpleDialogC";
@@ -62,6 +64,10 @@ class GetImageC extends Component {
       margin: "2px 0px 8px 3px",
       fontSize: 14,
       display: "inline"
+    },
+    largeIcon: {
+      width: 60,
+      height: 60
     }
   };
 
@@ -158,6 +164,7 @@ class GetImageC extends Component {
 
     // Store in local state to display
     this.setState({ webcam_image: img });
+    this.props.setIconImage(img);
 
     // Base64 String -> Blob -> File
     fetch(img)
@@ -168,7 +175,6 @@ class GetImageC extends Component {
         // Setup form to send back to AddItemC
         let form = new FormData();
         form.append("", file);
-        this.props.setIconImage(img);
         this.props.setImageForm(form);
 
         // Change state to display the image
@@ -203,7 +209,15 @@ class GetImageC extends Component {
     return (
       <div>
         <br />
-        <Button onClick={this.handleClickOpen}>Get Image</Button>
+        <IconButton
+          onClick={this.handleClickOpen}
+          color="primary"
+          component="span"
+          style={this.styles.largeIcon}
+        >
+          <PhotoCamera />
+        </IconButton>
+        {/* <Button onClick={this.handleClickOpen}>Get Image</Button> */}
         <SimpleDialogC
           fileSelectedCB={this.fileSelectedCB}
           webcamImageCB={this.webcamImageCB}
