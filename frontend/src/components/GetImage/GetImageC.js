@@ -146,7 +146,8 @@ class GetImageC extends Component {
     this.props.setImageForm(form);
 
     // Change modal to display the uploaded image
-    this.setState({ viewType: "display_upload" });
+    // this.setState({ viewType: "display_upload" });
+    this.handleClose();
   };
 
   // Set image
