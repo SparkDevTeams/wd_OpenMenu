@@ -64,8 +64,11 @@ export default class RecipeBrowserM extends Component {
   };
 
   state = {
-    image_form: "",
-    image_name: ""
+    iconImage: ""
+  };
+
+  setIconImage = img => {
+    this.setState({ iconImage: img });
   };
 
   render() {
@@ -95,12 +98,12 @@ export default class RecipeBrowserM extends Component {
             setImageForm={this.props.setImageForm}
             setImageName={this.props.setImageName}
             name={this.props.image_name}
+            setIconImage={this.setIconImage}
           />
 
           <Avatar
             alt="Upload Image!"
-            src={this.state.image_form}
-            // src="https://images.pexels.com/photos/461198/pexels-photo-461198.jpeg"
+            src={this.state.iconImage}
             style={this.styles.avatar}
           />
 
