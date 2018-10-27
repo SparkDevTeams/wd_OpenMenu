@@ -23,7 +23,7 @@ const MenuBrowserPV = props => {
       </Button>
       <h1>Menus</h1>
       {props.userMenus.map(menu => (
-        <Link to={{ pathname: "/menus/" + menu.uid }}>
+        <Link key={menu.uid} to={{ pathname: "/menus/" + menu.uid }}>
           <MenuCard menu={menu} />
         </Link>
       ))}

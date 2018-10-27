@@ -52,16 +52,29 @@ const MenuV = props => {
     <div style={styles.mainContainer}>
       <div style={styles.menuDetails}>
         <Card style={styles.card}>
-          <MenuCard menu={props.menu} />
+          <MenuCard menu={props.menu} large={true} />
         </Card>
       </div>
       <div style={styles.recipeRow}>
         <h2>Recipes: </h2>
-        {props.menuRecipes.map(recipe => (
-          <Link to={{ pathname: "/recipes/" + recipe.uid }}>
-            <RecipeCardV recipe={recipe} />
-          </Link>
-        ))}
+        {/* Show list of ingredients, only if they actually exist */}
+        {props.menuRecipes.length > 0
+          ? props.menuRecipes.map(recipe => {
+              for (let i = 0; i < props.menuRecipes.length; i++) {
+                if (recipe.uid === props.menuRecipes[i].uid) {
+                  // console.log(item.itemId);
+                  return (
+                    <Link
+                      key={recipe.uid}
+                      to={{ pathname: "/recipes/" + recipe.uid }}
+                    >
+                      <RecipeCardV recipe={recipe} />
+                    </Link>
+                  );
+                }
+              }
+            })
+          : console.log("No ingredient. Add some")}
       </div>
       <div>
         <Tooltip title="Add recipe">

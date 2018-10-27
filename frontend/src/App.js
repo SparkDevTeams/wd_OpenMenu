@@ -14,7 +14,7 @@ import MenuC from "./components/Menu/MenuC";
 class App extends Component {
   render() {
     let margin = {
-      marginTop: "5%"
+      marginTop: "10%"
     };
 
     return (

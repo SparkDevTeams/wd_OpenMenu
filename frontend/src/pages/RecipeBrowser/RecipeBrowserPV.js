@@ -8,13 +8,6 @@ import Button from "@material-ui/core/Button";
 import AddIcon from "@material-ui/icons/Add";
 import RecipeBrowserM from "./RecipeBrowserM";
 
-const styles = {
-  bttn: {
-    position: "absolute",
-    right: 0
-  }
-};
-
 const RecipeBrowserPV = props => {
   return (
     <div>
@@ -60,7 +53,7 @@ const RecipeBrowserPV = props => {
         </Dialog>
       </div>
       {props.userRecipes.map(recipe => (
-        <Link to={{ pathname: "/recipes/" + recipe.uid }}>
+        <Link key={recipe.uid} to={{ pathname: "/recipes/" + recipe.uid }}>
           <RecipeCardV recipe={recipe} showIns={false} />
         </Link>
       ))}

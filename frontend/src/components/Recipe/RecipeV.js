@@ -10,13 +10,6 @@ import RecipeEditRecipeM from "./RecipeEditRecipeM";
 
 import "./style.css";
 
-const styles = {
-  bttn: {
-    position: "absolute",
-    right: 0
-  }
-};
-
 const RecipeV = props => {
   return (
     <div>
@@ -67,7 +60,13 @@ const RecipeV = props => {
             for (let i = 0; i < props.userItems.length; i++) {
               if (item.itemId === props.userItems[i].uid) {
                 // console.log(item.itemId);
-                return <ItemCard itemId={item.itemId} amount={item.amount} />;
+                return (
+                  <ItemCard
+                    key={item.itemId}
+                    itemId={item.itemId}
+                    amount={item.amount}
+                  />
+                );
               }
             }
           })

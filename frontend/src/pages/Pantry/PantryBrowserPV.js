@@ -27,7 +27,9 @@ const PantryBrowserPV = props => {
       {/* {console.log(props.userItems)} */}
       {props.userItems.length > 0
         ? props.userItems.map(item => {
-            return <ItemCard itemId={item.uid} amount={item.amount} />;
+            return (
+              <ItemCard key={item.uid} itemId={item.uid} amount={item.amount} />
+            );
           })
         : console.log("")}
 

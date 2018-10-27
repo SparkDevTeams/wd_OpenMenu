@@ -4,6 +4,7 @@ import { withStyles } from "@material-ui/core/styles";
 
 import MenuCard from "../../components/Menu/MenuCard";
 import RecipeCardV from "../../components/Recipe/RecipeCardV";
+import ItemCard from "./../../components/Item/ItemC";
 
 const styles = {
   "@media (min-width: 1024px)": {
@@ -32,6 +33,7 @@ const HomePV = props => {
       <div className={classes.cardContainer}>
         {props.userMenus.map(menu => (
           <Link
+            key={menu.uid}
             className={classes.cardStyle}
             to={{ pathname: "/menus/" + menu.uid }}
           >
@@ -43,6 +45,7 @@ const HomePV = props => {
       <div className={classes.cardContainer}>
         {props.userRecipes.map(recipe => (
           <Link
+            key={recipe.uid}
             className={classes.cardStyle}
             to={{ pathname: "/recipes/" + recipe.uid }}
           >
@@ -53,7 +56,8 @@ const HomePV = props => {
       <h1>Items</h1>
       <div className={classes.cardContainer}>
         {props.userItems.map(item => (
-          <RecipeCardV recipe={item} showIns={false} />
+          // <RecipeCardV key={item.uid} recipe={item} showIns={false} />
+          <ItemCard key={item.uid} itemId={item.uid} amount={0.0} />
         ))}
       </div>
     </div>

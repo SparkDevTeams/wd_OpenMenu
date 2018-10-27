@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardContent from "@material-ui/core/CardContent";
@@ -32,7 +30,6 @@ class RecipeCardV extends Component {
   }
 
   componentWillMount() {
-    console.log(this.props.recipe);
     this.setState({ image: this.props.recipe.image });
     this.setState({ userRecipeImages: this.props.userRecipeImages });
   }
@@ -58,11 +55,13 @@ class RecipeCardV extends Component {
               {this.props.recipe.name}
             </Typography>
 
-            <CardMedia
-              style={styles.media}
-              image={this.state.image_data}
-              title={this.props.recipe.name}
-            />
+            <CardMedia title={this.props.recipe.name}>
+              <img
+                src={this.state.image_data}
+                alt="not found"
+                style={styles.media}
+              />
+            </CardMedia>
 
             <Typography component="p">
               {this.props.recipe.description}
@@ -78,10 +77,6 @@ class RecipeCardV extends Component {
     );
   }
 }
-
-RecipeCardV.propTypes = {
-  classes: PropTypes.object.isRequired
-};
 
 const mapStateToProps = state => {
   return {

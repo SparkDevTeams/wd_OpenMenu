@@ -7,6 +7,7 @@ import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import "./style.css";
+import Logo from "../../assets/logo.svg";
 
 const LandingPV = props => {
   if (props.auth) {
@@ -15,6 +16,11 @@ const LandingPV = props => {
     return (
       <div className="containerL">
         <Card>
+          <img
+            src={Logo}
+            alt="Whooops!"
+            style={{ width: "50%", height: "50%", flex: 1 }}
+          />
           <CardActionArea>
             <CardContent>
               <form>

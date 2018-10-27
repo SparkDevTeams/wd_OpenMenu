@@ -10,7 +10,11 @@ import Typography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/core";
 
 const styles = {
-  card: {
+  largeCard: {
+    width: "100%",
+    height: "10%"
+  },
+  iconCard: {
     width: 300,
     height: 300
   },
@@ -22,8 +26,8 @@ const styles = {
     marginLeft: 20
   },
   cardImg: {
-    width: 200,
-    height: 150
+    width: "100%",
+    height: "100%"
   },
   cardDescription: {
     textAlign: "center",
@@ -61,7 +65,13 @@ class MenuCard extends Component {
     }
     return (
       <Fragment>
-        <Card className={this.props.classes.card}>
+        <Card
+          className={
+            this.props.large
+              ? this.props.classes.largeCard
+              : this.props.classes.iconCard
+          }
+        >
           <CardActionArea>
             <CardContent>
               <Typography
@@ -74,11 +84,13 @@ class MenuCard extends Component {
               </Typography>
 
               <div className={this.props.classes.cardImgContainer}>
-                <CardMedia
-                  className={this.props.classes.cardImg}
-                  image={this.state.image_data}
-                  title={this.props.menu.name}
-                />
+                <CardMedia title={this.props.menu.name}>
+                  <img
+                    src={this.state.image_data}
+                    style={styles.cardImg}
+                    alt="not found"
+                  />
+                </CardMedia>
               </div>
 
               <Typography
