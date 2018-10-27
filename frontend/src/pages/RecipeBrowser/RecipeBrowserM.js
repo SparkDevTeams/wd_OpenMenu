@@ -7,6 +7,9 @@ import TextField from "@material-ui/core/TextField";
 // import IconButton from "@material-ui/core/IconButton";
 // import InputAdornment from "@material-ui/core/InputAdornment";
 import Avatar from "@material-ui/core/Avatar";
+import Card from "@material-ui/core/Card";
+import CardActionArea from "@material-ui/core/CardActionArea";
+import CardMedia from "@material-ui/core/CardMedia";
 import MenuItem from "@material-ui/core/MenuItem";
 import GetImageC from "../../components/GetImage/GetImageC";
 
@@ -14,10 +17,9 @@ export default class RecipeBrowserM extends Component {
   styles = {
     Card: {
       margin: 10,
-      width: 300,
+      width: "100%",
       padding: 24,
       boxShadow: "0px 5px 20px rgba(0,0,0,0.3)",
-      cursor: "pointer",
       position: "relative",
       overflow: "hidden"
     },
@@ -57,14 +59,13 @@ export default class RecipeBrowserM extends Component {
       fontSize: 14,
       display: "inline"
     },
-    avatar: {
-      width: 60,
-      height: 60
+    media: {
+      objectFit: "cover"
     }
   };
 
   state = {
-    iconImage: ""
+    iconImage: null
   };
 
   setIconImage = img => {
@@ -100,41 +101,23 @@ export default class RecipeBrowserM extends Component {
             name={this.props.image_name}
             setIconImage={this.setIconImage}
           />
+          {this.state.iconImage != null ? (
+            <Card className={this.styles.card}>
+              <CardActionArea>
+                <CardMedia
+                  component="img"
+                  alt="user image"
+                  className={this.styles.media}
+                  height="20%"
+                  image={this.state.iconImage}
+                  title="Contemplative Reptile"
+                />
+              </CardActionArea>
+            </Card>
+          ) : (
+            console.log("")
+          )}
 
-          <Avatar
-            alt="Upload Image!"
-            src={this.state.iconImage}
-            style={this.styles.avatar}
-          />
-
-          {/* <TextField
-            autoFocus
-            required
-            name="image"
-            label="image"
-            value={this.props.newImageURL}
-            onChange={this.props.handleOnChangeForm}
-            style={{ margin: "8px 0px" }}
-            margin="normal"
-            variant="outlined"
-            InputLabelProps={{
-              shrink: true
-            }}
-            InputProps={{
-              endAdornment: (
-                <InputAdornment position="end">
-                  
-                  <GetImageC
-                    setImageForm={this.props.setImageForm}
-                    setImageName={this.props.setImageName}
-                    name={this.props.image_name}
-                  />
-                
-                </InputAdornment>
-              )
-            }}
-            fullWidth
-          /> */}
           <TextField
             select
             required
