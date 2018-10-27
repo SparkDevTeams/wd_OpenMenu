@@ -81,7 +81,21 @@ export default class MenuBrowserM extends Component {
             }}
             fullWidth
           />
-          <TextField
+          <InputAdornment
+            style={{ margin: "10px 0px 30px 0px", backgroundColor: "red" }}
+            position="end"
+          >
+            <GetImageC
+              setImageForm={this.props.setImageForm}
+              setImageName={this.props.setImageName}
+              name={this.props.image_name}
+            />
+          </InputAdornment>
+          {/* <img
+            style={{ maxWidth: "250px", maxHeight: "250px" }}
+            src="https://projects.voanews.com/off-the-highway/archive/img/play-button_small.png"
+          /> */}
+          {/* <TextField
             autoFocus
             required
             name="image"
@@ -96,17 +110,11 @@ export default class MenuBrowserM extends Component {
             }}
             InputProps={{
               endAdornment: (
-                <InputAdornment position="end">
-                  <GetImageC
-                    setImageForm={this.props.setImageForm}
-                    setImageName={this.props.setImageName}
-                    name={this.props.image_name}
-                  />
-                </InputAdornment>
+                
               )
             }}
             fullWidth
-          />
+          /> */}
           <TextField
             select
             required
@@ -125,7 +133,6 @@ export default class MenuBrowserM extends Component {
               <MenuItem value={recipe.uid}>{recipe.name}</MenuItem>
             ))}
           </TextField>
-
           <Button
             style={{ margin: "15px 0px" }}
             onClick={this.props.handleAddRecipe}
@@ -133,7 +140,6 @@ export default class MenuBrowserM extends Component {
           >
             Add Item
           </Button>
-
           {this.props.addedRecipes.length > 0
             ? this.props.addedRecipes.map(addedRecipe => {
                 let filteredItem = this.props.userRecipes.filter(recipe => {
@@ -149,7 +155,6 @@ export default class MenuBrowserM extends Component {
                 );
               })
             : console.log("addRecipes array is empty")}
-
           <TextField
             autoFocus
             required
