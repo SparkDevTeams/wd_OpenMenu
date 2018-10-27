@@ -59,7 +59,8 @@ export default class MenuBrowserM extends Component {
 
   state = {
     image_form: "",
-    image_name: ""
+    image_name: "",
+    upload_image: ""
   };
 
   render() {
@@ -101,6 +102,7 @@ export default class MenuBrowserM extends Component {
                     setImageForm={this.props.setImageForm}
                     setImageName={this.props.setImageName}
                     name={this.props.image_name}
+                    uploadImage={this.state.uploadImage}
                   />
                 </InputAdornment>
               )

@@ -25,6 +25,8 @@ export default class CamPicC extends Component {
 
   keepImage = () => {
     this.props.webcamImageCB(this.state.image);
+    this.props.viewTypeCancel();
+    this.props.handleClose();
   };
 
   render() {

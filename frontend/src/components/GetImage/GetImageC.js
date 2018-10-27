@@ -130,7 +130,7 @@ class GetImageC extends Component {
     };
   };
 
-  /* Set button pressed after upload image selection */
+  /* Set button pressed after upload image selection. */
   setUploadFileHandler = () => {
     // Change name to fit conventions
     let ext = this.state.upload_file.name.split(".").pop();
@@ -195,6 +195,7 @@ class GetImageC extends Component {
 
   handleClose = () => {
     this.setState({ open: false });
+    this.setState({ viewType: "" });
   };
 
   render() {
@@ -213,7 +214,7 @@ class GetImageC extends Component {
           upload_image={this.state.upload_image}
           webcam_image={this.state.webcam_image}
           open={this.state.open}
-          onClose={this.handleClose}
+          handleClose={this.handleClose}
         />
       </div>
     );

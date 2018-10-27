@@ -2,7 +2,7 @@ import React from "react";
 import Webcam from "react-webcam";
 import Button from "@material-ui/core/Button";
 
-const CampPicV = props => {
+const CamPicV = props => {
   if (props.image) {
     return (
       <div>
@@ -27,4 +27,4 @@ const CampPicV = props => {
   }
 };
 
-export default CampPicV;
+export default CamPicV;
