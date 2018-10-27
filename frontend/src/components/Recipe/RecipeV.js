@@ -23,22 +23,11 @@ const RecipeV = props => {
       {/* show detail of recipe */}
       <RecipeCardV recipe={props.recipe} showIns={true} />
       <h1>Ingredients</h1>
-      {/* Show list of ingredients */}
-      {props.ingredients.length > 0
-        ? props.recipe.ingredients.map(item => {
-            for (let i = 0; i < props.userItems.length; i++) {
-              if (item.itemId === props.userItems[i].uid) {
-                // console.log(item.itemId);
-                return <ItemCard itemId={item.itemId} amount={item.amount} />;
-              }
-            }
-          })
-        : console.log("No ingredient. Add some")}
 
       {/* Add recipe */}
       <div>
         <Button
-          style={styles.bttn}
+          // style={styles.bttn}
           margin-left="20px"
           variant="fab"
           color="secondary"
@@ -71,6 +60,18 @@ const RecipeV = props => {
           />
         </Dialog>
       </div>
+
+      {/* Show list of ingredients */}
+      {props.ingredients.length > 0
+        ? props.recipe.ingredients.map(item => {
+            for (let i = 0; i < props.userItems.length; i++) {
+              if (item.itemId === props.userItems[i].uid) {
+                // console.log(item.itemId);
+                return <ItemCard itemId={item.itemId} amount={item.amount} />;
+              }
+            }
+          })
+        : console.log("No ingredient. Add some")}
     </div>
   );
 };
