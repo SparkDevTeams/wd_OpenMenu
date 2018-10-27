@@ -7,6 +7,7 @@ import TextField from "@material-ui/core/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import MenuItem from "@material-ui/core/MenuItem";
 import GetImageC from "../../components/GetImage/GetImageC";
+import { Card, CardMedia, CardActionArea } from "@material-ui/core";
 
 export default class MenuBrowserM extends Component {
   styles = {
@@ -60,7 +61,12 @@ export default class MenuBrowserM extends Component {
   state = {
     image_form: "",
     image_name: "",
-    upload_image: ""
+    upload_image: "",
+    iconImage: null
+  };
+
+  setIconImage = img => {
+    this.setState({ iconImage: img });
   };
 
   render() {
@@ -90,8 +96,25 @@ export default class MenuBrowserM extends Component {
               setImageForm={this.props.setImageForm}
               setImageName={this.props.setImageName}
               name={this.props.image_name}
+              setIconImage={this.setIconImage}
             />
           </InputAdornment>
+          {this.state.iconImage != null ? (
+            <Card className={this.styles.card}>
+              <CardActionArea>
+                <CardMedia
+                  component="img"
+                  alt="input image"
+                  className={this.styles.media}
+                  height="20%"
+                  image={this.state.iconImage}
+                  title="Menu Addition"
+                />
+              </CardActionArea>
+            </Card>
+          ) : (
+            console.log("")
+          )}
           {/* <img
             style={{ maxWidth: "250px", maxHeight: "250px" }}
             src="https://projects.voanews.com/off-the-highway/archive/img/play-button_small.png"
