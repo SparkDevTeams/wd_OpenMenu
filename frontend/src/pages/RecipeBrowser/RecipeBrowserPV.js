@@ -19,15 +19,9 @@ const RecipeBrowserPV = props => {
   return (
     <div>
       <h1>This is the Recipe page!</h1>
-      {props.userRecipes.map(recipe => (
-        <Link to={{ pathname: "/recipes/" + recipe.uid }}>
-          <RecipeCardV recipe={recipe} showIns={false} />
-        </Link>
-      ))}
-
       <div>
         <Button
-          style={styles.bttn}
+          // style={styles.bttn}
           margin-left="20px"
           variant="fab"
           color="secondary"
@@ -65,6 +59,11 @@ const RecipeBrowserPV = props => {
           />
         </Dialog>
       </div>
+      {props.userRecipes.map(recipe => (
+        <Link to={{ pathname: "/recipes/" + recipe.uid }}>
+          <RecipeCardV recipe={recipe} showIns={false} />
+        </Link>
+      ))}
     </div>
   );
 };
