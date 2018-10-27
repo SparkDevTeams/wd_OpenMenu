@@ -7,6 +7,7 @@ import TextField from "@material-ui/core/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import MenuItem from "@material-ui/core/MenuItem";
 import GetImageC from "../../components/GetImage/GetImageC";
+import { Card, CardMedia, CardActionArea } from "@material-ui/core";
 
 export default class MenuBrowserM extends Component {
   styles = {
@@ -60,7 +61,12 @@ export default class MenuBrowserM extends Component {
   state = {
     image_form: "",
     image_name: "",
-    upload_image: ""
+    upload_image: "",
+    iconImage: null
+  };
+
+  setIconImage = img => {
+    this.setState({ iconImage: img });
   };
 
   render() {
@@ -82,7 +88,38 @@ export default class MenuBrowserM extends Component {
             }}
             fullWidth
           />
-          <TextField
+          <InputAdornment
+            style={{ margin: "10px 0px 30px 0px", backgroundColor: "red" }}
+            position="end"
+          >
+            <GetImageC
+              setImageForm={this.props.setImageForm}
+              setImageName={this.props.setImageName}
+              name={this.props.image_name}
+              setIconImage={this.setIconImage}
+            />
+          </InputAdornment>
+          {this.state.iconImage != null ? (
+            <Card className={this.styles.card}>
+              <CardActionArea>
+                <CardMedia
+                  component="img"
+                  alt="input image"
+                  className={this.styles.media}
+                  height="20%"
+                  image={this.state.iconImage}
+                  title="Menu Addition"
+                />
+              </CardActionArea>
+            </Card>
+          ) : (
+            console.log("")
+          )}
+          {/* <img
+            style={{ maxWidth: "250px", maxHeight: "250px" }}
+            src="https://projects.voanews.com/off-the-highway/archive/img/play-button_small.png"
+          /> */}
+          {/* <TextField
             autoFocus
             required
             name="image"
@@ -108,7 +145,7 @@ export default class MenuBrowserM extends Component {
               )
             }}
             fullWidth
-          />
+          /> */}
           <TextField
             select
             required
@@ -127,7 +164,6 @@ export default class MenuBrowserM extends Component {
               <MenuItem value={recipe.uid}>{recipe.name}</MenuItem>
             ))}
           </TextField>
-
           <Button
             style={{ margin: "15px 0px" }}
             onClick={this.props.handleAddRecipe}
@@ -135,7 +171,6 @@ export default class MenuBrowserM extends Component {
           >
             Add Item
           </Button>
-
           {this.props.addedRecipes.length > 0
             ? this.props.addedRecipes.map(addedRecipe => {
                 let filteredItem = this.props.userRecipes.filter(recipe => {
@@ -151,7 +186,6 @@ export default class MenuBrowserM extends Component {
                 );
               })
             : console.log("addRecipes array is empty")}
-
           <TextField
             autoFocus
             required
