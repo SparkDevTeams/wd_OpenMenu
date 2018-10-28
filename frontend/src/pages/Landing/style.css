@@ -1,12 +1,12 @@
-.containerL{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-content: center;
-    margin-top: 30vh;
+.containerL {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+  margin-top: 5vh;
 }
-.buttons{
-   display: inline-block;
-   margin-left: 21%;
-   margin-bottom: 30px;
+.buttons {
+  display: inline-block;
+  margin-left: 15%;
+  margin-bottom: 30px;
 }
