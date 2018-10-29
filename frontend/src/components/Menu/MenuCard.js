@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 
 import Card from "@material-ui/core/Card";
@@ -6,16 +6,15 @@ import CardActionArea from "@material-ui/core/CardActions";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
-import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/core";
 
 const styles = {
-  card: {
-    width: 300
+  largeImg: {
+    width: "100%"
   },
-  media: {
-    height: 140
+  smallImg: {
+    width: "100%"
   }
 };
 
@@ -48,32 +47,39 @@ class MenuCard extends Component {
       this.getImage(this.state.image);
     }
     return (
-      <Fragment>
-        <Card style={styles.card}>
-          <CardActionArea>
-            <CardContent>
-              <Typography gutterBottom variant="headline" component="h2">
-                {this.props.menu.name}
-              </Typography>
+      <Card>
+        <CardActionArea>
+          <CardContent>
+            <Typography gutterBottom variant="headline" component="h2">
+              {this.props.menu.name}
+            </Typography>
 
-              <CardMedia
-                style={styles.media}
-                image={this.state.image_data}
-                title={this.props.menu.name}
+            <CardMedia title={this.props.menu.name}>
+              <img
+                src={this.state.image_data}
+                className={
+                  this.props.large
+                    ? this.props.classes.largeImg
+                    : this.props.classes.smallImg
+                }
+                alt="not found"
               />
+            </CardMedia>
 
-              <Typography component="p">
-                {this.props.menu.description}
-              </Typography>
-            </CardContent>
-          </CardActionArea>
-          <CardActions>
-            {/* <Button>Tag</Button>
+            <Typography
+              className={this.props.classes.cardDescription}
+              component="p"
+            >
+              {this.props.menu.description}
+            </Typography>
+          </CardContent>
+        </CardActionArea>
+        <CardActions>
+          {/* <Button>Tag</Button>
             <Button>Tag</Button>
             <Button>Tag</Button> */}
-          </CardActions>
-        </Card>
-      </Fragment>
+        </CardActions>
+      </Card>
     );
   } // end render()
 } // end component
@@ -84,4 +90,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(MenuCard);
+export default connect(mapStateToProps)(withStyles(styles)(MenuCard));

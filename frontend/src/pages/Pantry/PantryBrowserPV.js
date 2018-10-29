@@ -6,6 +6,7 @@ import CloseIcon from "@material-ui/icons/Close";
 
 import PantryBrowserM from "./PantryBrowserM";
 import ItemCard from "../../components/Item/ItemC";
+import Grid from "@material-ui/core/Grid";
 // import "../../styles/ShoppinglistS.css";
 
 const PantryBrowserPV = props => {
@@ -24,12 +25,25 @@ const PantryBrowserPV = props => {
       </div>
 
       <h1>Items</h1>
-      {/* {console.log(props.userItems)} */}
-      {props.userItems.length > 0
-        ? props.userItems.map(item => {
-            return <ItemCard itemId={item.uid} amount={item.amount} />;
-          })
-        : console.log("")}
+      <Grid container spacing={16}>
+        <Grid item xs={8}>
+          <Grid container spacing={16}>
+            {props.userItems.length > 0
+              ? props.userItems.map(item => {
+                  return (
+                    <Grid key={item.uid} item xs={6}>
+                      <ItemCard
+                        key={item.uid}
+                        itemId={item.uid}
+                        amount={item.amount}
+                      />
+                    </Grid>
+                  );
+                })
+              : console.log("")}
+          </Grid>
+        </Grid>
+      </Grid>
 
       <Dialog
         open={props.addModalWindowState}

@@ -7,19 +7,14 @@ import Dialog from "@material-ui/core/Dialog";
 import CloseIcon from "@material-ui/icons/Close";
 import Button from "@material-ui/core/Button";
 import AddIcon from "@material-ui/icons/Add";
-
-const styles = {
-  bttn: {
-    position: "absolute",
-    right: 0
-  }
-};
+import Grid from "@material-ui/core/Grid";
 
 const MenuBrowserPV = props => {
   return (
     <div>
       <Button
         // style={styles.bttn}
+        position="absolute"
         margin-left="20px"
         variant="fab"
         color="secondary"
@@ -29,11 +24,21 @@ const MenuBrowserPV = props => {
         <AddIcon />
       </Button>
       <h1>Menus</h1>
-      {props.userMenus.map(menu => (
-        <Link to={{ pathname: "/menus/" + menu.uid }}>
-          <MenuCard menu={menu} />
-        </Link>
-      ))}
+
+      <Grid container spacing={16}>
+        <Grid item xs={8}>
+          <Grid container spacing={16}>
+            {" "}
+            {props.userMenus.map(menu => (
+              <Grid key={menu.uid} item xs={6}>
+                <Link key={menu.uid} to={{ pathname: "/menus/" + menu.uid }}>
+                  <MenuCard menu={menu} />
+                </Link>
+              </Grid>
+            ))}
+          </Grid>
+        </Grid>
+      </Grid>
 
       <div>
         <Dialog

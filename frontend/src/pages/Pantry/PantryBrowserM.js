@@ -2,13 +2,12 @@ import React, { Component } from "react";
 
 import GetImageC from "../../components/GetImage/GetImageC";
 
-import CloseIcon from "@material-ui/icons/Close";
-// import "../../styles/ShoppinglistS.css";
-import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
-import InputAdornment from "@material-ui/core/InputAdornment";
+import Card from "@material-ui/core/Card";
+import CardActionArea from "@material-ui/core/CardActionArea";
+import CardMedia from "@material-ui/core/CardMedia";
 
 class PantryBrowserM extends Component {
   styles = {
@@ -60,8 +59,11 @@ class PantryBrowserM extends Component {
   };
 
   state = {
-    image_form: "",
-    image_name: ""
+    iconImage: null
+  };
+
+  setIconImage = img => {
+    this.setState({ iconImage: img });
   };
 
   render() {
@@ -104,31 +106,29 @@ class PantryBrowserM extends Component {
             }}
             fullWidth
           />
-          <TextField
-            autoFocus
-            name="image"
-            label="image"
-            value={this.props.image_name}
-            style={{ margin: "8px 0px" }}
-            // defaultValue={this.props.price}
-            margin="normal"
-            variant="outlined"
-            InputLabelProps={{
-              shrink: true
-            }}
-            InputProps={{
-              endAdornment: (
-                <InputAdornment position="end">
-                  <GetImageC
-                    setImageForm={this.props.setImageForm}
-                    setImageName={this.props.setImageName}
-                    name={this.props.image_name}
-                  />
-                </InputAdornment>
-              )
-            }}
-            fullWidth
+
+          <GetImageC
+            setImageForm={this.props.setImageForm}
+            setImageName={this.props.setImageName}
+            name={this.props.image_name}
+            setIconImage={this.setIconImage}
           />
+          {this.state.iconImage != null ? (
+            <Card className={this.styles.card}>
+              <CardActionArea>
+                <CardMedia
+                  component="img"
+                  alt="user image"
+                  className={this.styles.media}
+                  height="20%"
+                  image={this.state.iconImage}
+                />
+              </CardActionArea>
+            </Card>
+          ) : (
+            console.log("")
+          )}
+
           <TextField
             autoFocus
             name="size"

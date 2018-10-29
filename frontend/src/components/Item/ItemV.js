@@ -67,7 +67,7 @@ const ItemV = props => {
     <Fragment>
       {/*card to display*/}
       <Card style={styles.Card} onClick={props.detailsToggle}>
-        <img src={props.img} style={styles.img} />
+        <img src={props.img} alt="not found" style={styles.img} />
         <Typography variant="headline" component="h2">
           {props.name}
         </Typography>
@@ -83,7 +83,7 @@ const ItemV = props => {
       {/*info dialog */}
       <Dialog open={props.detailsOpen} onClose={props.detailsToggle}>
         <CloseIcon style={styles.closeBtn} onClick={props.detailsToggle} />
-        <img src={props.img} style={styles.img} />
+        <img src={props.img} alt="not found" style={styles.img} />
         <DialogTitle style={{ paddingBottom: 5 }} id="form-dialog-title">
           {props.name}
         </DialogTitle>

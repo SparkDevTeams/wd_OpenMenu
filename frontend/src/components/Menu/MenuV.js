@@ -1,8 +1,6 @@
-import React, { Component } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
 import Card from "@material-ui/core/Card";
-import CardActions from "@material-ui/core/CardActions";
 import Button from "@material-ui/core/Button";
 import Tooltip from "@material-ui/core/Tooltip";
 import AddIcon from "@material-ui/icons/Add";
@@ -10,68 +8,65 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
+import { withStyles } from "@material-ui/core/styles";
 
 import MenuCard from "./MenuCard";
 import RecipeCardV from "../Recipe/RecipeCardV";
 import "./style.css";
 
-const styles = theme => ({
-  mainContainer: {
-    //height: 800
-  },
-  header: {
-    textAlign: "center"
-  },
-  card: {
-    width: 500,
-    marginRight: 60
-  },
-  menuDetails: {
-    display: "flex",
-    flexDirection: "row",
-    marginBottom: 100
-  },
-  menuInfo: {
-    marginRight: 70
-  },
-  media: {
-    height: 200
-  },
-  recipeRow: {
-    display: "flex",
-    flexDirection: "row"
-  },
-  addRecipeButton: {
-    position: "absolute",
-    right: 0
-    //bottom: theme.spacing.unit * 2,
-    //right: theme.spacing.unit * 3
+const styles = {
+  "@media (min-width: 1024px)": {
+    cardContainer: {
+      display: "grid",
+      gridTemplateColumns: "1fr 1fr 1fr",
+      gridGap: "1%"
+    },
+    cardStyle: {
+      justifySelf: "center",
+      marginBottom: "2%"
+    }
   }
-});
+};
 
 const MenuV = props => {
-  //const { classes } = props;
+  const { classes } = props;
   return (
-    <div style={styles.mainContainer}>
-      <div style={styles.menuDetails}>
-        <Card style={styles.card}>
-          <MenuCard menu={props.menu} />
+    <div className={classes.cardContainer}>
+      <div>
+        <Card>
+          <MenuCard menu={props.menu} large={true} />
         </Card>
       </div>
-      <div style={styles.recipeRow}>
+      <div className={classes.cardContainer}>
         <h2>Recipes: </h2>
-        {props.menuRecipes.map(recipe => (
-          <Link to={{ pathname: "/recipes/" + recipe.uid }}>
-            <RecipeCardV recipe={recipe} />
-          </Link>
-        ))}
+        {/* Show list of ingredients, only if they actually exist */}
+        {props.menuRecipes.length > 0 ? (
+          props.menuRecipes.map(recipe => {
+            for (let i = 0; i < props.menuRecipes.length; i++) {
+              if (recipe.uid === props.menuRecipes[i].uid) {
+                // console.log(item.itemId);
+                return (
+                  <Link
+                    className={classes.cardStyle}
+                    key={recipe.uid}
+                    to={{ pathname: "/recipes/" + recipe.uid }}
+                  >
+                    <RecipeCardV recipe={recipe} />
+                  </Link>
+                );
+              }
+            }
+          })
+        ) : (
+          <h3>No recipes found. Add some using the add button.</h3>
+        )}
       </div>
       <div>
         <Tooltip title="Add recipe">
           <Button
             variant="fab"
             color="secondary"
-            style={styles.addRecipeButton}
+            className={classes.addRecipeButton}
             /*className={classes.addRecipeButton}*/
             onClick={props.handleOpen}
             scroll="paper"
@@ -101,4 +96,4 @@ const MenuV = props => {
   );
 };
 
-export default MenuV;
+export default withStyles(styles)(MenuV);

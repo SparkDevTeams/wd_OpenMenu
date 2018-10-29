@@ -1,12 +1,16 @@
-.containerL{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-content: center;
-    margin-top: 30vh;
+@import url("https://fonts.googleapis.com/css?family=Chivo");
+.font {
+  font-family: "Chivo", sans-serif;
 }
-.buttons{
-   display: inline-block;
-   margin-left: 21%;
-   margin-bottom: 30px;
+.containerL {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+  margin-top: 5vh;
+}
+.buttons {
+  display: inline-block;
+  margin-left: 15%;
+  margin-bottom: 30px;
 }

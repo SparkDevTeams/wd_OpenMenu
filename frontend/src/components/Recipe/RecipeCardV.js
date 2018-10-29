@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardContent from "@material-ui/core/CardContent";
@@ -12,10 +10,16 @@ import Typography from "@material-ui/core/Typography";
 
 const styles = {
   card: {
-    maxWidth: 1500
+    width: "50%",
+    height: "100%"
+  },
+  largeCard: {
+    height: "30%",
+    width: "80%"
   },
   media: {
-    height: 140
+    height: "100%",
+    width: "100%"
   }
 };
 
@@ -32,7 +36,6 @@ class RecipeCardV extends Component {
   }
 
   componentWillMount() {
-    console.log(this.props.recipe);
     this.setState({ image: this.props.recipe.image });
     this.setState({ userRecipeImages: this.props.userRecipeImages });
   }
@@ -51,24 +54,26 @@ class RecipeCardV extends Component {
       this.getImage(this.state.image);
     }
     return (
-      <Card style={styles.card}>
+      <Card style={this.props.large ? styles.largeCard : styles.card}>
         <CardActionArea>
           <CardContent>
             <Typography gutterBottom variant="headline" component="h2">
               {this.props.recipe.name}
             </Typography>
 
-            <CardMedia
-              style={styles.media}
-              image={this.state.image_data}
-              title={this.props.recipe.name}
-            />
+            <CardMedia title={this.props.recipe.name}>
+              <img
+                src={this.state.image_data}
+                alt="not found"
+                style={styles.media}
+              />
+            </CardMedia>
 
             <Typography component="p">
               {this.props.recipe.description}
             </Typography>
-            {this.props.showIns && (
-              <Typography component="p">
+            {this.props.large && (
+              <Typography component="p" paragraph={true}>
                 {this.props.recipe.instructions}
               </Typography>
             )}
@@ -78,10 +83,6 @@ class RecipeCardV extends Component {
     );
   }
 }
-
-RecipeCardV.propTypes = {
-  classes: PropTypes.object.isRequired
-};
 
 const mapStateToProps = state => {
   return {

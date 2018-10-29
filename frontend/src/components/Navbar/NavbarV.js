@@ -1,182 +1,145 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { Redirect } from "react-router-dom";
+import { withStyles } from "@material-ui/core/styles";
 
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
-import IconButton from '@material-ui/core/IconButton';
-import DeleteIcon from '@material-ui/icons/Delete';
-import SvgIcon from '@material-ui/core/SvgIcon';
-import { fade } from '@material-ui/core/styles/colorManipulator';
-import SearchIcon from '@material-ui/icons/Search';
-import InputBase from '@material-ui/core/InputBase';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import IconButton from "@material-ui/core/IconButton";
+import Kitchen from "@material-ui/icons/KitchenRounded";
+import Fastfood from "@material-ui/icons/FastfoodRounded";
+import LocalLibrary from "@material-ui/icons/LocalLibraryRounded";
+import ShoppingCart from "@material-ui/icons/ShoppingCartRounded";
+import PowerButton from "@material-ui/icons/PowerSettingsNewRounded";
+import PropTypes from "prop-types";
 
-// function HomeIcon(props) {
-//   return (
-//     <SvgIcon {...props}>
-//       <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
-//     </SvgIcon>
-//   );
-// }
+import LogoSm from "../../assets/logo_sm.svg";
 
-const styles = theme => ({
-  root: {
-    width: '100%',
-  },
-  grow: {
-    flexGrow: 1,
-  },
-  menuButton: {
-    marginLeft: -12,
-    marginRight: 20,
-  },
-  title: {
-    display: 'none',
-    [theme.breakpoints.up('sm')]: {
-      display: 'block',
+const styles = {
+  "@media (min-width: 1024px)": {
+    container: { display: "flex" },
+    userName: {
+      paddingLeft: "60%",
+      textDecoration: "none",
+      color: "white"
     },
-  },
-  search: {
-    position: 'relative',
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: fade(theme.palette.common.white, 0.15),
-    '&:hover': {
-      backgroundColor: fade(theme.palette.common.white, 0.25),
+    menuButtons: {
+      textDecoration: "none",
+      color: "white"
     },
-    marginLeft: 0,
-    width: '100%',
-    [theme.breakpoints.up('sm')]: {
-      marginLeft: theme.spacing.unit,
-      width: 'auto',
+    powerButton: {
+      textDecoration: "none",
+      color: "white",
+      paddingLeft: "10%"
     },
+    img: { width: "200", height: "200", flex: 1 }
   },
-  searchIcon: {
-    width: theme.spacing.unit * 9,
-    height: '100%',
-    position: 'absolute',
-    pointerEvents: 'none',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  inputRoot: {
-    color: 'inherit',
-    width: '100%',
-  },
-  inputInput: {
-    paddingTop: theme.spacing.unit,
-    paddingRight: theme.spacing.unit,
-    paddingBottom: theme.spacing.unit,
-    paddingLeft: theme.spacing.unit * 10,
-    transition: theme.transitions.create('width'),
-    width: '100%',
-    [theme.breakpoints.up('sm')]: {
-      width: 120,
-      '&:focus': {
-        width: 200,
-      },
+  "@media (min-width: 350px)": {
+    container: { display: "flex" },
+    userName: {
+      paddingLeft: "1%",
+      textDecoration: "none",
+      color: "white"
     },
-  },
-  sectionDesktop: {
-    display: 'none',
-    [theme.breakpoints.up('md')]: {
-      display: 'flex',
+    menuButtons: {
+      textDecoration: "none",
+      color: "white"
     },
-  },
-});
+    powerButton: {
+      textDecoration: "none",
+      color: "white",
+      paddingLeft: "1%"
+    },
+    img: { width: "120", height: "120", flex: 1 }
+  }
+};
 
 function NavbarV(props) {
   const { classes } = props;
   if (props.auth) {
     return (
-      <AppBar position="fixed" color="secondary">
-        <Toolbar>
+      <AppBar position="fixed" color="primary">
+        <Toolbar className={classes.container}>
+          <Link to="/home">
+            <IconButton>
+              <img src={LogoSm} alt="Whooops!" className={classes.img} />
+            </IconButton>
+          </Link>
+
           <Typography variant="title" color="inherit">
-            {" "}
-            Open Menu{" "}
+            Open Menu
           </Typography>
-          <Link to="/home" style={{textDecoration: 'none', color: 'white'}}>
+
+          <Link to="/menus">
             <IconButton color="inherit">
-              <i class="material-icons">
-                home
-              </i>
+              <LocalLibrary className={classes.menuButtons} />
             </IconButton>
           </Link>
 
-          <Link to="/menus" style={{textDecoration: 'none', color: 'white'}}>
+          <Link to="/recipes" className={classes.menuButtons}>
             <IconButton color="inherit">
-            <i class="material-icons">
-              restaurant_menu
-            </i>
-            </IconButton>
-          </Link>
-          <Link to="/recipes" style={{textDecoration: 'none', color: 'white'}}>
-            <IconButton color="inherit">
-            <i class="material-icons">
-              restaurant
-            </i>
-            </IconButton>
-          </Link>
-          <Link to="/pantry" style={{textDecoration: 'none', color: 'white'}}>
-            <IconButton color="inherit">
-            <i class="material-icons">
-              collections_bookmark
-            </i>
-            </IconButton>
-          </Link>
-          <Link to="/shoppinglist" style={{textDecoration: 'none', color: 'white'}}>
-            <IconButton color="inherit">
-              <i class="material-icons">
-                shopping_cart
-              </i>
+              <Fastfood />
             </IconButton>
           </Link>
 
-            <div className={classes.grow}>
-            <div className={classes.search}>
-              <div className={classes.searchIcon}>
-                <SearchIcon />
-              </div>
-              <InputBase
-                placeholder="Search…"
-                classes={{
-                  root: classes.inputRoot,
-                  input: classes.inputInput,
-                }}
-              />
-            </div>
-            </div>
+          <Link to="/pantry" className={classes.menuButtons}>
+            <IconButton color="inherit">
+              <Kitchen />
+            </IconButton>
+          </Link>
 
-            <div className={classes.sectionDesktop}>
-              <IconButton onClick={props.logout} color="inherit">
-              <i class="material-icons">
-                power_settings_new
-              </i>
-              </IconButton>
-            </div>
+          <Link
+            to="/shoppinglist"
+            style={{ textDecoration: "none", color: "white" }}
+          >
+            <IconButton color="inherit">
+              <ShoppingCart />
+            </IconButton>
+          </Link>
+
+          <Typography
+            variant="title"
+            color="inherit"
+            className={classes.userName}
+          >
+            {localStorage.getItem("user")
+              ? localStorage.getItem("user").split("@")[0]
+              : ""}
+          </Typography>
+
+          <div>
+            <IconButton color="inherit" onClick={props.logout}>
+              <PowerButton className={classes.powerButton} />
+            </IconButton>
+          </div>
         </Toolbar>
       </AppBar>
     );
   } else {
     return (
-      <AppBar position="fixed" color="secondary">
+      <AppBar position="fixed" color="default">
+        <Redirect to="/welcome" />
         <Toolbar>
+          <IconButton>
+            <img
+              src={LogoSm}
+              alt="Whooops!"
+              style={{ width: "15%", height: "15%", flex: 1 }}
+            />
+          </IconButton>
+
           <Typography variant="title" color="inherit">
-            {" "}
-            Open Menu{" "}
+            Open Menu
           </Typography>
         </Toolbar>
       </AppBar>
     );
   }
+}
 
-  NavbarV.propTypes = {
-    classes: PropTypes.object.isRequired,
-  };
-
+NavbarV.propTypes = {
+  classes: PropTypes.object.isRequired
 };
 
 export default withStyles(styles)(NavbarV);

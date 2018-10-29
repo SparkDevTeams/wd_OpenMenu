@@ -6,7 +6,8 @@ export default class CamPicC extends Component {
     super(props);
 
     this.state = {
-      image: null
+      image: null,
+      camera: "user"
     };
   }
 
@@ -19,19 +20,29 @@ export default class CamPicC extends Component {
     this.setState({ image: (new Image().src = imageSrc) });
   };
 
+  toggleCamera = () => {
+    if (this.state.camera === "front") {
+      this.setState({ camera: "environment" });
+    } else {
+      this.setState({ camera: "front" });
+    }
+  };
+
   clear = () => {
     this.setState({ pic: null });
   };
 
   keepImage = () => {
     this.props.webcamImageCB(this.state.image);
+    this.props.viewTypeCancel();
+    this.props.handleClose();
   };
 
   render() {
     const videoConstraints = {
       width: 1280,
       height: 720,
-      facingMode: "user"
+      facingMode: this.state.user
     };
 
     return (
@@ -42,6 +53,8 @@ export default class CamPicC extends Component {
           capture={this.capture}
           keepImage={this.keepImage}
           image={this.state.image}
+          toggleCamera={this.toggleCamera}
+          viewTypeCancel={this.props.viewTypeCancel}
         />
       </div>
     );
