@@ -1,8 +1,6 @@
-import React, { Component } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
 import Card from "@material-ui/core/Card";
-import CardActions from "@material-ui/core/CardActions";
 import Button from "@material-ui/core/Button";
 import Tooltip from "@material-ui/core/Tooltip";
 import AddIcon from "@material-ui/icons/Add";
@@ -54,16 +52,29 @@ const MenuV = props => {
     <div style={styles.mainContainer}>
       <div style={styles.menuDetails}>
         <Card style={styles.card}>
-          <MenuCard menu={props.menu} />
+          <MenuCard menu={props.menu} large={true} />
         </Card>
       </div>
       <div style={styles.recipeRow}>
         <h2>Recipes: </h2>
-        {props.menuRecipes.map(recipe => (
-          <Link to={{ pathname: "/recipes/" + recipe.uid }}>
-            <RecipeCardV recipe={recipe} />
-          </Link>
-        ))}
+        {/* Show list of ingredients, only if they actually exist */}
+        {props.menuRecipes.length > 0
+          ? props.menuRecipes.map(recipe => {
+              for (let i = 0; i < props.menuRecipes.length; i++) {
+                if (recipe.uid === props.menuRecipes[i].uid) {
+                  // console.log(item.itemId);
+                  return (
+                    <Link
+                      key={recipe.uid}
+                      to={{ pathname: "/recipes/" + recipe.uid }}
+                    >
+                      <RecipeCardV recipe={recipe} />
+                    </Link>
+                  );
+                }
+              }
+            })
+          : console.log("No ingredient. Add some")}
       </div>
       <div>
         <Tooltip title="Add recipe">

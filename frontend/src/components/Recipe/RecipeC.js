@@ -2,75 +2,123 @@ import React, { Component } from "react";
 import RecipeV from "./RecipeV";
 import RecipeA from "./../../store/actions/RecipeA";
 import { connect } from "react-redux";
+import axios from "axios";
 
 // const recipeID = "1539371834732MushroomSausageRaguuser1";
 
 class RecipeC extends Component {
-  state = {
-    openAddItemDialog: false,
-    itemName: "",
-    editButtonClicked: false,
-    addButtonClicked: false
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      openEditDialog: false,
+      recipe_name: "",
+      image: "", //contain rurl
+      recipe: {},
+      ingredients: [], //contain itemId
+      instructions: "",
+      currentIngredient: "",
+      currentIngredientAmount: "",
+      image_form: "",
+      image_name: ""
+    };
+  }
 
   handleEditClickOpen = () => {
     this.setState({
-      openAddItemDialog: true,
-      editButtonClicked: true,
-      addButtonClicked: false
-    });
-  };
-
-  handleAddClickOpen = () => {
-    this.setState({
-      openAddItemDialog: true,
-      addButtonClicked: true,
-      editButtonClicked: false
+      openEditDialog: true
     });
   };
 
   handleClose = () => {
     this.setState({
-      openAddItemDialog: false,
-      addButtonClicked: false,
-      editButtonClicked: false
+      openEditDialog: false,
+      currentIngredient: "",
+      currentIngredientAmount: ""
     });
   };
 
-  editItemDetails = e => {
+  handleAddItem = () => {
+    let newItem = {
+      itemId: this.state.currentIngredient,
+      amount: this.state.currentIngredientAmount
+    };
+    this.setState({
+      ingredients: this.state.ingredients.concat(newItem)
+    });
+    console.log(this.state.ingredients);
+    // clear the current value
+    this.setState({ currentIngredient: "", currentIngredientAmount: "" });
+  };
+
+  updateRecipe = () => {
+    console.log("hit updateRecipe");
+    const user = localStorage.getItem("user");
+    const recipe_name = this.state.recipe_name;
+
+    // uid is comming from tommy's pull request
+    let recipeInfo = {
+      name: recipe_name,
+      user: user,
+      image: this.state.image_name,
+      ingredients: this.state.ingredients,
+      instructions: this.state.instructions,
+      uid: this.generateId(recipe_name, user)
+    };
+    console.log(recipeInfo);
+    this.props.recipeFn.updateRecipe({
+      recipeInfo: recipeInfo,
+      id: this.state.recipe.id
+    });
+    // this.sendImg();
+    this.handleClose();
+  };
+
+  handleOnChangeForm = e => {
     let field = e.target.name;
     let value = e.target.value;
+    // console.log(e.target.value);
 
     switch (field) {
       case "name":
         this.setState({
-          newName: value
+          recipe_name: value
+        });
+        break;
+      case "image":
+        this.setState({
+          image: value
+        });
+        break;
+      case "instruction":
+        this.setState({
+          instructions: value
         });
         break;
 
       default:
         break;
     }
-    console.log(this.state.newName);
   };
 
-  // addNewItem = () => {
-  //   const user = localStorage.getRecipe("user");
-  //   const name = this.state.newName;
+  handleIngredientForm = e => {
+    let field = e.target.name;
+    let value = e.target.value;
 
-  //   // uid is comming from tommy's pull request
-  //   let itemInfo = {
-  //     name: name,
-  //     user: user,
-  //     image: this.state.newImageURL,
-  //     description: this.state.newDescription,
-  //     size: this.state.newSize,
-  //     price: this.state.newPrice,
-  //     tags: this.state.newTags,
-  //     uid: this.generateId(name, user)
-  //   };
-  //   this.props.recipeFn.createRecipes(itemInfo);
-  // };
+    switch (field) {
+      case "ingredients":
+        this.setState({
+          currentIngredient: value
+        });
+        break;
+      case "amount":
+        this.setState({
+          currentIngredientAmount: value
+        });
+        break;
+      default:
+        break;
+    }
+  };
 
   generateId = (name, user) => {
     let newName = name.replace(/\W/g, "");
@@ -83,27 +131,65 @@ class RecipeC extends Component {
     return id;
   };
 
+  componentWillMount() {
+    let returnRecipe = this.props.userRecipes.filter(recipe => {
+      return recipe.uid === this.props.match.params.id;
+    });
+    returnRecipe = returnRecipe[0];
+
+    this.setState({
+      recipe_name: returnRecipe.name,
+      recipe: returnRecipe,
+      ingredients: returnRecipe.ingredients,
+      image_name: returnRecipe.image,
+      instructions: returnRecipe.instructions
+    });
+
+    // console.log(this.state.ingredients);
+  }
+
+  setImageForm = form => {
+    this.setState({ image_form: form });
+  };
+
+  setImageName = name => {
+    this.setState({ image_name: name });
+  };
+
+  sendImg = () => {
+    // Post image to s3
+    axios
+      .post(process.env.REACT_APP_UPLOAD_IMG, this.state.image_form)
+      .then(res => {
+        console.log(res.body);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
   render() {
     return (
       <div>
-        {this.props.userRecipes
-          .filter(recipe => {
-            return recipe.uid === this.props.match.params.id;
-          })
-          .map(returnRecipe => {
-            return (
-              <RecipeV
-                recipe={returnRecipe}
-                openDialog={this.state.openAddItemDialog}
-                handleEditClickOpen={this.handleEditClickOpen}
-                handleAddClickOpen={this.handleAddClickOpen}
-                handleCloseDialog={this.handleClose}
-                editItemDetails={this.editItemDetails}
-                addButtonClicked={this.state.addButtonClicked}
-                editButtonClicked={this.state.editButtonClicked}
-              />
-            );
-          })}
+        <RecipeV
+          recipe={this.state.recipe}
+          userItems={this.props.userItems}
+          openEditDialog={this.state.openEditDialog}
+          handleEditClickOpen={this.handleEditClickOpen}
+          handleCloseDialog={this.handleClose}
+          handleOnChangeForm={this.handleOnChangeForm}
+          handleAddItem={this.handleAddItem}
+          currentIngredient={this.state.currentIngredient}
+          currentIngredientAmount={this.state.currentIngredientAmount}
+          handleIngredientForm={this.handleIngredientForm}
+          updateRecipe={this.updateRecipe}
+          ingredients={this.state.ingredients}
+          recipe_name={this.state.recipe_name}
+          image_name={this.state.image_name}
+          sendImg={this.sendImg}
+          setImageForm={this.setImageForm}
+          setImageName={this.setImageName}
+        />
       </div>
     );
   }
@@ -111,7 +197,8 @@ class RecipeC extends Component {
 
 const mapStateToProps = state => {
   return {
-    userRecipes: state.RecipeR.userRecipes
+    userRecipes: state.RecipeR.userRecipes,
+    userItems: state.ItemR.userItems
   };
 };
 

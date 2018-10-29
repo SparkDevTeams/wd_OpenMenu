@@ -1,6 +1,6 @@
 const initState = {
   userRecipes: [],
-  recipeImages: []
+  userRecipeImages: []
 };
 
 function RecipeR(state = initState, action) {
@@ -8,7 +8,10 @@ function RecipeR(state = initState, action) {
     case "GET_RECIPES":
       return { ...state, userRecipes: action.data };
     case "ADD_IMAGE":
-      return { ...state, recipeImages: [state.recipeImages, action.data] };
+      return {
+        ...state,
+        userRecipeImages: state.userRecipeImages.concat(action.data)
+      };
     default:
       return state;
   }

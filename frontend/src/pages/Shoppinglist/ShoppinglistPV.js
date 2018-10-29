@@ -5,18 +5,8 @@ import "../../styles/ShoppinglistS.css";
 import RecipeCard from "../../components/Recipe/ItemCardV";
 import CardC from "./CardC";
 
-const styles = theme => ({
-  button: {
-    margin: theme.spacing.unit
-  },
-  extendedIcon: {
-    marginRight: theme.spacing.unit
-  }
-});
-
 function ShoppinglistPV(props) {
   const { classes } = props;
-
   return (
     <div>
       <div class="added-items-grid-container">

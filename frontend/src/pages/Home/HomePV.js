@@ -1,33 +1,66 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { withStyles } from "@material-ui/core/styles";
 
-import RecipeCardV from "../../components/Recipe/ItemCardV";
 import MenuCard from "../../components/Menu/MenuCard";
+import RecipeCardV from "../../components/Recipe/RecipeCardV";
+import ItemCard from "./../../components/Item/ItemC";
+
+const styles = {
+  "@media (min-width: 1024px)": {
+    cardContainer: {
+      display: "grid",
+      gridTemplateColumns: "auto auto auto",
+      gridTemplateRows: "auto auto auto"
+    },
+    cardStyle: {
+      justifySelf: "center",
+      marginBottom: "2%"
+    }
+  }
+};
 
 const HomePV = props => {
+  const { classes } = props;
   return (
     // This part need better styling
     <div>
-      <h1>Recipes</h1>
-      {props.userRecipes.map(recipe => (
-        <Link to={{ pathname: "/recipes/" + recipe.uid }}>
-          <RecipeCardV recipe={recipe} />
-        </Link>
-      ))}
-
+      {/*Page CSS*/}
       <h1>Menus</h1>
-      {props.userMenus.map(menu => (
-        <Link to={{ pathname: "/menus/" + menu.uid }}>
-          <MenuCard menu={menu} />
-        </Link>
-      ))}
+      <div className={classes.cardContainer}>
+        {props.userMenus.map(menu => (
+          <Link
+            key={menu.uid}
+            className={classes.cardStyle}
+            to={{ pathname: "/menus/" + menu.uid }}
+          >
+            <MenuCard menu={menu} />
+          </Link>
+        ))}
+      </div>
+
+      <h1>Recipes</h1>
+      <div className={classes.cardContainer}>
+        {props.userRecipes.map(recipe => (
+          <Link
+            key={recipe.uid}
+            className={classes.cardStyle}
+            to={{ pathname: "/recipes/" + recipe.uid }}
+          >
+            <RecipeCardV recipe={recipe} large={false} />
+          </Link>
+        ))}
+      </div>
 
       <h1>Items</h1>
-      {props.userItems.map(item => (
-        <RecipeCardV name={item.name} />
-      ))}
+      <div className={classes.cardContainer}>
+        {props.userItems.map(item => (
+          // <RecipeCardV key={item.uid} recipe={item} showIns={false} />
+          <ItemCard key={item.uid} itemId={item.uid} amount={0.0} />
+        ))}
+      </div>
     </div>
   );
 };
 
-export default HomePV;
+export default withStyles(styles)(HomePV);

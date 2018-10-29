@@ -6,16 +6,32 @@ import CardActionArea from "@material-ui/core/CardActions";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
-import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/core";
 
 const styles = {
-  card: {
-    width: 300
+  largeCard: {
+    width: "100%",
+    height: "10%"
   },
-  media: {
-    height: 140
+  iconCard: {
+    width: "50%",
+    height: "50%"
+  },
+  cardTitle: {
+    textAlign: "center"
+  },
+  cardImgContainer: {
+    display: "block",
+    marginLeft: 20
+  },
+  cardImg: {
+    width: "100%",
+    height: "100%"
+  },
+  cardDescription: {
+    textAlign: "center",
+    marginTop: 10
   }
 };
 
@@ -49,20 +65,38 @@ class MenuCard extends Component {
     }
     return (
       <Fragment>
-        <Card style={styles.card}>
+        <Card
+          className={
+            this.props.large
+              ? this.props.classes.largeCard
+              : this.props.classes.iconCard
+          }
+        >
           <CardActionArea>
             <CardContent>
-              <Typography gutterBottom variant="headline" component="h2">
+              <Typography
+                className={this.props.classes.cardTitle}
+                gutterBottom
+                variant="headline"
+                component="h2"
+              >
                 {this.props.menu.name}
               </Typography>
 
-              <CardMedia
-                style={styles.media}
-                image={this.state.image_data}
-                title={this.props.menu.name}
-              />
+              <div className={this.props.classes.cardImgContainer}>
+                <CardMedia title={this.props.menu.name}>
+                  <img
+                    src={this.state.image_data}
+                    style={styles.cardImg}
+                    alt="not found"
+                  />
+                </CardMedia>
+              </div>
 
-              <Typography component="p">
+              <Typography
+                className={this.props.classes.cardDescription}
+                component="p"
+              >
                 {this.props.menu.description}
               </Typography>
             </CardContent>
@@ -84,4 +118,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(MenuCard);
+export default connect(mapStateToProps)(withStyles(styles)(MenuCard));

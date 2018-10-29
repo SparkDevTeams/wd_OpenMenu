@@ -8,7 +8,7 @@ import { downloadImage } from "../../utils/downloadImage";
  * @param dispatch Recieved from redux. Dispatched actions to central store
  *
  * Output: Modifies central store
- *  - userItems: Gets list of Menu objects
+ *  - userMenus: Gets list of Menu objects
  *  - menuImages: Downloads and store menu related images
  *
  * Components used: None

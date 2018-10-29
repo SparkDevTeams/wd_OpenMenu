@@ -6,14 +6,21 @@ import CardActionArea from "@material-ui/core/CardActionArea";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
+import "./style.css";
+import Logo from "../../assets/logo.svg";
 
 const LandingPV = props => {
   if (props.auth) {
     return <Redirect to="/home" />;
   } else {
     return (
-      <div>
+      <div className="containerL">
         <Card>
+          <img
+            src={Logo}
+            alt="Whooops!"
+            style={{ width: "50%", height: "50%", flex: 1 }}
+          />
           <CardActionArea>
             <CardContent>
               <form>
@@ -37,14 +44,18 @@ const LandingPV = props => {
             </CardContent>
           </CardActionArea>
           <div>
-            <Button variant="contained" onClick={props.login}>
-              {" "}
-              Login{" "}
-            </Button>
-            <Button variant="contained" onClick={props.signup}>
-              {" "}
-              Signup{" "}
-            </Button>
+            <div className="buttons">
+              <Button variant="contained" color="primary" onClick={props.login}>
+                {" "}
+                Login{" "}
+              </Button>
+            </div>
+            <div className="buttons">
+              <Button variant="contained" onClick={props.signup}>
+                {" "}
+                Signup{" "}
+              </Button>
+            </div>
           </div>
         </Card>
       </div>

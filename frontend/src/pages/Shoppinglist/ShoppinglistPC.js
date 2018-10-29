@@ -6,7 +6,6 @@ import { connect } from "react-redux";
 import HomePC from "../Home/HomePC";
 
 class ShoppinglistPC extends Component {
-
   constructor() {
     super();
     this.state = {
@@ -23,7 +22,7 @@ class ShoppinglistPC extends Component {
       addItemWindowVisibility: true
     });
   }
-  closeAddItemWindow(){
+  closeAddItemWindow() {
     this.setState({
       addItemWindowVisibility: false
     });
@@ -91,10 +90,7 @@ class ShoppinglistPC extends Component {
     }
 
    
-
     return componentToReturn;
-
-    
   }
 }
 
@@ -106,7 +102,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(
-  mapStateToProps
-)(ShoppinglistPC);
-
+export default connect(mapStateToProps)(ShoppinglistPC);

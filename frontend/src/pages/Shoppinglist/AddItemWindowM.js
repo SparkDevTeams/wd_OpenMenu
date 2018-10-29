@@ -1,5 +1,4 @@
 import React from "react";
-import Icon from "@material-ui/core/Icon";
 import "../../styles/ShoppinglistS.css";
 import RecipeCard from "../../components/Recipe/ItemCardV";
 import Checkbox from "@material-ui/core/Checkbox";

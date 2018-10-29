@@ -9,26 +9,11 @@ import Input from "@material-ui/core/Input";
 import Button from "@material-ui/core/Button";
 
 const GetImageV = props => {
-  if (props.viewType === "display_upload") {
-    return (
-      <div>
-        <img
-          alt="Your pic should be here!!!"
-          src={props.upload_image}
-          width="300"
-          height="300"
-        />
-        <Button color="secondary" onClick={props.viewTypeCancel}>
-          {" "}
-          OK{" "}
-        </Button>
-      </div>
-    );
-  } else if (props.viewType === "display_webcam") {
+  if (props.viewType === "display_webcam") {
     return (
       <div>
         <img alt="Your pic should be here!!!" src={props.webcam_image} />
-        <Button color="secondary" onClick={props.viewTypeCancel}>
+        <Button color="secondary" onClick={props.handleClose}>
           {" "}
           OK{" "}
         </Button>
@@ -58,11 +43,9 @@ const GetImageV = props => {
           <CamPicC
             getImageForm={props.getImageForm}
             webcamImageCB={props.webcamImageCB}
+            handleClose={props.handleClose}
+            viewTypeCancel={props.viewTypeCancel}
           />
-          <Button color="secondary" onClick={props.viewTypeCancel}>
-            {" "}
-            Cancel{" "}
-          </Button>
         </Paper>
       </div>
     );
