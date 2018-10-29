@@ -13,6 +13,7 @@ const MenuBrowserPV = props => {
     <div>
       <Button
         // style={styles.bttn}
+        position="absolute"
         margin-left="20px"
         variant="fab"
         color="secondary"

@@ -17,43 +17,12 @@ const styles = {
   "@media (min-width: 1024px)": {
     cardContainer: {
       display: "grid",
-      gridTemplateColumns: "auto auto auto",
-      gridTemplateRows: "auto auto auto"
+      gridTemplateColumns: "1fr 1fr 1fr",
+      gridGap: "1%"
     },
     cardStyle: {
       justifySelf: "center",
       marginBottom: "2%"
-    },
-    mainContainer: {
-      //height: 800
-    },
-    header: {
-      textAlign: "center"
-    },
-    card: {
-      width: 500,
-      marginRight: 60
-    },
-    menuDetails: {
-      display: "flex",
-      flexDirection: "row",
-      marginBottom: 100
-    },
-    menuInfo: {
-      marginRight: 70
-    },
-    media: {
-      height: 200
-    },
-    recipeRow: {
-      display: "flex",
-      flexDirection: "row"
-    },
-    addRecipeButton: {
-      position: "absolute",
-      right: 0
-      //bottom: theme.spacing.unit * 2,
-      //right: theme.spacing.unit * 3
     }
   }
 };
@@ -61,9 +30,9 @@ const styles = {
 const MenuV = props => {
   const { classes } = props;
   return (
-    <div className={classes.mainContainer}>
-      <div className={classes.menuDetails}>
-        <Card className={classes.card}>
+    <div className={classes.cardContainer}>
+      <div>
+        <Card>
           <MenuCard menu={props.menu} large={true} />
         </Card>
       </div>

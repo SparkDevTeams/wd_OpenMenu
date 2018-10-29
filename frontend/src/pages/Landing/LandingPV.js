@@ -18,8 +18,9 @@ const LandingPV = props => {
         <p>
           {" "}
           Create and share Menu's & Recipes, Manage your shopping list, find the
-          best deals near you... Welcome to
+          best deals near you...
         </p>
+        <p>Welcome to...</p>
         <h1>Open Menu</h1>
         <div className="containerL">
           <Card>
