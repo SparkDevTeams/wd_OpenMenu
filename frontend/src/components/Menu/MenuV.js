@@ -13,6 +13,7 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 
 import MenuCard from "./MenuCard";
 import RecipeCardV from "../Recipe/RecipeCardV";
+import "./style.css";
 
 const styles = theme => ({
   mainContainer: {
