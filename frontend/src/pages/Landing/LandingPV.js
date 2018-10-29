@@ -20,8 +20,10 @@ const LandingPV = props => {
           Create and share Menu's & Recipes, Manage your shopping list, find the
           best deals near you...
         </p>
+        <br />
         <p>Welcome to...</p>
-        <h1>Open Menu</h1>
+        <h2>Open Menu</h2>
+
         <div className="containerL">
           <Card>
             <img

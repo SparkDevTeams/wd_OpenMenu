@@ -15,8 +15,8 @@ const styles = {
 
 const HomePV = props => {
   const { classes } = props;
-  let containerSpacing = 40;
-  let itemSpacing = 40;
+  let containerSpacing = 12;
+  let itemSpacing = 12;
   let cardSpacing = 16;
   let menu_cardRowWidth = 4;
   let recipe_cardRowWidth = 5;
@@ -27,7 +27,7 @@ const HomePV = props => {
     <Grid container spacing={containerSpacing}>
       <Grid item xs={itemSpacing}>
         <h1>Menus</h1>
-        <Grid container justify="center" spacing={cardSpacing}>
+        <Grid container spacing={cardSpacing}>
           {props.userMenus.map(menu => (
             <Grid key={menu.uid} item xs={menu_cardRowWidth}>
               <Link
@@ -41,7 +41,7 @@ const HomePV = props => {
         </Grid>
 
         <h1>Recipes</h1>
-        <Grid container justify="center" spacing={cardSpacing}>
+        <Grid container spacing={cardSpacing}>
           {props.userRecipes.map(recipe => (
             <Grid key={recipe.uid} item xs={recipe_cardRowWidth}>
               <Link
@@ -55,7 +55,7 @@ const HomePV = props => {
         </Grid>
 
         <h1>Items</h1>
-        <Grid container justify="center" spacing={cardSpacing}>
+        <Grid container spacing={cardSpacing}>
           {props.userItems.map(item => (
             <Grid key={item.uid} item xs={items_cardRowWidth}>
               <ItemCard itemId={item.uid} amount={0.0} />
