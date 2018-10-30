@@ -3,14 +3,7 @@ import ShoppinglistPV from "./ShoppinglistPV";
 import AddItemWindowM from "./AddItemWindowM";
 import { connect } from "react-redux";
 
-import MenuA from "../../store/actions/MenuA";
-import ItemA from "../../store/actions/ItemA";
-import RecipeA from "../../store/actions/RecipeA";
-
-import HomePC from "../Home/HomePC";
-
 class ShoppinglistPC extends Component {
-
   constructor() {
     super();
     this.state = {
@@ -25,7 +18,7 @@ class ShoppinglistPC extends Component {
       addItemWindowVisibility: true
     });
   }
-  closeAddItemWindow(){
+  closeAddItemWindow() {
     this.setState({
       addItemWindowVisibility: false
     });
@@ -46,37 +39,31 @@ class ShoppinglistPC extends Component {
   render() {
     let componentToReturn;
     if (this.state.addItemWindowVisibility === true) {
-       componentToReturn = (
-                          <div>
-                            <ShoppinglistPV 
-                            openWindowFunction={this.openAddItemWindow.bind(this)} />
-                            <AddItemWindowM closeWindowFunction={this.closeAddItemWindow.bind(this)}
-
-                            items={this.props.userItems} 
-                            itemsChecked={this.state.itemsChecked} 
-                            toggleItemCheckFunction={this.toggleItemsChecked.bind(this)}
-
-                            recipes={this.props.userRecipes} 
-                            recipesChecked={this.state.recipesChecked} 
-                            toggleRecipeCheckFunction={this.toggleRecipesChecked.bind(this)}
-
-                            />
-                          </div>
-                          );
+      componentToReturn = (
+        <div>
+          <ShoppinglistPV
+            openWindowFunction={this.openAddItemWindow.bind(this)}
+          />
+          <AddItemWindowM
+            closeWindowFunction={this.closeAddItemWindow.bind(this)}
+            items={this.props.userItems}
+            itemsChecked={this.state.itemsChecked}
+            toggleItemCheckFunction={this.toggleItemsChecked.bind(this)}
+            recipes={this.props.userRecipes}
+            recipesChecked={this.state.recipesChecked}
+            toggleRecipeCheckFunction={this.toggleRecipesChecked.bind(this)}
+          />
+        </div>
+      );
+    } else {
+      componentToReturn = (
+        <ShoppinglistPV
+          openWindowFunction={this.openAddItemWindow.bind(this)}
+        />
+      );
     }
-    else {
-      
-       componentToReturn = (<ShoppinglistPV 
-                           openWindowFunction={this.openAddItemWindow.bind(this)}/>);
-      
-
-    }
-
-   
 
     return componentToReturn;
-
-    
   }
 }
 
@@ -88,7 +75,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(
-  mapStateToProps
-)(ShoppinglistPC);
-
+export default connect(mapStateToProps)(ShoppinglistPC);

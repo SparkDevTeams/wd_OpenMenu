@@ -78,7 +78,7 @@ class RecipeBrowserPC extends Component {
       amount: this.state.currentIngredientAmount
     };
     this.setState({
-      ingredients: [...this.state.ingredients, newItem]
+      ingredients: this.state.ingredients.concat(newItem)
     });
     console.log(this.state.ingredients);
     // clear the current value

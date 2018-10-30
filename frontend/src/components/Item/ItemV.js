@@ -67,7 +67,7 @@ const ItemV = props => {
     <Fragment>
       {/*card to display*/}
       <Card style={styles.Card} onClick={props.detailsToggle}>
-        <img src={props.img} style={styles.img} />
+        <img src={props.img} alt="not found" style={styles.img} />
         <Typography variant="headline" component="h2">
           {props.name}
         </Typography>
@@ -75,7 +75,7 @@ const ItemV = props => {
         <div style={{ margin: "3px 0 8px 0" }}>
           <EditIcon style={styles.icon} onClick={props.editToggle} />
           <ShareIcon style={styles.icon} onClick={props.shareItem} />
-          <DeleteIcon style={styles.icon} onClick={props.deleteItem} />
+          <DeleteIcon style={styles.icon} onClick={props.deleteToggle} />
         </div>
         <div>{props.tags()}</div>
       </Card>
@@ -83,7 +83,7 @@ const ItemV = props => {
       {/*info dialog */}
       <Dialog open={props.detailsOpen} onClose={props.detailsToggle}>
         <CloseIcon style={styles.closeBtn} onClick={props.detailsToggle} />
-        <img src={props.img} style={styles.img} />
+        <img src={props.img} alt="not found" style={styles.img} />
         <DialogTitle style={{ paddingBottom: 5 }} id="form-dialog-title">
           {props.name}
         </DialogTitle>
@@ -195,6 +195,21 @@ const ItemV = props => {
             Cancel
           </Button>
         </div>
+      </Dialog>
+
+      {/*delete dialog */}
+      <Dialog open={props.deleteOpen} onClose={props.deleteToggle}>
+        <DialogContent style={{ marginTop: -3 }}>
+          <DialogTitle style={{ paddingBottom: 8 }}>
+            {`Are you sure you want to delete ${props.name} ?`}
+          </DialogTitle>
+          <Button onClick={props.deleteItem} color="primary">
+            Delete Item
+          </Button>
+          <Button onClick={props.deleteToggle} color="primary">
+            Cancel
+          </Button>
+        </DialogContent>
       </Dialog>
     </Fragment>
   );

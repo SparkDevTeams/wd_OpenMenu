@@ -6,6 +6,8 @@ import CardActionArea from "@material-ui/core/CardActionArea";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
+import "./style.css";
+import Logo from "../../assets/logo.svg";
 
 const LandingPV = props => {
   if (props.auth) {
@@ -13,40 +15,62 @@ const LandingPV = props => {
   } else {
     return (
       <div>
-        <Card>
-          <CardActionArea>
-            <CardContent>
-              <form>
-                <TextField
-                  id="email"
-                  label="Email"
-                  margin="normal"
-                  onChange={props.onUserChange}
-                  fullWidth
-                />
-                <TextField
-                  id="password"
-                  label="Password"
-                  type="password"
-                  onChange={props.onPWChange}
-                  autoComplete="current-password"
-                  margin="normal"
-                  fullWidth
-                />
-              </form>
-            </CardContent>
-          </CardActionArea>
-          <div>
-            <Button variant="contained" onClick={props.login}>
-              {" "}
-              Login{" "}
-            </Button>
-            <Button variant="contained" onClick={props.signup}>
-              {" "}
-              Signup{" "}
-            </Button>
-          </div>
-        </Card>
+        <p>
+          {" "}
+          Create and share Menu's & Recipes, Manage your shopping list, find the
+          best deals near you...
+        </p>
+        <br />
+        <p>Welcome to...</p>
+        <h2>Open Menu</h2>
+
+        <div className="containerL">
+          <Card>
+            <img
+              src={Logo}
+              alt="Whooops!"
+              style={{ width: "50%", height: "50%", flex: 1 }}
+            />
+            <CardActionArea>
+              <CardContent>
+                <form>
+                  <TextField
+                    id="email"
+                    label="Email"
+                    margin="normal"
+                    onChange={props.onUserChange}
+                    fullWidth
+                  />
+                  <TextField
+                    id="password"
+                    label="Password"
+                    type="password"
+                    onChange={props.onPWChange}
+                    autoComplete="current-password"
+                    margin="normal"
+                    fullWidth
+                  />
+                </form>
+              </CardContent>
+            </CardActionArea>
+            <div>
+              <div className="buttons">
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={props.login}
+                >
+                  Login
+                </Button>
+              </div>
+              <div className="buttons">
+                <Button variant="contained" onClick={props.signup}>
+                  Signup
+                </Button>
+              </div>
+            </div>
+          </Card>
+        </div>
       </div>
     );
   }

@@ -6,29 +6,49 @@ import MenuA from "../../store/actions/MenuA";
 import ItemA from "../../store/actions/ItemA";
 import RecipeA from "../../store/actions/RecipeA";
 
+/**
+ * Description:
+ * This is the Home route. Land here after login.
+ * Displays recent Menu's, Recipe's, Items.
+ *
+ * Input: None
+ *
+ * Output:
+ *  - Writes to local storage:
+ *  -- user
+ *  -- userId
+ *  -- token
+ *
+ * Components used:
+ *  - RecentC: Sends list of recent Menu, Recipe, Item objects
+ *
+ * Local State:
+ *  - None
+ *
+ * Central store:
+ *  - userItems: Stores list of Item objects from DB
+ *  - userMenus: Stores list of Menu objects from DB
+ *  - userItems: Stores list of Item objects from DB
+ *
+ * Todo:
+ *  - Figure out if getting images should be done here and if so, how?
+ *  - Implement the RecentC
+ */
 class HomePC extends Component {
-  componentWillMount() {
+  componentDidMount() {
     this.props.recipeFn.getRecipes();
     this.props.menuFn.getMenus();
     this.props.itemFn.getItems();
   }
-  componentDidMount() {
-    this.loadRecipeImages();
-  }
-
-  loadRecipeImages = () => {
-    this.props.userRecipes.map(recipe => {
-      this.props.recipeFn.getImage(recipe.image_name);
-    });
-  };
 
   render() {
     return (
       <HomePV
-        recipes={this.props.userRecipes}
-        menus={this.props.userMenus}
-        items={this.props.userItems}
-        recipeImages={this.props.userRecipeImages}
+        userRecipes={this.props.userRecipes}
+        userMenus={this.props.userMenus}
+        userItems={this.props.userItems}
+        userRecipeImages={this.props.userRecipeImages}
+        loadRecipeImages={this.loadRecipeImages}
       />
     );
   }
