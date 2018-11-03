@@ -14,24 +14,39 @@ const LandingPV = props => {
     return <Redirect to="/home" />;
   } else {
     return (
-      <div>
-        <p>
-          {" "}
-          Create and share Menu's & Recipes, Manage your shopping list, find the
-          best deals near you...
-        </p>
-        <br />
-        <p>Welcome to...</p>
-        <h2>Open Menu</h2>
+      <div className="container-landing">
+    
 
-        <div className="containerL">
-          <Card>
-            <img
-              src={Logo}
-              alt="Whooops!"
-              style={{ width: "50%", height: "50%", flex: 1 }}
-            />
-            <CardActionArea>
+        <Card id="welcome-card">
+        <img
+          src={Logo}
+          alt="Whooops!"
+          style={{ width: "50%", height: "50%", flex: 1, minHeight: 80, minWIdth: 80, maxHeight: 200 }}
+        />
+        <h2 style={{marginTop: 10, marginBottom: 3}}>Open Menu</h2>
+
+        <div  style={{display: !props.showLogin ? 'initial' : 'none', paddingBottom: '20px'}}>
+          <div id="checkmark-container">
+          <p><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18"><path d="M6.61 11.89L3.5 8.78 2.44 9.84 6.61 14l8.95-8.95L14.5 4z"/></svg>
+          Create and share Menu's & Recipes</p>
+          <p><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18"><path d="M6.61 11.89L3.5 8.78 2.44 9.84 6.61 14l8.95-8.95L14.5 4z"/></svg>
+          Manage your shopping list</p>
+          <p>
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18"><path d="M6.61 11.89L3.5 8.78 2.44 9.84 6.61 14l8.95-8.95L14.5 4z"/></svg>find the
+            best deals near you...</p>
+          </div>
+      
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={props.toggleLogin}
+            style={{paddingTop: 5}}
+            >
+            Get Started
+          </Button>
+        </div>
+        <div style={{display: props.showLogin ? 'initial' : 'none', paddingBottom: '20px'}}>
+          <CardActionArea >
               <CardContent>
                 <form>
                   <TextField
@@ -54,7 +69,7 @@ const LandingPV = props => {
               </CardContent>
             </CardActionArea>
             <div>
-              <div className="buttons">
+              <div className="buttons login-btn">
                 <Button
                   variant="contained"
                   color="primary"
@@ -63,14 +78,14 @@ const LandingPV = props => {
                   Login
                 </Button>
               </div>
-              <div className="buttons">
+              <div className="buttons login-btn">
                 <Button variant="contained" onClick={props.signup}>
                   Signup
                 </Button>
               </div>
             </div>
-          </Card>
-        </div>
+          </div>
+        </Card>
       </div>
     );
   }
