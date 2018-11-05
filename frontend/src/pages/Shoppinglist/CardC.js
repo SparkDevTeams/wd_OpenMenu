@@ -16,13 +16,6 @@ class CardC extends Component {
           item: this.props.card,
           checked: !this.state.checked
       });
-
-      if (!this.state.checked) {
-          this.props.notifyChecked(this);
-      }
-      else {
-          this.props.notifyUnchecked(this);
-      }
   }
 
   render() {
@@ -31,9 +24,11 @@ class CardC extends Component {
     let cardIcon;
 
     if (this.state.checked) {
+        this.props.notifyChecked(this);
         cardIcon = <CheckCircleIcon color="secondary" className="add-card-icon" onClick={this.toggleChecked.bind(this)}/>;
     }
     else{
+        this.props.notifyUnchecked(this);
         cardIcon = <AddCircleIcon color="action" className="add-card-icon" onClick={this.toggleChecked.bind(this)}/>;
     }
 

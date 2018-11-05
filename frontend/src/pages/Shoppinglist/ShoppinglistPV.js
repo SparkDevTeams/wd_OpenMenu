@@ -7,13 +7,14 @@ import CardC from "./CardC";
 
 function ShoppinglistPV(props) {
   const { classes } = props;
+  console.log("On ShoppinglistPV:", props.addedItems);
   return (
     <div>
       <div class="added-items-grid-container">
         <div class="added-items-grid">
           {props.addedItems.map(item =>(
             <div>
-              <RecipeCard name={item.state.item.props.name} className="item-card" />
+              <RecipeCard name={item.props.card.props.name} className="item-card" />
             </div>
           ))}
         </div>

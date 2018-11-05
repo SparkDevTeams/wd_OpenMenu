@@ -75,7 +75,7 @@ class ShoppinglistPC extends Component {
                             toggleMenuCheckFunction={this.toggleMenusChecked.bind(this)}
 
                             getAddedItems={this.getAddedItems.bind(this)}
-                            addedItems={this.state.addedItems}
+                     
                             />
                           </div>
                           );

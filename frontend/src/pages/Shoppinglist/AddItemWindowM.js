@@ -41,8 +41,8 @@ const AddItemWindowM = props => {
 
   
 
-  function addNewChecked (newCheckedCard) {
-    checkedCards.push(newCheckedCard); 
+  function addNewChecked (checkedCard) {
+    checkedCards.push(checkedCard); 
   }
 
   function removeUnchecked(uncheckedCard) {
@@ -58,33 +58,12 @@ const AddItemWindowM = props => {
       <CardC card={itemElement} notifyChecked={addNewChecked} notifyUnchecked={removeUnchecked} checked={false}/>
   ));
 
-  let addedItemCard = props.addedItems.map(addedItem=>(
-    <CardC card={addedItem.props.card} notifyChecked={addNewChecked} notifyUnChecked={removeUnchecked} checked={true}/>
-  ));
 
-
-  console.log("Item components before: ", itemComponents);
-
-  itemComponents.forEach(item => {
-    let addedItem = addedItemCard.find(addedItem => {
-     return addedItem.props.card === item.props.card;
-    });
-
-    if (addedItem) {
-      item.props.checked=true;
-    }
-
-  });
-
-  console.log("Item components after: ", itemComponents);
-
-
-  function handleClose(){
+  function handleClose() {
     props.getAddedItems(checkedCards);
     props.closeWindowFunction();
   }
   
-
   return (
     <div className="window-box">
       <div className="windowHeader">
