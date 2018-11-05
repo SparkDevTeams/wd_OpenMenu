@@ -1,14 +1,46 @@
 .container{
-    margin-top: -10px;
+    margin-top: -80px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    margin-bottom: 20px;
+    margin-bottom: 90px;
 }
 
 .card{
-    margin: 0 auto;
     margin-top:20px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    width: 30vw;
+    height: 30vh;
+}
+
+@media (min-width: 1281px) {
+    .card{
+        margin-top:150px;
+        margin-bottom: 150px;
+    }
+}
+
+@media only screen and (max-width: 600px){
+    h1{
+        margin-top: 100px;
+    }
+    .container{
+        margin-top: 0px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        margin-bottom: 10px;
+    }
+    .card{
+        width: 80vw;
+        height: 80vh;
+        margin-bottom: -190px;
+    }
+
+    .recipe{
+        margin-bottom: -250px;
+    }
 }
 
 h1{

@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Redirect } from "react-router-dom";
+import { withStyles } from "@material-ui/core/styles";
 
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -11,29 +12,58 @@ import Fastfood from "@material-ui/icons/FastfoodRounded";
 import LocalLibrary from "@material-ui/icons/LocalLibraryRounded";
 import ShoppingCart from "@material-ui/icons/ShoppingCartRounded";
 import PowerButton from "@material-ui/icons/PowerSettingsNewRounded";
-// import { fade } from "@material-ui/core/styles/colorManipulator";
-// import SearchIcon from "@material-ui/icons/Search";
-// import InputBase from "@material-ui/core/InputBase";
 import PropTypes from "prop-types";
 
 import LogoSm from "../../assets/logo_sm.svg";
 
 const styles = {
-  container: { display: "flex" }
+  "@media (min-width: 1024px)": {
+    container: { display: "flex" },
+    userName: {
+      paddingLeft: "60%",
+      textDecoration: "none",
+      color: "white"
+    },
+    menuButtons: {
+      textDecoration: "none",
+      color: "white"
+    },
+    powerButton: {
+      textDecoration: "none",
+      color: "white",
+      paddingLeft: "10%"
+    },
+    img: { width: "200", height: "200", flex: 1 }
+  },
+  "@media (min-width: 350px)": {
+    container: { display: "flex" },
+    userName: {
+      paddingLeft: "1%",
+      textDecoration: "none",
+      color: "white"
+    },
+    menuButtons: {
+      textDecoration: "none",
+      color: "white"
+    },
+    powerButton: {
+      textDecoration: "none",
+      color: "white",
+      paddingLeft: "1%"
+    },
+    img: { width: "120", height: "120", flex: 1 }
+  }
 };
 
 function NavbarV(props) {
+  const { classes } = props;
   if (props.auth) {
     return (
-      <AppBar position="fixed" color="secondary">
-        <Toolbar className={styles.container}>
+      <AppBar position="fixed" color="primary">
+        <Toolbar className={classes.container}>
           <Link to="/home">
             <IconButton>
-              <img
-                src={LogoSm}
-                alt="Whooops!"
-                style={{ width: "200", height: "200", flex: 10 }}
-              />
+              <img src={LogoSm} alt="Whooops!" className={classes.img} />
             </IconButton>
           </Link>
 
@@ -41,29 +71,19 @@ function NavbarV(props) {
             Open Menu
           </Typography>
 
-          <Link
-            to="/menus"
-            style={{
-              textDecoration: "none",
-              color: "white",
-              marginLeft: "10%"
-            }}
-          >
+          <Link to="/menus">
             <IconButton color="inherit">
-              <LocalLibrary />
+              <LocalLibrary className={classes.menuButtons} />
             </IconButton>
           </Link>
 
-          <Link
-            to="/recipes"
-            style={{ textDecoration: "none", color: "white" }}
-          >
+          <Link to="/recipes" className={classes.menuButtons}>
             <IconButton color="inherit">
               <Fastfood />
             </IconButton>
           </Link>
 
-          <Link to="/pantry" style={{ textDecoration: "none", color: "white" }}>
+          <Link to="/pantry" className={classes.menuButtons}>
             <IconButton color="inherit">
               <Kitchen />
             </IconButton>
@@ -78,15 +98,19 @@ function NavbarV(props) {
             </IconButton>
           </Link>
 
-          <div
-            styles={{
-              marginLeft: "100%",
-              justifyContent: "right",
-              alignItems: "right"
-            }}
+          <Typography
+            variant="title"
+            color="inherit"
+            className={classes.userName}
           >
+            {localStorage.getItem("user")
+              ? localStorage.getItem("user").split("@")[0]
+              : ""}
+          </Typography>
+
+          <div>
             <IconButton color="inherit" onClick={props.logout}>
-              <PowerButton />
+              <PowerButton className={classes.powerButton} />
             </IconButton>
           </div>
         </Toolbar>
@@ -94,7 +118,7 @@ function NavbarV(props) {
     );
   } else {
     return (
-      <AppBar position="fixed" color="secondary">
+      <AppBar position="fixed" color="default">
         <Redirect to="/welcome" />
         <Toolbar>
           <IconButton>
@@ -118,4 +142,4 @@ NavbarV.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default NavbarV;
+export default withStyles(styles)(NavbarV);

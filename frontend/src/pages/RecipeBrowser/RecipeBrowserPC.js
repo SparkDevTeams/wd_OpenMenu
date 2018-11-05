@@ -17,6 +17,13 @@ class RecipeBrowserPC extends Component {
     image_name: ""
   };
 
+  componentDidUpdate(prevProps, prevState) {
+    // only update chart if the data has changed
+    if (prevProps.userRecipes !== this.props.userRecipes) {
+      this.props.recipeFn.getRecipes();
+    }
+  }
+
   handleClickOpen = () => {
     this.setState({ openAddItemDialog: true });
   };

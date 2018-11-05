@@ -10,16 +10,15 @@ import Typography from "@material-ui/core/Typography";
 
 const styles = {
   card: {
-    height: "100%",
-    width: "50%"
+    width: "50%",
+    height: "100%"
   },
   largeCard: {
     height: "30%",
-    width: "100%"
+    width: "80%"
   },
   media: {
-    height: "100%",
-    width: "100%"
+    width: "60%"
   }
 };
 
@@ -54,7 +53,7 @@ class RecipeCardV extends Component {
       this.getImage(this.state.image);
     }
     return (
-      <Card style={this.props.large ? styles.largeCard : styles.card}>
+      <Card>
         <CardActionArea>
           <CardContent>
             <Typography gutterBottom variant="headline" component="h2">

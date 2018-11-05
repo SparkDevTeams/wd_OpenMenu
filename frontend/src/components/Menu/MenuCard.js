@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 
 import Card from "@material-ui/core/Card";
@@ -10,28 +10,11 @@ import Typography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/core";
 
 const styles = {
-  largeCard: {
-    width: "100%",
-    height: "10%"
+  largeImg: {
+    width: "100%"
   },
-  iconCard: {
-    width: "50%",
-    height: "50%"
-  },
-  cardTitle: {
-    textAlign: "center"
-  },
-  cardImgContainer: {
-    display: "block",
-    marginLeft: 20
-  },
-  cardImg: {
-    width: "100%",
-    height: "100%"
-  },
-  cardDescription: {
-    textAlign: "center",
-    marginTop: 10
+  smallImg: {
+    width: "100%"
   }
 };
 
@@ -64,50 +47,39 @@ class MenuCard extends Component {
       this.getImage(this.state.image);
     }
     return (
-      <Fragment>
-        <Card
-          className={
-            this.props.large
-              ? this.props.classes.largeCard
-              : this.props.classes.iconCard
-          }
-        >
-          <CardActionArea>
-            <CardContent>
-              <Typography
-                className={this.props.classes.cardTitle}
-                gutterBottom
-                variant="headline"
-                component="h2"
-              >
-                {this.props.menu.name}
-              </Typography>
+      <Card>
+        <CardActionArea>
+          <CardContent>
+            <Typography gutterBottom variant="headline" component="h2">
+              {this.props.menu.name}
+            </Typography>
 
-              <div className={this.props.classes.cardImgContainer}>
-                <CardMedia title={this.props.menu.name}>
-                  <img
-                    src={this.state.image_data}
-                    style={styles.cardImg}
-                    alt="not found"
-                  />
-                </CardMedia>
-              </div>
+            <CardMedia title={this.props.menu.name}>
+              <img
+                src={this.state.image_data}
+                className={
+                  this.props.large
+                    ? this.props.classes.largeImg
+                    : this.props.classes.smallImg
+                }
+                alt="not found"
+              />
+            </CardMedia>
 
-              <Typography
-                className={this.props.classes.cardDescription}
-                component="p"
-              >
-                {this.props.menu.description}
-              </Typography>
-            </CardContent>
-          </CardActionArea>
-          <CardActions>
-            {/* <Button>Tag</Button>
+            <Typography
+              className={this.props.classes.cardDescription}
+              component="p"
+            >
+              {this.props.menu.description}
+            </Typography>
+          </CardContent>
+        </CardActionArea>
+        <CardActions>
+          {/* <Button>Tag</Button>
             <Button>Tag</Button>
             <Button>Tag</Button> */}
-          </CardActions>
-        </Card>
-      </Fragment>
+        </CardActions>
+      </Card>
     );
   } // end render()
 } // end component

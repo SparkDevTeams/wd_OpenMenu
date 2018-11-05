@@ -16,16 +16,13 @@ import TextField from "@material-ui/core/TextField";
 
 const styles = {
   Card: {
-    margin: 10,
-    width: 300,
-    padding: 24,
-    boxShadow: "0px 5px 20px rgba(0,0,0,0.3)",
+    "margin-left": 10,
     cursor: "pointer",
     position: "relative",
     overflow: "hidden"
   },
   img: {
-    width: "100%"
+    width: "60%"
   },
   closeBtn: {
     position: "absolute",
