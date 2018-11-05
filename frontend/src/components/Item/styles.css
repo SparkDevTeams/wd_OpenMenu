@@ -1,0 +1,22 @@
+.thumbnail-img {
+  width: 200px;
+  height: 200px;
+}
+@media (min-width: 500px) {
+  .thumbnail-img {
+    width: 300px;
+    height: 300px;
+  }
+}
+@media (min-width: 1600px) {
+  .thumbnail-img {
+    width: 400px;
+    height: 400px;
+  }
+}
+@media (min-width: 2000px) {
+  .thumbnail-img {
+    width: 500px;
+    height: 500px;
+  }
+}

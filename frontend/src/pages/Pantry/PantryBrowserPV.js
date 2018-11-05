@@ -7,6 +7,7 @@ import CloseIcon from "@material-ui/icons/Close";
 import PantryBrowserM from "./PantryBrowserM";
 import ItemCard from "../../components/Item/ItemC";
 import Grid from "@material-ui/core/Grid";
+import styles from "./styles.css"
 // import "../../styles/ShoppinglistS.css";
 
 const PantryBrowserPV = props => {
@@ -15,6 +16,7 @@ const PantryBrowserPV = props => {
       {/* <div onClick={props.openWindowFunction} className="fab-add-button"> */}
       <div onClick={props.openAddItemWindow}>
         <Button
+          id="add-btn"
           variant="fab"
           color="secondary"
           aria-label="Add"
@@ -25,13 +27,11 @@ const PantryBrowserPV = props => {
       </div>
 
       <h1>Items</h1>
-      <Grid container spacing={16}>
-        <Grid item xs={8}>
-          <Grid container spacing={16}>
+      <Grid container id="itemContainer" spacing={40}>
             {props.userItems.length > 0
               ? props.userItems.map(item => {
                   return (
-                    <Grid key={item.uid} item xs={6}>
+                    <Grid key={item.uid} xs={12} item md={4}>
                       <ItemCard
                         key={item.uid}
                         itemId={item.uid}
@@ -41,8 +41,6 @@ const PantryBrowserPV = props => {
                   );
                 })
               : console.log("")}
-          </Grid>
-        </Grid>
       </Grid>
 
       <Dialog
@@ -72,5 +70,6 @@ const PantryBrowserPV = props => {
     </div>
   );
 };
+
 
 export default PantryBrowserPV;
