@@ -2,19 +2,22 @@ import React from "react";
 import Button from "@material-ui/core/Button";
 import AddIcon from "@material-ui/icons/Add";
 import "../../styles/ShoppinglistS.css";
-import RecipeCard from "../../components/Recipe/ItemCardV";
+import ItemCard from "../../components/Item/ItemC";
 import CardC from "./CardC";
 
 function ShoppinglistPV(props) {
   const { classes } = props;
-  console.log("On ShoppinglistPV:", props.addedItems);
+ 
   return (
     <div>
       <div class="added-items-grid-container">
         <div class="added-items-grid">
           {props.addedItems.map(item =>(
             <div>
-              <RecipeCard name={item.props.card.props.name} className="item-card" />
+              <ItemCard key={item.uid}
+                        itemId={item.uid}
+                        amount={item.amount}
+              className="item-card" />
             </div>
           ))}
         </div>

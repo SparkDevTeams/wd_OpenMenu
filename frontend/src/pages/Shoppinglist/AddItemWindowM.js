@@ -4,6 +4,7 @@ import RecipeCard from "../../components/Recipe/ItemCardV";
 import Checkbox from "@material-ui/core/Checkbox";
 import CloseIcon from "@material-ui/icons/Close";
 import CardC from "./CardC";
+import ItemCard from "../../components/Item/ItemC";
 
 const AddItemWindowM = props => {
 
@@ -42,7 +43,9 @@ const AddItemWindowM = props => {
   
 
   function addNewChecked (checkedCard) {
+   
     checkedCards.push(checkedCard); 
+    console.log("inside add new checked card", checkedCards);
   }
 
   function removeUnchecked(uncheckedCard) {
@@ -51,15 +54,52 @@ const AddItemWindowM = props => {
   }
 
 
+
   let itemElements = items.map(item => (
-      <RecipeCard name={item.name} className="item-card" />
+    <ItemCard key={item.uid}
+              itemId={item.uid}
+              amount={item.amount}
+              className="item-card" />
   ));
   let itemComponents = itemElements.map(itemElement => (
       <CardC card={itemElement} notifyChecked={addNewChecked} notifyUnchecked={removeUnchecked} checked={false}/>
   ));
 
 
+
+  props.addedItems.forEach((addedName)=>{
+    itemComponents.forEach((item) => {
+
+      let itemName = item.props.card.props.name;
+
+      if (addedName === itemName){
+        let index = itemComponents.indexOf(item);
+      
+        
+        
+        itemComponents[index] = 
+        <CardC card={itemComponents[index].props.card} 
+        notifyChecked={addNewChecked} 
+        notifyUnchecked={removeUnchecked} 
+        checked={true}/>;
+        
+
+        checkedCards.push(itemName);
+        
+        console.log("Checked cards: ", checkedCards);
+      }
+    });
+  });
+
+ 
+ 
+  
+
+
+
+
   function handleClose() {
+    console.log("This is being sent to ShoppingList", checkedCards);
     props.getAddedItems(checkedCards);
     props.closeWindowFunction();
   }

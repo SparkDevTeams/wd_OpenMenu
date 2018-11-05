@@ -22,13 +22,14 @@ class CardC extends Component {
 
     let card = this.props.card;   
     let cardIcon;
+    console.log(card);
 
     if (this.state.checked) {
-        this.props.notifyChecked(this);
+        this.props.notifyChecked(card.key);
         cardIcon = <CheckCircleIcon color="secondary" className="add-card-icon" onClick={this.toggleChecked.bind(this)}/>;
     }
     else{
-        this.props.notifyUnchecked(this);
+        this.props.notifyUnchecked(card.key);
         cardIcon = <AddCircleIcon color="action" className="add-card-icon" onClick={this.toggleChecked.bind(this)}/>;
     }
 

@@ -17,6 +17,17 @@ class ShoppinglistPC extends Component {
     };
   }
 
+  removeDuplicatesFromArray(array){
+    for (var i = 0; i < array.length; i++){
+      for (var j = i + 1; j < array.length; j++){
+        if (array[i] === array[j]){
+          array.splice(j, 1);
+        }
+      }
+    }
+    return array;
+  }
+
   openAddItemWindow() {
     this.setState({
       addItemWindowVisibility: true
@@ -46,20 +57,37 @@ class ShoppinglistPC extends Component {
     });
   }
 
-  getAddedItems(addedItems){
+  getAddedItems(added){
     this.setState({
-      addedItems: addedItems
+      addedItems: this.removeDuplicatesFromArray(this.state.addedItems.concat(added))
     });
+
+
   }
+
 
   render() {
     let componentToReturn;
+
+    let addedItemsWithAllInformation = [];
+
+    this.props.userItems.forEach((item) => {
+      this.state.addedItems.forEach((added) => {
+        if (item.uid === added) {
+          addedItemsWithAllInformation.push(item);
+
+        }
+      })
+    });
+
+
+
     if (this.state.addItemWindowVisibility === true) {
        componentToReturn = (
                           <div>
                             <ShoppinglistPV 
                             openWindowFunction={this.openAddItemWindow.bind(this)} 
-                            addedItems={this.state.addedItems}/>
+                            addedItems={addedItemsWithAllInformation}/>
                             <AddItemWindowM closeWindowFunction={this.closeAddItemWindow.bind(this)}
 
                             items={this.props.userItems} 
@@ -75,7 +103,8 @@ class ShoppinglistPC extends Component {
                             toggleMenuCheckFunction={this.toggleMenusChecked.bind(this)}
 
                             getAddedItems={this.getAddedItems.bind(this)}
-                     
+                            addedItems={this.state.addedItems}
+                           
                             />
                           </div>
                           );
@@ -84,12 +113,9 @@ class ShoppinglistPC extends Component {
       
        componentToReturn = (<ShoppinglistPV 
                            openWindowFunction={this.openAddItemWindow.bind(this)}
-                           addedItems={this.state.addedItems}/>);
+                           addedItems={addedItemsWithAllInformation}/>);
       
-
     }
-
-   
     return componentToReturn;
   }
 }
