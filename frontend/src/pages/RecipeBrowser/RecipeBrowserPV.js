@@ -8,12 +8,14 @@ import Button from "@material-ui/core/Button";
 import AddIcon from "@material-ui/icons/Add";
 import RecipeBrowserM from "./RecipeBrowserM";
 import Grid from "@material-ui/core/Grid";
+import styles from "./styles.css"
 
 const RecipeBrowserPV = props => {
   return (
     <div>
       <div>
         <Button
+          id="add-button"
           // style={styles.bttn}
           margin-left="20px"
           variant="fab"
@@ -25,20 +27,15 @@ const RecipeBrowserPV = props => {
         </Button>
         <h1>Recipes</h1>
       </div>
-      <Grid container spacing={16}>
-        <Grid item xs={8}>
-          <Grid container spacing={16}>
-            {props.userRecipes.map(recipe => (
-              <Grid key={recipe.uid} item xs={6}>
+      <Grid id="recipe-container" container spacing={40}>
+        {props.userRecipes.map(recipe => (
+              <Grid key={recipe.uid} item md={4}>
                 <Link to={{ pathname: "/recipes/" + recipe.uid }}>
                   <RecipeCardV recipe={recipe} large={false} />
                 </Link>
               </Grid>
             ))}
-          </Grid>
-        </Grid>
       </Grid>
-
       <Dialog
         open={props.openDialog}
         onClose={props.handleCloseDialog}

@@ -1,7 +1,30 @@
-.container{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+#thumbnail-img {
+  width: 200px;
+  height: 200px;
+}
+@media (min-width: 500px) {
+  #thumbnail-img {
+    width: 250px;
+    height: 250px;
+  }
+}
+@media (min-width: 1600px) {
+  #thumbnail-img {
+    width: 350px;
+    height: 350px;
+  }
+}
+@media (min-width: 2000px) {
+  #thumbnail-img {
+    width: 500px;
+    height: 500px;
+  }
 }

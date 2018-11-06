@@ -1,0 +1,17 @@
+#add-btn {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+}
+
+#itemContainer {
+  margin: 0;
+  width: 100%;
+}
+
+@media (min-width: 2500px) {
+  #itemContainer {
+    max-width: 2500px;
+    margin: auto;
+  }
+}

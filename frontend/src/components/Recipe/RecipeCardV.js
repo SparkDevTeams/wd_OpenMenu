@@ -61,10 +61,9 @@ class RecipeCardV extends Component {
             </Typography>
 
             <CardMedia title={this.props.recipe.name}>
-              <img
+              <img id="thumbnail-img"
                 src={this.state.image_data}
                 alt="not found"
-                style={styles.media}
               />
             </CardMedia>
 
