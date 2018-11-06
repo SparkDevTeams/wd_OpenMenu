@@ -4,6 +4,7 @@ import "../../styles/ShoppinglistS.css";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
+import InputAdornment from "@material-ui/core/InputAdornment";
 import MenuItem from "@material-ui/core/MenuItem";
 import GetImageC from "../../components/GetImage/GetImageC";
 import { Card, CardMedia, CardActionArea } from "@material-ui/core";

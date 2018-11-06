@@ -17,7 +17,7 @@ const RecipeV = props => {
     <div>
       {/* show detail of recipe */}
       <div id="recipe-details-container">
-        <RecipeCardV recipe={props.recipe} large={true} />
+      < RecipeCardV recipe={props.recipe} large={true} />
       </div>
       <h1>Ingredients</h1>
 
@@ -71,15 +71,14 @@ const RecipeV = props => {
                   return (
                     <Grid xs={12} item md={4}>
                       <ItemCard
-                        key={item.itemId}
-                        itemId={item.itemId}
-                        amount={item.amount}
-                      />
+                      key={item.itemId}
+                      itemId={item.itemId}
+                      amount={item.amount}
+                    />
                     </Grid>
                   );
                 }
               }
-              return 0;
             })
           : console.log("No ingredient. Add some")}
       </Grid>

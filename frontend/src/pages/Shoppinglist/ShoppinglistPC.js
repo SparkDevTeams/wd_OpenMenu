@@ -3,6 +3,8 @@ import ShoppinglistPV from "./ShoppinglistPV";
 import AddItemWindowM from "./AddItemWindowM";
 import { connect } from "react-redux";
 
+import HomePC from "../Home/HomePC";
+
 class ShoppinglistPC extends Component {
   constructor() {
     super();
@@ -15,10 +17,10 @@ class ShoppinglistPC extends Component {
     };
   }
 
-  removeDuplicatesFromArray(array) {
-    for (var i = 0; i < array.length; i++) {
-      for (var j = i + 1; j < array.length; j++) {
-        if (array[i] === array[j]) {
+  removeDuplicatesFromArray(array){
+    for (var i = 0; i < array.length; i++){
+      for (var j = i + 1; j < array.length; j++){
+        if (array[i] === array[j]){
           array.splice(j, 1);
         }
       }
@@ -55,57 +57,64 @@ class ShoppinglistPC extends Component {
     });
   }
 
-  getAddedItems(added) {
+  getAddedItems(added){
     this.setState({
-      addedItems: this.removeDuplicatesFromArray(
-        this.state.addedItems.concat(added)
-      )
+      addedItems: this.removeDuplicatesFromArray(this.state.addedItems.concat(added))
     });
+
+
   }
+
 
   render() {
     let componentToReturn;
 
     let addedItemsWithAllInformation = [];
 
-    this.props.userItems.forEach(item => {
-      this.state.addedItems.forEach(added => {
+    this.props.userItems.forEach((item) => {
+      this.state.addedItems.forEach((added) => {
         if (item.uid === added) {
           addedItemsWithAllInformation.push(item);
+
         }
-      });
+      })
     });
 
+
+
     if (this.state.addItemWindowVisibility === true) {
-      componentToReturn = (
-        <div>
-          <ShoppinglistPV
-            openWindowFunction={this.openAddItemWindow.bind(this)}
-            addedItems={addedItemsWithAllInformation}
-          />
-          <AddItemWindowM
-            closeWindowFunction={this.closeAddItemWindow.bind(this)}
-            items={this.props.userItems}
-            itemsChecked={this.state.itemsChecked}
-            toggleItemCheckFunction={this.toggleItemsChecked.bind(this)}
-            recipes={this.props.userRecipes}
-            recipesChecked={this.state.recipesChecked}
-            toggleRecipeCheckFunction={this.toggleRecipesChecked.bind(this)}
-            menus={this.props.userMenus}
-            menusChecked={this.state.menusChecked}
-            toggleMenuCheckFunction={this.toggleMenusChecked.bind(this)}
-            getAddedItems={this.getAddedItems.bind(this)}
-            addedItems={this.state.addedItems}
-          />
-        </div>
-      );
-    } else {
-      componentToReturn = (
-        <ShoppinglistPV
-          openWindowFunction={this.openAddItemWindow.bind(this)}
-          addedItems={addedItemsWithAllInformation}
-        />
-      );
+       componentToReturn = (
+                          <div>
+                            <ShoppinglistPV 
+                            openWindowFunction={this.openAddItemWindow.bind(this)} 
+                            addedItems={addedItemsWithAllInformation}/>
+                            <AddItemWindowM closeWindowFunction={this.closeAddItemWindow.bind(this)}
+
+                            items={this.props.userItems} 
+                            itemsChecked={this.state.itemsChecked} 
+                            toggleItemCheckFunction={this.toggleItemsChecked.bind(this)}
+
+                            recipes={this.props.userRecipes} 
+                            recipesChecked={this.state.recipesChecked} 
+                            toggleRecipeCheckFunction={this.toggleRecipesChecked.bind(this)}
+
+                            menus={this.props.userMenus} 
+                            menusChecked={this.state.menusChecked} 
+                            toggleMenuCheckFunction={this.toggleMenusChecked.bind(this)}
+
+                            getAddedItems={this.getAddedItems.bind(this)}
+                            addedItems={this.state.addedItems}
+                           
+                            />
+                          </div>
+                          );
+    }
+    else {
+      
+       componentToReturn = (<ShoppinglistPV 
+                           openWindowFunction={this.openAddItemWindow.bind(this)}
+                           addedItems={addedItemsWithAllInformation}/>);
+      
     }
     return componentToReturn;
   }

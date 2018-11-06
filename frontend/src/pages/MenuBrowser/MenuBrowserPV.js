@@ -8,6 +8,7 @@ import CloseIcon from "@material-ui/icons/Close";
 import Button from "@material-ui/core/Button";
 import AddIcon from "@material-ui/icons/Add";
 import Grid from "@material-ui/core/Grid";
+import Styles from './styles.css'
 
 const MenuBrowserPV = props => {
   return (
@@ -25,14 +26,14 @@ const MenuBrowserPV = props => {
       <h1>Menus</h1>
 
       <Grid id="itemContainer" container spacing={40}>
-        {" "}
-        {props.userMenus.map(menu => (
-          <Grid key={menu.uid} item xs={12} md={4} xl={3}>
-            <Link key={menu.uid} to={{ pathname: "/menus/" + menu.uid }}>
-              <MenuCard menu={menu} />
-            </Link>
-          </Grid>
-        ))}
+            {" "}
+            {props.userMenus.map(menu => (
+              <Grid key={menu.uid} item xs={12} md={4} xl={3}>
+                <Link key={menu.uid} to={{ pathname: "/menus/" + menu.uid }}>
+                  <MenuCard menu={menu} />
+                </Link>
+              </Grid>
+            ))}
       </Grid>
 
       <div>

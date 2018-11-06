@@ -28,7 +28,6 @@ const MenuA = dispatch => {
         .then(res => {
           res.data.map(menu => {
             downloadImage(menu.image, dispatch);
-            return 0;
           });
           dispatch({ type: "GET_MENUS", data: res.data });
         })

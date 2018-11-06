@@ -56,7 +56,6 @@ const MenuV = props => {
                 );
               }
             }
-            return 0;
           })
         ) : (
           <h3>No recipes found. Add some using the add button.</h3>

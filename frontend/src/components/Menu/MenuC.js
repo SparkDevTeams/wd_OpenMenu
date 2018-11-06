@@ -36,7 +36,6 @@ class MenuC extends Component {
         count++;
         if (rLen === count) break;
       }
-      return 0;
     });
   }
 
