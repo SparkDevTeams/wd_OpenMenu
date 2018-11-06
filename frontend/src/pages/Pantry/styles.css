@@ -2,9 +2,9 @@
   padding: 0px 10px;
 }
 
-@media (min-width: 1800px) {
+@media (min-width: 2500px) {
   #itemContainer {
-    max-width: 1800px;
+    max-width: 2500px;
     margin: auto;
   }
 }

@@ -18,37 +18,37 @@ const HomePV = props => {
   return (
     <div>
       <h1>Menus</h1>
-      <div className="container">
+      <Grid className="container-cards" container spacing={40}>
         {props.userMenus.map(menu => (
-          <Link to={{ pathname: "/menus/" + menu.uid }}>
-            <div className="card">
-              <MenuCard menu={menu} />
-            </div>
-          </Link>
+          <Grid item xs={12} md={4} xl={3}>
+            <Link to={{ pathname: "/menus/" + menu.uid }}>
+                <MenuCard menu={menu} />
+            </Link>
+          </Grid>
         ))}
-      </div>
+      </Grid>
 
       <h1>Recipes</h1>
-      <div className="container">
+      <Grid className="container-cards" container spacing={40}>
         {props.userRecipes.map(recipe => (
-          <Link
-            // className={classes.cardStyle}
-            to={{ pathname: "/recipes/" + recipe.uid }}
-          >
-            <div className="card recipe">
-              <RecipeCardV recipe={recipe} large={false} />
-            </div>
-          </Link>
+          <Grid item xs={12} md={4} xl={3}>
+            <Link
+              // className={classes.cardStyle}
+              to={{ pathname: "/recipes/" + recipe.uid }}
+            >
+                <RecipeCardV recipe={recipe} large={false} />
+            </Link>
+          </Grid>
         ))}
-      </div>
+      </Grid>
       <h1>Items</h1>
-      <div style={styles} className="container">
+      <Grid className="container-cards" container spacing={40}>
         {props.userItems.map(item => (
-          <div className="card">
+           <Grid item xs={12} md={4} xl={3}>
             <ItemCard itemId={item.uid} amount={0.0} />
-          </div>
+          </Grid>
         ))}
-      </div>
+      </Grid>
     </div>
   );
 };

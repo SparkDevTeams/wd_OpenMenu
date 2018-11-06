@@ -45,7 +45,7 @@ const styles = {
   editDialog: {
     padding: 10,
     textAlign: "left",
-    maxWidth: 500
+    maxWidth: 400
   },
   textBox: {
     marginTop: "8px",

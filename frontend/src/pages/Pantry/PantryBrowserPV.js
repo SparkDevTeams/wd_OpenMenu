@@ -31,7 +31,7 @@ const PantryBrowserPV = props => {
             {props.userItems.length > 0
               ? props.userItems.map(item => {
                   return (
-                    <Grid key={item.uid} xs={12} item md={4}>
+                    <Grid key={item.uid} xs={12} item md={4} xl={4}>
                       <ItemCard
                         key={item.uid}
                         itemId={item.uid}
