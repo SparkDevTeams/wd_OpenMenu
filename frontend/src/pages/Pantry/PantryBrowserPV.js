@@ -7,8 +7,6 @@ import CloseIcon from "@material-ui/icons/Close";
 import PantryBrowserM from "./PantryBrowserM";
 import ItemCard from "../../components/Item/ItemC";
 import Grid from "@material-ui/core/Grid";
-import styles from "./styles.css"
-// import "../../styles/ShoppinglistS.css";
 
 const PantryBrowserPV = props => {
   return (
@@ -28,19 +26,19 @@ const PantryBrowserPV = props => {
 
       <h1>Items</h1>
       <Grid container id="itemContainer" spacing={40}>
-            {props.userItems.length > 0
-              ? props.userItems.map(item => {
-                  return (
-                    <Grid key={item.uid} xs={12} item md={4} xl={4}>
-                      <ItemCard
-                        key={item.uid}
-                        itemId={item.uid}
-                        amount={item.amount}
-                      />
-                    </Grid>
-                  );
-                })
-              : console.log("")}
+        {props.userItems.length > 0
+          ? props.userItems.map(item => {
+              return (
+                <Grid key={item.uid} xs={12} item md={4} xl={4}>
+                  <ItemCard
+                    key={item.uid}
+                    itemId={item.uid}
+                    amount={item.amount}
+                  />
+                </Grid>
+              );
+            })
+          : console.log("")}
       </Grid>
 
       <Dialog
@@ -70,6 +68,5 @@ const PantryBrowserPV = props => {
     </div>
   );
 };
-
 
 export default PantryBrowserPV;

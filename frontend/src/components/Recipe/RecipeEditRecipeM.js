@@ -186,6 +186,7 @@ class RecipeEditRecipeM extends Component {
                     );
                   }
                 }
+                return 0;
               })
             : console.log("no ingredients")}
 

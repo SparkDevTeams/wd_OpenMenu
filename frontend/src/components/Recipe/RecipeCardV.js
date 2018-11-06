@@ -6,22 +6,6 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 
-// const screenWidth = window.screen.availWidth;
-
-const styles = {
-  card: {
-    width: "50%",
-    height: "100%"
-  },
-  largeCard: {
-    height: "30%",
-    width: "80%"
-  },
-  media: {
-    width: "60%"
-  }
-};
-
 class RecipeCardV extends Component {
   constructor(props) {
     super(props);
@@ -61,7 +45,8 @@ class RecipeCardV extends Component {
             </Typography>
 
             <CardMedia title={this.props.recipe.name}>
-              <img id="thumbnail-img"
+              <img
+                id="thumbnail-img"
                 src={this.state.image_data}
                 alt="not found"
               />

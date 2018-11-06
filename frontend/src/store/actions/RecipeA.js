@@ -9,6 +9,7 @@ const RecipeA = dispatch => {
         .then(res => {
           res.data.map(recipe => {
             downloadImage(recipe.image, dispatch);
+            return 0;
           });
           dispatch({ type: "GET_RECIPES", data: res.data });
         })

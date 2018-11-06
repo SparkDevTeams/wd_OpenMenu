@@ -26,6 +26,7 @@ const ItemA = dispatch => {
       axios.get(process.env.REACT_APP_ITEMS_URL).then(res => {
         res.data.map(item => {
           downloadImage(item.image, dispatch);
+          return 0;
         });
         dispatch({ type: "GET_ITEMS", data: res.data });
       });

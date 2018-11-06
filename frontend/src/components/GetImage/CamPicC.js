@@ -42,7 +42,7 @@ export default class CamPicC extends Component {
     const videoConstraints = {
       width: 1280,
       height: 720,
-      facingMode: this.state.user
+      facingMode: this.state.camera
     };
 
     return (
