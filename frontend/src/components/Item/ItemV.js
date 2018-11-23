@@ -13,19 +13,17 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
+import "./styles.css";
 
 const styles = {
   Card: {
-    margin: 10,
-    width: 300,
-    padding: 24,
-    boxShadow: "0px 5px 20px rgba(0,0,0,0.3)",
     cursor: "pointer",
     position: "relative",
-    overflow: "hidden"
   },
-  img: {
-    width: "100%"
+  img:{
+    width: '60%',
+    margin: 'auto',
+    paddingTop: '10px'
   },
   closeBtn: {
     position: "absolute",
@@ -47,7 +45,7 @@ const styles = {
   editDialog: {
     padding: 10,
     textAlign: "left",
-    maxWidth: 500
+    maxWidth: 400
   },
   textBox: {
     marginTop: "8px",
@@ -67,7 +65,7 @@ const ItemV = props => {
     <Fragment>
       {/*card to display*/}
       <Card style={styles.Card} onClick={props.detailsToggle}>
-        <img src={props.img} alt="not found" style={styles.img} />
+          <img className="thumbnail-img" src={props.img} alt="not found" />
         <Typography variant="headline" component="h2">
           {props.name}
         </Typography>

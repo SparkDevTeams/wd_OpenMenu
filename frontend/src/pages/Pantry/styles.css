@@ -1,0 +1,21 @@
+#itemContainer {
+  padding: 0px 10px;
+}
+
+@media (min-width: 2500px) {
+  #itemContainer {
+    max-width: 2500px;
+    margin: auto;
+  }
+}
+
+.MuiDialog-paperWidthSm-267 {
+  max-width: 500px !important;
+}
+
+#add-btn {
+  position: fixed;
+  bottom: 10px;
+  right: 20px;
+  z-index: 1000;
+}

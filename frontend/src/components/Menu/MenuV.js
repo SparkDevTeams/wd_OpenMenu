@@ -12,6 +12,7 @@ import { withStyles } from "@material-ui/core/styles";
 
 import MenuCard from "./MenuCard";
 import RecipeCardV from "../Recipe/RecipeCardV";
+import "./style.css";
 
 const styles = {
   "@media (min-width: 1024px)": {

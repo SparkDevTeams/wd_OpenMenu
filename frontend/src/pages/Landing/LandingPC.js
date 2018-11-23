@@ -33,10 +33,20 @@ import { connect } from "react-redux";
  *  - Display error message on failed login / signup
  */
 class LandingPC extends Component {
-  state = {
-    user: "",
-    password: ""
-  };
+  constructor(props){
+    super(props);
+    this.state = {
+      user: "",
+      password: "",
+      showLogin: false
+    };
+  }
+
+  toggleLogin = () =>{
+    this.setState({
+      showLogin: !this.state.showLogin
+    })
+  }
 
   onUserChange = event => {
     this.setState({ user: event.target.value });
@@ -71,6 +81,8 @@ class LandingPC extends Component {
         login={this.login}
         signup={this.signup}
         auth={this.props.auth}
+        toggleLogin={this.toggleLogin}
+        showLogin={this.state.showLogin}
       />
     );
   }

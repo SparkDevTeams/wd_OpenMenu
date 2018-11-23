@@ -1,16 +1,59 @@
-@import url("https://fonts.googleapis.com/css?family=Chivo");
+@import url('https://fonts.googleapis.com/css?family=Chivo');
 .font {
-  font-family: "Chivo", sans-serif;
-}
-.containerL {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-content: center;
-  margin-top: 5vh;
+  font-family: 'Chivo', sans-serif;
 }
 .buttons {
   display: inline-block;
   margin-left: 15%;
   margin-bottom: 30px;
+}
+
+.login-btn {
+  margin: 5px !important;
+}
+
+.container-landing {
+  margin-top: -10% !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  margin: 0px;
+  background: url('../../assets/open-menu-background.jpg');
+  background-attachment: fixed;
+  background-position: top center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#checkmark-container {
+  text-align: left;
+  width: 85%;
+  margin: auto;
+  margin-bottom: 40px;
+}
+
+#welcome-card button {
+  margin-bottom: 15px;
+}
+
+#welcome-card {
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.8);
+}
+
+@media (min-width: 900px) {
+  #welcome-card {
+    font-size: 20px;
+    width: 400px;
+    margin: auto;
+  }
+  #welcome-card h2 {
+    font-size: 32px;
+  }
+  #checkmark-container {
+    font-size: 22px;
+    width: 98%;
+  }
 }

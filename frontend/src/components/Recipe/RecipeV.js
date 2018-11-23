@@ -9,20 +9,23 @@ import IconButton from "@material-ui/core/IconButton";
 import Button from "@material-ui/core/Button";
 import RecipeEditRecipeM from "./RecipeEditRecipeM";
 import EditIcon from "@material-ui/icons/Edit";
-
+import Grid from "@material-ui/core/Grid";
 import "./style.css";
 
 const RecipeV = props => {
   return (
     <div>
       {/* show detail of recipe */}
-      <RecipeCardV recipe={props.recipe} large={true} />
+      <div id="recipe-details-container">
+      < RecipeCardV recipe={props.recipe} large={true} />
+      </div>
       <h1>Ingredients</h1>
 
       {/* Add recipe */}
       <div>
         <Button
           // style={styles.bttn}
+          id="add-ingredient-button"
           margin-left="20px"
           variant="fab"
           color="secondary"
@@ -59,22 +62,26 @@ const RecipeV = props => {
       </div>
 
       {/* Show list of ingredients */}
-      {props.ingredients.length > 0
-        ? props.recipe.ingredients.map(item => {
-            for (let i = 0; i < props.userItems.length; i++) {
-              if (item.itemId === props.userItems[i].uid) {
-                // console.log(item.itemId);
-                return (
-                  <ItemCard
-                    key={item.itemId}
-                    itemId={item.itemId}
-                    amount={item.amount}
-                  />
-                );
+      <Grid id="recipe-container" container spacing={40}>
+        {props.ingredients.length > 0
+          ? props.recipe.ingredients.map(item => {
+              for (let i = 0; i < props.userItems.length; i++) {
+                if (item.itemId === props.userItems[i].uid) {
+                  // console.log(item.itemId);
+                  return (
+                    <Grid xs={12} item md={4}>
+                      <ItemCard
+                      key={item.itemId}
+                      itemId={item.itemId}
+                      amount={item.amount}
+                    />
+                    </Grid>
+                  );
+                }
               }
-            }
-          })
-        : console.log("No ingredient. Add some")}
+            })
+          : console.log("No ingredient. Add some")}
+      </Grid>
     </div>
   );
 };
