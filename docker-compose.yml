@@ -1,6 +1,18 @@
 version: "3"
 
 services:
+  mongo:
+    image: mongo:latest
+    container_name: "mongo"
+    environment:
+      - MONGO_DATA_DIR=/data/db
+      - MONGO_LOG_DIR=/dev/null
+    ports:
+      - 27017:27017
+    volumes:
+      - ./data/db:/data/db
+    command: mongod --smallfiles --logpath=/dev/null
+
   openmenu_be:
     container_name: openmenu_be
     build: ./backend
@@ -11,6 +23,12 @@ services:
     volumes:
       - ./backend/:/opt/backend
       - /opt/backend/node_modules
+    environment:
+      - NODE_ENV=development
+    links:
+      - mongo
+    depends_on:
+      - mongo
 
   openmenu_fe:
     container_name: openmenu_fe
@@ -27,3 +45,5 @@ services:
       # Needed to persist the node_modules after the npm intall. Fixes command not found error
       # Source: https://stackoverflow.com/questions/30043872/docker-compose-node-modules-not-present-in-a-volume-after-npm-install-succeeds
       - /opt/frontend/node_modules
+    depends_on:
+      - openmenu_be
