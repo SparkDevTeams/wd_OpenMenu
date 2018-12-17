@@ -4,6 +4,7 @@ import PhotoCamera from "@material-ui/icons/PhotoCamera";
 
 /* View */
 import SimpleDialogC from "./SimpleDialogC";
+const uuidv4 = require("uuid/v4");
 
 class GetImageC extends Component {
   constructor(props) {
@@ -72,48 +73,7 @@ class GetImageC extends Component {
 
   getFileName = ext => {
     /* Generate unique image file name */
-    let user = localStorage.getItem("user").split("@")[0];
-    let name = this.props.name;
-    let dateStr = this.getDateStr();
-    let timeStr = this.getTimeStr();
-
-    return user + "_" + name + "_" + dateStr + "_" + timeStr + "." + ext;
-  };
-
-  // Used for unique image file naming
-  getDateStr = () => {
-    let today = new Date();
-    let dd = today.getDate();
-    let mm = today.getMonth() + 1; //January is 0!
-    let yyyy = today.getFullYear();
-
-    if (dd < 10) {
-      dd = "0" + dd;
-    }
-    if (mm < 10) {
-      mm = "0" + mm;
-    }
-
-    return mm + "_" + dd + "_" + yyyy;
-  };
-
-  // Used for unique image file naming
-  getTimeStr = () => {
-    const checkTime = i => {
-      if (i < 10) {
-        i = "0" + i;
-      }
-      return i;
-    };
-    let today = new Date();
-    let h = today.getHours();
-    let m = today.getMinutes();
-    let s = today.getSeconds();
-    // add a zero in front of numbers<10
-    m = checkTime(m);
-    s = checkTime(s);
-
-    return h + "_" + m + "_" + s;
+    return uuidv4() + "." + ext;
   };
 
   /* Image selected by user */

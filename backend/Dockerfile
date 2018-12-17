@@ -13,4 +13,4 @@ RUN yarn
 
 EXPOSE 3001
 
-CMD /bin/bash
+# CMD curl "mongo:27017"

@@ -3,6 +3,7 @@ version: "3"
 services:
   mongo:
     image: mongo:latest
+    restart: always
     container_name: "mongo"
     environment:
       - MONGO_DATA_DIR=/data/db
@@ -11,10 +12,11 @@ services:
       - 27017:27017
     volumes:
       - ./data/db:/data/db
-    command: mongod --smallfiles --logpath=/dev/null
+    # command: mongod --smallfiles --logpath=/dev/null
 
   openmenu_be:
     container_name: openmenu_be
+    restart: always
     build: ./backend
     working_dir: /opt/backend
     command: yarn start
@@ -25,9 +27,9 @@ services:
       - /opt/backend/node_modules
     environment:
       - NODE_ENV=development
-    links:
-      - mongo
     depends_on:
+      - mongo
+    links:
       - mongo
 
   openmenu_fe:

@@ -3,8 +3,8 @@ var envs = require('./env.js');
 
 module.exports = {
   db: {
-    // url: 'mongodb://mongo',
-    host: 'localhost',
+    url: 'mongodb://mongo:27017',
+    host: 'mongo',
     port: 27017,
     database: 'db',
     name: 'db',
